@@ -44,6 +44,15 @@ export function SiteFooter() {
             >
               LinkedIn
             </a>
+            {" · "}
+            <a
+              href={siteConfig.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-foreground"
+            >
+              GitHub
+            </a>
           </p>
 
           <a

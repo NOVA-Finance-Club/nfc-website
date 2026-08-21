@@ -83,7 +83,7 @@ export default function Home() {
         {/* NFC in numbers */}
         <section className="mt-10 border-t py-16 text-center">
           <Reveal>
-            <h2 className="font-heading text-2xl font-bold tracking-tight">
+            <h2 className="font-heading text-3xl font-bold tracking-tight sm:text-4xl">
               {siteConfig.shortName} in numbers
             </h2>
           </Reveal>
@@ -129,7 +129,7 @@ export default function Home() {
       <section className="mt-6 border-y bg-brand-cream/40 py-16">
         <div className="mx-auto max-w-7xl px-6">
           <Reveal className="text-center">
-            <h2 className="font-heading text-2xl font-bold tracking-tight">
+            <h2 className="font-heading text-3xl font-bold tracking-tight sm:text-4xl">
               What we do
             </h2>
           </Reveal>
@@ -159,7 +159,7 @@ export default function Home() {
         {/* Latest Articles from NFC */}
         <section className="py-16 text-center">
           <Reveal>
-            <h2 className="font-heading text-2xl font-bold tracking-tight">
+            <h2 className="font-heading text-3xl font-bold tracking-tight sm:text-4xl">
               Latest Articles from {siteConfig.shortName}
             </h2>
             <p className="mx-auto mt-2 max-w-2xl text-muted-foreground">
@@ -184,7 +184,7 @@ export default function Home() {
         {/* NFC Fund */}
         <section className="border-t py-16 text-center">
           <Reveal>
-            <h2 className="font-heading text-2xl font-bold tracking-tight">
+            <h2 className="font-heading text-3xl font-bold tracking-tight sm:text-4xl">
               {siteConfig.shortName} Fund
             </h2>
             <p className="mx-auto mt-2 max-w-2xl text-muted-foreground">
@@ -213,7 +213,7 @@ export default function Home() {
       >
         <div className="mx-auto max-w-2xl px-6 text-center">
           <Reveal>
-            <h2 className="font-heading text-2xl font-bold tracking-tight">
+            <h2 className="font-heading text-3xl font-bold tracking-tight sm:text-4xl">
               Get in Touch
             </h2>
           </Reveal>

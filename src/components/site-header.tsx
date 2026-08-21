@@ -118,7 +118,7 @@ export function SiteHeader() {
             render={<Link href="/join" />}
             className="font-heading text-base"
           >
-            Join NFC
+            Join Us: Spring 2027
           </Button>
         </div>
 

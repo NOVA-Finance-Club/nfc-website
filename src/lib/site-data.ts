@@ -14,6 +14,7 @@ export const siteConfig = {
   email: "nfc@ae.fct.unl.pt",
   instagram: "https://www.instagram.com/novafinanceclub_fct/",
   linkedin: "https://www.linkedin.com/company/nova-finance-club/",
+  github: "https://github.com/NOVA-Finance-Club",
 };
 
 export const missionStatement = `Founded in ${siteConfig.foundedYear}, the ${siteConfig.name} is a student-led organization at the ${siteConfig.institutionFullName}. Our mission is to foster financial literacy, ignite interest in financial markets, and equip students with practical skills.`;
