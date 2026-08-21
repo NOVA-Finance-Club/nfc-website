@@ -33,18 +33,17 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
-      <div className="mx-auto flex h-20 max-w-5xl items-center justify-between px-6">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
         <Link href="/" className="flex items-center gap-3">
           <Image
             src="/brand/nfc-mark-navy.png"
             alt=""
             width={48}
             height={48}
-            className="rounded-md"
             priority
           />
           <span className="font-heading text-base font-bold tracking-tight">
-            {siteConfig.name}
+            {`<${siteConfig.name}>`}
           </span>
         </Link>
 
@@ -82,7 +81,6 @@ export function SiteHeader() {
                         alt=""
                         width={24}
                         height={24}
-                        className="rounded"
                       />
                       {unit.name}
                     </NavigationMenuLink>
@@ -93,7 +91,12 @@ export function SiteHeader() {
           </NavigationMenu>
 
           {navItems
-            .filter((item) => item.label !== "About" && item.label !== "Departments")
+            .filter(
+              (item) =>
+                item.label !== "About" &&
+                item.label !== "Departments" &&
+                item.label !== "Join"
+            )
             .map((item) => (
               <Link
                 key={item.href}
@@ -109,7 +112,12 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden md:block">
-          <Button size="sm" nativeButton={false} render={<Link href="/join" />}>
+          <Button
+            size="lg"
+            nativeButton={false}
+            render={<Link href="/join" />}
+            className="font-heading text-base"
+          >
             Join NFC
           </Button>
         </div>

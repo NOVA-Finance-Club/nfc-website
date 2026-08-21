@@ -2,11 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { ArrowLeft } from "lucide-react";
+import type { ReactNode } from "react";
+import { ArrowDown, ArrowLeft } from "lucide-react";
 
-import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { PeopleGrid } from "@/components/person-card";
-import { PendingNote, PendingInline } from "@/components/pending-note";
+import { Reveal } from "@/components/motion-primitives";
 import { departments, governanceUnits, siteConfig, type Person } from "@/lib/site-data";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -44,6 +45,23 @@ function BackLink() {
   );
 }
 
+function TeamHeading({ children }: { children: ReactNode }) {
+  return (
+    <h2 className="text-center font-heading text-2xl font-bold tracking-tight">
+      {children}
+    </h2>
+  );
+}
+
+// Reserved space for a real team/cohort photo, once one exists — deliberately
+// left blank rather than filled with the department badge or any other
+// stand-in image. Sits left of the name and description, in its own column.
+function PhotoPlaceholder() {
+  return (
+    <div className="aspect-[4/5] w-full rounded-2xl border border-dashed border-brand-navy/15 bg-brand-cream/30 sm:aspect-auto sm:h-full" />
+  );
+}
+
 export default async function DepartmentDetailPage({ params }: Props) {
   const { slug } = await params;
   const found = findUnit(slug);
@@ -52,47 +70,50 @@ export default async function DepartmentDetailPage({ params }: Props) {
   if (found.kind === "governance") {
     const unit = found.unit;
     return (
-      <div className="mx-auto max-w-3xl px-6 py-16">
+      <div className="mx-auto max-w-7xl px-6 py-16">
         <BackLink />
 
-        <div className="mt-4 flex items-start gap-4">
-          <Image
-            src={unit.badgeImage}
-            alt=""
-            width={48}
-            height={48}
-            className="rounded-md"
-          />
-          <h1 className="font-heading text-3xl font-bold tracking-tight">
-            {unit.name}
-          </h1>
-        </div>
-
-        <p className="mt-4 max-w-2xl text-muted-foreground">
-          {unit.summary}
-        </p>
-
-        {unit.people && (
-          <div className="mt-8">
-            <PeopleGrid people={unit.people} />
-          </div>
-        )}
-
-        {unit.subgroups?.map((group) => (
-          <div key={group.title} className="mt-10">
-            <h2 className="text-sm font-semibold tracking-wide text-muted-foreground uppercase">
-              {group.title}
-            </h2>
-            <div className="mt-4">
-              <PeopleGrid people={group.people} />
+        <Reveal className="mt-4 grid gap-8 sm:grid-cols-2 sm:items-stretch">
+          <PhotoPlaceholder />
+          <div>
+            <div className="flex items-center gap-4">
+              <Image src={unit.badgeImage} alt="" width={48} height={48} />
+              <h1 className="font-heading text-3xl font-bold tracking-tight">
+                {unit.name}
+              </h1>
+            </div>
+            <p className="mt-4 text-muted-foreground">{unit.summary}</p>
+            <div className="mt-8">
+              <Button nativeButton={false} render={<a href="#team" />}>
+                Our team
+                <ArrowDown className="size-4" />
+              </Button>
             </div>
           </div>
-        ))}
+        </Reveal>
 
-        <PendingNote className="mt-10">
-          member photographs (initials shown above as a placeholder),
-          professional profile links, and direct emails.
-        </PendingNote>
+        <div className="my-16 border-t" />
+
+        <div id="team" className="scroll-mt-24">
+          <TeamHeading>Our Team</TeamHeading>
+
+          {unit.people && (
+            <Reveal className="mt-10">
+              <PeopleGrid people={unit.people} hierarchy={false} />
+            </Reveal>
+          )}
+
+          {unit.subgroups?.map((group) => (
+            <div key={group.title} className="mt-14">
+              <h3 className="text-center text-sm font-semibold tracking-wide text-muted-foreground uppercase">
+                {group.title}
+              </h3>
+              <Reveal className="mt-6">
+                <PeopleGrid people={group.people} hierarchy={false} />
+              </Reveal>
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
@@ -104,70 +125,38 @@ export default async function DepartmentDetailPage({ params }: Props) {
   ];
 
   return (
-    <div className="mx-auto max-w-3xl px-6 py-16">
+    <div className="mx-auto max-w-7xl px-6 py-16">
       <BackLink />
 
-      <div className="mt-4 flex items-start gap-4">
-        <Image
-          src={dept.badgeImage}
-          alt=""
-          width={48}
-          height={48}
-          className="rounded-md"
-        />
-        <h1 className="font-heading text-3xl font-bold tracking-tight">
-          {dept.name}
-        </h1>
-      </div>
+      <Reveal className="mt-4 grid gap-8 sm:grid-cols-2 sm:items-stretch">
+        <PhotoPlaceholder />
+        <div>
+          <div className="flex items-center gap-4">
+            <Image src={dept.badgeImage} alt="" width={48} height={48} />
+            <h1 className="font-heading text-3xl font-bold tracking-tight">
+              {dept.name}
+            </h1>
+          </div>
 
-      <p className="mt-4 max-w-2xl text-muted-foreground">{dept.summary}</p>
+          <p className="mt-4 text-muted-foreground">{dept.summary}</p>
 
-      {dept.description && (
-        <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground">
-          {dept.description}
-        </p>
-      )}
+          {dept.description && (
+            <p className="mt-4 leading-relaxed text-muted-foreground">
+              {dept.description}
+            </p>
+          )}
 
-      {dept.mandateGoal && (
-        <p className="mt-4 text-sm">
-          <span className="text-muted-foreground">
-            {siteConfig.mandate} mandate goal:{" "}
-          </span>
-          <span className="font-medium">{dept.mandateGoal}</span>
-        </p>
-      )}
-
-      {dept.editorialSeries && (
-        <div className="mt-8 divide-y border-t border-b">
-          {dept.editorialSeries.map((series) => (
-            <div
-              key={series.name}
-              className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 py-4"
-            >
-              <div>
-                <span className="font-medium">
-                  {series.name}
-                  {series.englishGloss && (
-                    <span className="font-normal text-muted-foreground">
-                      {" "}
-                      ({series.englishGloss})
-                    </span>
-                  )}
-                </span>
-                <p className="mt-1 text-sm text-muted-foreground">
-                  {series.description}
-                </p>
-              </div>
-              <Badge variant="outline" className="shrink-0">
-                {series.cadence}
-              </Badge>
-            </div>
-          ))}
+          <div className="mt-8">
+            <Button nativeButton={false} render={<a href="#team" />}>
+              Our team
+              <ArrowDown className="size-4" />
+            </Button>
+          </div>
         </div>
-      )}
+      </Reveal>
 
       {dept.divisions && (
-        <div className="mt-8 space-y-6">
+        <Reveal className="mt-14 space-y-6">
           {dept.divisions.map((division) => (
             <div key={division.name}>
               <h3 className="text-sm font-semibold tracking-wide text-muted-foreground uppercase">
@@ -178,29 +167,17 @@ export default async function DepartmentDetailPage({ params }: Props) {
               </p>
             </div>
           ))}
-        </div>
+        </Reveal>
       )}
 
-      {dept.notes?.map((note) => (
-        <PendingNote key={note} className="mt-6">
-          {note}
-        </PendingNote>
-      ))}
+      <div className="my-16 border-t" />
 
-      <div className="mt-10">
-        <h2 className="text-sm font-semibold tracking-wide text-muted-foreground uppercase">
-          People
-        </h2>
-        <div className="mt-4">
+      <div id="team" className="scroll-mt-24">
+        <TeamHeading>Our Team</TeamHeading>
+        <Reveal className="mt-10">
           <PeopleGrid people={people} />
-        </div>
+        </Reveal>
       </div>
-
-      <PendingNote className="mt-10">
-        a &quot;who this suits&quot; line, to help prospective members
-        self-select. <PendingInline>lead contact email and photo</PendingInline>{" "}
-        for the coordinator.
-      </PendingNote>
     </div>
   );
 }

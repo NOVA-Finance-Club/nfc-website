@@ -1,9 +1,9 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { PendingNote } from "@/components/pending-note";
 import { nfcFund, siteConfig } from "@/lib/site-data";
 
 export const metadata: Metadata = {
@@ -11,9 +11,45 @@ export const metadata: Metadata = {
   description: `${nfcFund.name} — ${siteConfig.name}'s virtual investment fund.`,
 };
 
+const TIME_RANGES = ["1W", "1M", "YTD", "1Y", "MAX"];
+
+// Label above value, muted — the not-yet-available version of the stat-tile
+// figure contract (no delta, no sparkline, no fabricated number).
+function StatTile({ label }: { label: string }) {
+  return (
+    <div className="text-center">
+      <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
+        {label}
+      </p>
+      <p className="mt-1 font-heading text-2xl font-bold tracking-tight text-muted-foreground">
+        —
+      </p>
+    </div>
+  );
+}
+
+function CardHeader({ children }: { children: ReactNode }) {
+  return (
+    <div className="bg-brand-navy px-4 py-2 text-center text-xs font-semibold tracking-wide text-brand-cream uppercase">
+      {children}
+    </div>
+  );
+}
+
+// Reserved space for a real chart/archive, once there's data to show — a
+// dashed, cream-tinted block matching the department pages' team-photo
+// placeholder, so "reserved, not broken" reads consistently sitewide.
+function EmptyState({ children }: { children: ReactNode }) {
+  return (
+    <div className="flex min-h-48 flex-1 items-center justify-center bg-brand-cream/30 p-8 text-center text-sm text-muted-foreground">
+      {children}
+    </div>
+  );
+}
+
 export default function FundPage() {
   return (
-    <div className="mx-auto max-w-3xl px-6 py-16">
+    <div className="mx-auto max-w-7xl px-6 py-16">
       <h1 className="font-heading text-3xl font-bold tracking-tight">
         {nfcFund.name}
       </h1>
@@ -27,11 +63,6 @@ export default function FundPage() {
         </Link>
         &apos;s Asset Management division.
       </p>
-
-      <PendingNote className="mt-6">
-        risk profile (conservative / balanced / growth), launch date, target
-        return and time horizon.
-      </PendingNote>
 
       {/* Mandate */}
       <section className="mt-10 space-y-3">
@@ -49,9 +80,45 @@ export default function FundPage() {
           </span>{" "}
           only as an example of a benchmark, not a confirmed choice.
         </p>
-        <PendingNote>
-          the actual benchmark, and a sentence justifying why it was chosen.
-        </PendingNote>
+      </section>
+
+      {/* Performance — chart + stats dashboard card, laid out after TIC's
+          strategy pages (chart on the left, a headered stat card on the
+          right). Both sides are honest empty states: the fund hasn't
+          reported a quarter yet. */}
+      <section className="mt-10 space-y-3">
+        <h2 className="text-xl font-semibold tracking-tight">Performance</h2>
+        <p className="text-muted-foreground">
+          Cumulative return against the benchmark, plus the headline risk
+          figures from each Shareholders Report.
+        </p>
+        <div className="grid gap-4 lg:grid-cols-[2fr_1fr]">
+          <div className="flex flex-col overflow-hidden rounded-2xl border">
+            <div className="flex flex-wrap items-center gap-1.5 border-b p-3">
+              {TIME_RANGES.map((range) => (
+                <Badge
+                  key={range}
+                  variant={range === "MAX" ? "default" : "outline"}
+                >
+                  {range}
+                </Badge>
+              ))}
+            </div>
+            <EmptyState>
+              Cumulative performance will appear here once the fund reports
+              its first quarter.
+            </EmptyState>
+          </div>
+          <div className="overflow-hidden rounded-2xl border">
+            <CardHeader>Headline figures</CardHeader>
+            <div className="grid grid-cols-2 gap-6 p-6">
+              <StatTile label="Cumulative return" />
+              <StatTile label="Sharpe ratio" />
+              <StatTile label="Max drawdown" />
+              <StatTile label="vs. benchmark" />
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Methodology */}
@@ -69,10 +136,21 @@ export default function FundPage() {
             </Badge>
           ))}
         </div>
-        <PendingNote>
-          the confirmed coverage teams, position selection process, weighting
-          approach, rebalancing frequency, and asset universe.
-        </PendingNote>
+      </section>
+
+      {/* Allocation */}
+      <section className="mt-10 space-y-3">
+        <h2 className="text-xl font-semibold tracking-tight">Allocation</h2>
+        <p className="text-muted-foreground">
+          How the fund&apos;s positions break down by coverage team.
+        </p>
+        <div className="overflow-hidden rounded-2xl border">
+          <CardHeader>By coverage team</CardHeader>
+          <EmptyState>
+            Allocation by coverage team will appear here once the fund
+            reports its first quarter.
+          </EmptyState>
+        </div>
       </section>
 
       {/* Reporting */}
@@ -93,15 +171,14 @@ export default function FundPage() {
         </ul>
       </section>
 
-      {/* Performance & holdings */}
+      {/* Shareholder Reports archive */}
       <section className="mt-10 space-y-3">
         <h2 className="text-xl font-semibold tracking-tight">
-          Performance &amp; holdings
+          Shareholder Reports
         </h2>
         <div className="rounded-md border border-dashed p-8 text-center text-sm text-muted-foreground">
-          No Shareholders Report has been published yet. Performance
-          metrics and holdings will appear here once the fund reports its
-          first quarter — not as a placeholder table showing zero.
+          No Shareholders Report has been published yet. The first report
+          will appear here once the fund reports its first quarter.
         </div>
       </section>
 

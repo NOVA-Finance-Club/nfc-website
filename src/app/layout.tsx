@@ -4,6 +4,7 @@ import "./globals.css";
 
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { MotionRoot } from "@/components/motion-primitives";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -32,9 +33,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${inter.variable} ${libreBaskerville.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <SiteHeader />
-        <main className="flex-1">{children}</main>
-        <SiteFooter />
+        <MotionRoot>
+          <SiteHeader />
+          <main className="flex-1">{children}</main>
+          <SiteFooter />
+        </MotionRoot>
       </body>
     </html>
   );

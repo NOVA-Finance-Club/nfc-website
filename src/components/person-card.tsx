@@ -1,5 +1,4 @@
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { PendingInline } from "@/components/pending-note";
 import { memberDegrees, type Person } from "@/lib/site-data";
 import { cn } from "@/lib/utils";
 
@@ -34,11 +33,17 @@ export const LEAD_ROLES = ["Coordinator", "President"];
 export function PersonCard({
   person,
   featured = false,
+  large = false,
 }: {
   person: Person;
   featured?: boolean;
+  /** Bigger avatar without the featured/highlighted card treatment — for
+   * groups where nobody outranks anybody else, but the photo should still
+   * be the focus. */
+  large?: boolean;
 }) {
   const degree = memberDegrees[person.name];
+  const avatarSize = featured ? "size-44" : large ? "size-40" : "size-32";
 
   return (
     <div
@@ -47,11 +52,11 @@ export function PersonCard({
         featured && "border-brand-navy/25 bg-brand-cream/40 p-8"
       )}
     >
-      <Avatar className={featured ? "size-44" : "size-32"}>
+      <Avatar className={avatarSize}>
         <AvatarFallback
           className={cn(
             "bg-brand-navy/8 font-heading text-brand-navy",
-            featured ? "text-4xl" : "text-3xl"
+            featured || large ? "text-4xl" : "text-3xl"
           )}
         >
           {initials(person.name)}
@@ -65,13 +70,9 @@ export function PersonCard({
         <p className="text-sm text-muted-foreground">{person.role}</p>
       </div>
 
-      {degree ? (
+      {degree && (
         <p className="text-xs text-muted-foreground">
           {degree.level} in {degree.name}
-        </p>
-      ) : (
-        <p className="text-xs">
-          <PendingInline>degree</PendingInline>
         </p>
       )}
 
@@ -81,8 +82,26 @@ export function PersonCard({
 }
 
 // Renders the group's lead (Coordinator/President) as a bigger, highlighted
-// card above the rest of the group's people in a regular grid.
-export function PeopleGrid({ people }: { people: Person[] }) {
+// card above the rest of the group's people in a regular grid. Pass
+// `hierarchy={false}` for groups where every role carries equal weight (e.g.
+// governance bodies) — everyone gets an equally large card, nobody featured.
+export function PeopleGrid({
+  people,
+  hierarchy = true,
+}: {
+  people: Person[];
+  hierarchy?: boolean;
+}) {
+  if (!hierarchy) {
+    return (
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {people.map((person) => (
+          <PersonCard key={person.name} person={person} large />
+        ))}
+      </div>
+    );
+  }
+
   const leadIndex = people.findIndex((p) => LEAD_ROLES.includes(p.role));
   const lead = leadIndex >= 0 ? people[leadIndex] : null;
   const rest = leadIndex >= 0 ? people.filter((_, i) => i !== leadIndex) : people;
@@ -97,9 +116,18 @@ export function PeopleGrid({ people }: { people: Person[] }) {
         </div>
       )}
       {rest.length > 0 && (
-        <div className="grid gap-3 sm:grid-cols-3">
+        <div className="flex flex-wrap justify-center gap-x-6 gap-y-8">
           {rest.map((person) => (
-            <PersonCard key={person.name} person={person} />
+            <div
+              key={person.name}
+              className={
+                rest.length < 4
+                  ? "w-full sm:w-[calc(33.333%-1rem)]"
+                  : "w-full sm:w-[calc(25%-1.125rem)]"
+              }
+            >
+              <PersonCard person={person} large />
+            </div>
           ))}
         </div>
       )}

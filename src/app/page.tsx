@@ -3,198 +3,226 @@ import Link from "next/link";
 import { ArrowRight, Mail } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { PendingNote } from "@/components/pending-note";
-import { departments, siteConfig } from "@/lib/site-data";
+import { ContactForm } from "@/components/contact-form";
+import {
+  AnimatedStat,
+  HeroParallax,
+  HoverLift,
+  Reveal,
+  StaggerGroup,
+  StaggerItem,
+} from "@/components/motion-primitives";
+import { departments, memberDegrees, missionStatement, siteConfig } from "@/lib/site-data";
 
 export default function Home() {
+  const distinctBackgrounds = new Set(
+    Object.values(memberDegrees).map((degree) => degree.name)
+  ).size;
+  const yearsActive = new Date().getFullYear() - siteConfig.foundedYear;
+
   return (
     <div>
       {/* Hero — full-bleed brand-navy band with the FCT-NOVA/Lisbon banner */}
       <section className="relative isolate overflow-hidden bg-brand-navy text-brand-cream">
-        <Image
-          src="/brand/hero-banner.png"
-          alt=""
-          fill
-          priority
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-navy via-brand-navy/90 to-brand-navy/70" />
-        <div className="relative mx-auto max-w-5xl px-6 py-24 sm:py-32">
-          <p className="text-sm font-medium tracking-[0.2em] text-brand-cream/70 uppercase">
-            {siteConfig.institution}
-          </p>
-          <h1 className="mt-5 max-w-2xl font-heading text-5xl leading-[1.05] font-bold sm:text-6xl">
-            {siteConfig.name}
-          </h1>
-          <p className="mt-6 max-w-xl text-lg text-brand-cream/85">
-            {siteConfig.shortName} is a student-run finance club at{" "}
-            {siteConfig.institution}, organised into a Board, a General
-            Council, and four departments.
-          </p>
+        <HeroParallax>
+          <Image
+            src="/brand/hero-banner.png"
+            alt=""
+            fill
+            priority
+            className="object-cover"
+          />
+        </HeroParallax>
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/80 via-brand-navy/60 to-brand-navy/40" />
+        <StaggerGroup
+          immediate
+          className="relative mx-auto max-w-7xl px-6 pt-28 pb-32 sm:pt-40 sm:pb-48"
+        >
+          <StaggerItem>
+            <h1 className="font-heading text-6xl leading-[1.05] font-bold sm:text-7xl">
+              {`<${siteConfig.name}>`}
+            </h1>
+          </StaggerItem>
+          <StaggerItem>
+            <p className="mt-6 max-w-xl font-heading text-2xl text-brand-cream/85">
+              {siteConfig.slogan}
+            </p>
+          </StaggerItem>
+          <StaggerItem>
+            <p className="mt-4 max-w-xl text-lg text-brand-cream/85">
+              We are a student-run finance club from {siteConfig.institutionFullName}.
+            </p>
+          </StaggerItem>
 
-          <div className="mt-9 flex flex-wrap gap-3">
-            <Button
-              size="lg"
-              nativeButton={false}
-              render={<Link href="/#contact" />}
-              className="bg-brand-cream text-brand-navy hover:bg-brand-cream/90"
-            >
-              Contact
-              <Mail className="size-4" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              nativeButton={false}
-              render={<Link href="/departments" />}
-              className="border-brand-cream/35 bg-transparent text-brand-cream hover:bg-brand-cream/10"
-            >
-              See what we do
-            </Button>
-          </div>
+          <StaggerItem className="mt-9 flex flex-wrap gap-3">
+            <HoverLift>
+              <Button
+                size="lg"
+                nativeButton={false}
+                render={<Link href="/#contact" />}
+                className="bg-brand-cream text-brand-navy hover:bg-brand-cream/90"
+              >
+                Contact
+                <Mail className="size-4" />
+              </Button>
+            </HoverLift>
+          </StaggerItem>
+        </StaggerGroup>
+      </section>
+
+      <div className="mx-auto max-w-7xl px-6">
+        {/* Founding + mission */}
+        <section className="mt-10 py-10 text-center">
+          <Reveal>
+            <p className="mx-auto max-w-3xl font-heading text-xl leading-relaxed sm:text-2xl">
+              {missionStatement}
+            </p>
+          </Reveal>
+        </section>
+
+        {/* NFC in numbers */}
+        <section className="mt-10 border-t py-16 text-center">
+          <Reveal>
+            <h2 className="font-heading text-2xl font-bold tracking-tight">
+              {siteConfig.shortName} in numbers
+            </h2>
+          </Reveal>
+          <StaggerGroup className="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-4">
+            <StaggerItem>
+              <AnimatedStat
+                value={siteConfig.memberCount}
+                className="font-heading text-4xl font-bold tracking-tight"
+              />
+              <p className="text-sm text-muted-foreground">members</p>
+            </StaggerItem>
+            <StaggerItem>
+              <AnimatedStat
+                value={departments.length}
+                className="font-heading text-4xl font-bold tracking-tight"
+              />
+              <p className="text-sm text-muted-foreground">departments</p>
+            </StaggerItem>
+            <StaggerItem>
+              <AnimatedStat
+                value={distinctBackgrounds}
+                className="font-heading text-4xl font-bold tracking-tight"
+              />
+              <p className="text-sm text-muted-foreground">
+                distinct backgrounds
+              </p>
+            </StaggerItem>
+            <StaggerItem>
+              <AnimatedStat
+                value={yearsActive}
+                className="font-heading text-4xl font-bold tracking-tight"
+              />
+              <p className="text-sm text-muted-foreground">years active</p>
+            </StaggerItem>
+          </StaggerGroup>
+        </section>
+      </div>
+
+      {/* What we do — a full-bleed banner, breaking out of the max-w-7xl
+          text column like the numbers/hero above it, so the homepage reads
+          as distinct horizontal sections rather than one long scroll. Plain
+          centered icon + title + description per department, no cards. */}
+      <section className="mt-6 border-y bg-brand-cream/40 py-16">
+        <div className="mx-auto max-w-7xl px-6">
+          <Reveal className="text-center">
+            <h2 className="font-heading text-2xl font-bold tracking-tight">
+              What we do
+            </h2>
+          </Reveal>
+
+          <StaggerGroup className="mt-12 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+            {departments.map((dept) => (
+              <StaggerItem key={dept.slug}>
+                <Link
+                  href={`/departments/${dept.slug}`}
+                  className="group flex flex-col items-center text-center"
+                >
+                  <Image src={dept.badgeImage} alt="" width={96} height={96} />
+                  <h3 className="mt-4 font-heading text-lg font-bold tracking-tight group-hover:underline">
+                    {dept.name}
+                  </h3>
+                  <p className="mt-2 text-sm text-muted-foreground">
+                    {dept.summary}
+                  </p>
+                </Link>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
         </div>
       </section>
 
-      <div className="mx-auto max-w-5xl px-6">
-        <PendingNote className="mt-10 max-w-2xl">
-          founding year and a one-paragraph mission statement for the club
-          (see About).
-        </PendingNote>
-
-        {/* What we do */}
-        <section className="mt-6 border-t py-16">
-          <h2 className="font-heading text-2xl font-bold tracking-tight">
-            What we do
-          </h2>
-          <p className="mt-2 max-w-2xl text-muted-foreground">
-            Four departments, each with a stated remit and its own regular
-            output.
-          </p>
-
-          <div className="mt-8 grid gap-4 sm:grid-cols-2">
-            {departments.map((dept) => (
-              <Card key={dept.slug} className="h-full">
-                <CardHeader>
-                  <div className="flex items-center gap-3">
-                    <Image
-                      src={dept.badgeImage}
-                      alt=""
-                      width={32}
-                      height={32}
-                      className="rounded-md"
-                    />
-                    <CardTitle className="text-base">{dept.name}</CardTitle>
-                  </div>
-                </CardHeader>
-                <CardContent className="flex h-full flex-col justify-between gap-4">
-                  <p className="text-sm text-muted-foreground">
-                    {dept.summary}
-                  </p>
-                  <Link
-                    href={`/departments/${dept.slug}`}
-                    className="inline-flex items-center gap-1 text-sm font-medium hover:underline"
-                  >
-                    Learn more <ArrowRight className="size-3.5" />
-                  </Link>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-
-        {/* More from NFC — Articles & Fund */}
-        <section className="border-t py-16">
-          <h2 className="font-heading text-2xl font-bold tracking-tight">
-            More from {siteConfig.shortName}
-          </h2>
-          <div className="mt-8 grid gap-4 sm:grid-cols-2">
-            <Card className="h-full">
-              <CardHeader>
-                <CardTitle className="text-base">Articles</CardTitle>
-              </CardHeader>
-              <CardContent className="flex h-full flex-col justify-between gap-4">
-                <p className="text-sm text-muted-foreground">
-                  Recurring editorial series and markets reports, published
-                  across departments.
-                </p>
-                <Link
-                  href="/articles"
-                  className="inline-flex items-center gap-1 text-sm font-medium hover:underline"
-                >
-                  Read our articles <ArrowRight className="size-3.5" />
-                </Link>
-              </CardContent>
-            </Card>
-            <Card className="h-full">
-              <CardHeader>
-                <CardTitle className="text-base">NFC Fund</CardTitle>
-              </CardHeader>
-              <CardContent className="flex h-full flex-col justify-between gap-4">
-                <p className="text-sm text-muted-foreground">
-                  The Investment Department&apos;s virtual fund — mandate,
-                  methodology and quarterly reporting.
-                </p>
-                <Link
-                  href="/fund"
-                  className="inline-flex items-center gap-1 text-sm font-medium hover:underline"
-                >
-                  See the fund <ArrowRight className="size-3.5" />
-                </Link>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-
-        {/* Scale in numbers */}
-        <section className="border-t py-16">
-          <h2 className="font-heading text-2xl font-bold tracking-tight">
-            {siteConfig.shortName} in numbers
-          </h2>
-          <div className="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-4">
-            <div>
-              <p className="font-heading text-4xl font-bold tracking-tight">
-                {siteConfig.memberCount}
-              </p>
-              <p className="text-sm text-muted-foreground">members</p>
-            </div>
-            <div>
-              <p className="font-heading text-4xl font-bold tracking-tight">
-                {departments.length}
-              </p>
-              <p className="text-sm text-muted-foreground">departments</p>
-            </div>
-          </div>
-          <PendingNote className="mt-6 max-w-2xl">
-            additional figures a homepage normally carries (alumni,
-            publications to date, event attendance, subscribers) — none exist
-            yet for this V0 site.
-          </PendingNote>
-        </section>
-
-        {/* Team */}
-        <section className="border-t py-16">
-          <h2 className="font-heading text-2xl font-bold tracking-tight">
-            The team
-          </h2>
-          <p className="mt-2 max-w-2xl text-muted-foreground">
-            27 members across a Board, a General Council and four
-            departments.
-          </p>
-          <PendingNote className="mt-4 max-w-2xl">
-            cohort photograph.
-          </PendingNote>
-          <div className="mt-6">
-            <Button
-              variant="outline"
-              nativeButton={false}
-              render={<Link href="/departments" />}
+      <div className="mx-auto max-w-7xl px-6">
+        {/* Latest Articles from NFC */}
+        <section className="py-16 text-center">
+          <Reveal>
+            <h2 className="font-heading text-2xl font-bold tracking-tight">
+              Latest Articles from {siteConfig.shortName}
+            </h2>
+            <p className="mx-auto mt-2 max-w-2xl text-muted-foreground">
+              Recurring editorial series and markets reports, published
+              across departments.
+            </p>
+          </Reveal>
+          <Reveal
+            delay={0.1}
+            className="mt-6 rounded-md border border-dashed p-8 text-center text-sm text-muted-foreground"
+          >
+            No articles published yet.{" "}
+            <Link
+              href="/articles"
+              className="font-medium text-foreground underline underline-offset-4"
             >
-              Meet the team <ArrowRight className="size-4" />
-            </Button>
-          </div>
+              Browse the archive
+            </Link>
+          </Reveal>
+        </section>
+
+        {/* NFC Fund */}
+        <section className="border-t py-16 text-center">
+          <Reveal>
+            <h2 className="font-heading text-2xl font-bold tracking-tight">
+              {siteConfig.shortName} Fund
+            </h2>
+            <p className="mx-auto mt-2 max-w-2xl text-muted-foreground">
+              The Investment Department&apos;s virtual fund. Mandate,
+              methodology and quarterly reporting.
+            </p>
+            <Link
+              href="/fund"
+              className="mt-4 inline-flex items-center gap-1 text-sm font-medium hover:underline"
+            >
+              See the fund <ArrowRight className="size-3.5" />
+            </Link>
+          </Reveal>
         </section>
       </div>
+
+      {/* Get in touch — a full-bleed navy banner, after the Contact Us
+          section on investmentclub.tecnico.ulisboa.pt: centered heading,
+          name + email side by side, message below, centered submit. The
+          footer already carries the raw email/social links on every page,
+          so this section's job is the interactive form, not a repeat of
+          those links. */}
+      <section
+        id="contact"
+        className="scroll-mt-24 bg-brand-navy py-20 text-brand-cream"
+      >
+        <div className="mx-auto max-w-2xl px-6 text-center">
+          <Reveal>
+            <h2 className="font-heading text-2xl font-bold tracking-tight">
+              Get in Touch
+            </h2>
+          </Reveal>
+
+          <Reveal delay={0.1} className="mt-8">
+            <ContactForm />
+          </Reveal>
+        </div>
+      </section>
     </div>
   );
 }

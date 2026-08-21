@@ -1,17 +1,24 @@
 // Central content source for the NFC V0 site.
-// Every fact here comes from the "NOVA FINANCE CLUB — Estrutura e Pessoas — Mandato 2026/2027" brief.
-// Nothing here is invented — gaps are left out and flagged with PENDING notes on the pages themselves.
+// Every fact here comes from the "NOVA FINANCE CLUB — Estrutura e Pessoas — Mandato 2026/2027"
+// brief, or was supplied directly by the user in chat. Nothing here is invented.
 
 export const siteConfig = {
   name: "Nova Finance Club",
   shortName: "NFC",
   institution: "FCT-NOVA",
+  institutionFullName: "NOVA School of Science and Technology",
+  slogan: "Bridging Science & Finance",
+  foundedYear: 2024,
   mandate: "2026/2027",
   memberCount: 27,
+  email: "nfc@ae.fct.unl.pt",
+  instagram: "https://www.instagram.com/novafinanceclub_fct/",
+  linkedin: "https://www.linkedin.com/company/nova-finance-club/",
 };
 
+export const missionStatement = `Founded in ${siteConfig.foundedYear}, the ${siteConfig.name} is a student-led organization at the ${siteConfig.institutionFullName}. Our mission is to foster financial literacy, ignite interest in financial markets, and equip students with practical skills.`;
+
 export const navItems = [
-  { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Departments", href: "/departments" },
   { label: "Articles", href: "/articles" },
@@ -51,7 +58,7 @@ export const memberDegrees: Record<string, Degree> = {
   "Mateo Kirk": { code: "LMAGR", name: "Applied Mathematics for Risk Management", level: "BSc" },
   "José Faria": { code: "LEEC", name: "Electrical and Computer Engineering", level: "BSc" },
   "Guilherme Azevedo": { code: "MEGI", name: "Industrial Engineering and Management", level: "MSc" },
-  "Rogério Barros Maia Lopes Soares": { code: "MEI", name: "Computer Engineering", level: "MSc" },
+  "Rogério Soares": { code: "MEI", name: "Computer Engineering", level: "MSc" },
   "Afonso Jerónimo": { code: "LMAGR", name: "Applied Mathematics for Risk Management", level: "BSc" },
   "Matilde Duarte": { code: "LMAGR", name: "Applied Mathematics for Risk Management", level: "BSc" },
   "Vasco Cruz": { code: "LMAGR", name: "Applied Mathematics for Risk Management", level: "BSc" },
@@ -86,34 +93,6 @@ export type GovernanceUnit = {
   people?: Person[];
   subgroups?: { title: string; people: Person[] }[];
 };
-
-export const governanceUnits: GovernanceUnit[] = [
-  {
-    slug: "board",
-    name: "Board (Direção)",
-    badgeImage: "/brand/dept-direcao.png",
-    summary:
-      "The club's elected executive leadership for the 2026/2027 mandate.",
-    people: board,
-  },
-  {
-    slug: "general-council",
-    name: "General Council (Conselho Geral)",
-    badgeImage: "/brand/dept-conselho-geral.png",
-    summary:
-      "The General Assembly Board and the Fiscal Council together.",
-    subgroups: [
-      {
-        title: "General Assembly Board (Mesa da Assembleia Geral)",
-        people: generalAssemblyBoard,
-      },
-      {
-        title: "Fiscal Council (Conselho Fiscal)",
-        people: fiscalCouncil,
-      },
-    ],
-  },
-];
 
 export type EditorialSeries = {
   name: string;
@@ -152,7 +131,7 @@ export const departments: Department[] = [
     summary:
       "Runs the club's events, its recruitment campaign, and its external relationships.",
     description:
-      "Plans and runs the club's internal events — the opening/onboarding ceremony, socials, and the end-of-semester and end-of-mandate ceremonies — as well as external events, such as a panel or masterclass with guests from the financial sector (banks, asset managers, alumni) open to the wider FCT community. The department also runs the semesterly recruitment campaign (materials, promotion, and onboarding of new members), manages relationships with partners and sponsors, and coordinates with other national finance clubs.",
+      "The Events & External Relations department plans and runs NFC's events, from internal socials and onboarding ceremonies to external panels and masterclasses with guests from the financial sector. It also leads the semesterly recruitment campaign, manages relationships with partners and sponsors, and coordinates with other national finance clubs.",
     mandateGoal: "1,000 LinkedIn followers by the end of the 2026/2027 mandate.",
     badgeImage: "/brand/dept-eventos-re.png",
   },
@@ -163,6 +142,8 @@ export const departments: Department[] = [
     members: ["Filipe Parreira", "Gonçalo Vieira", "Rita Almeida"],
     summary:
       "NFC's public face to the FCT community and on LinkedIn, through three regular editorial series.",
+    description:
+      "The Personal Finance department is NFC's public face to the FCT community and on LinkedIn. It produces educational content that makes economics and personal finance accessible to a non-specialist audience, and covers European Central Bank policy decisions as they happen.",
     editorialSeries: [
       {
         name: "Economia numa Imagem",
@@ -201,7 +182,7 @@ export const departments: Department[] = [
     ],
     summary: "Runs the club's virtual investment fund and covers global capital markets.",
     description:
-      "Split into two divisions, each with its own focus and its own regular publication.",
+      "The Investment department manages NFC's virtual fund and covers global capital markets. It is split into two divisions: Asset Management, which runs the fund's coverage teams and reports performance each quarter, and Global Markets, which tracks yields, commodities and FX in a weekly overview.",
     divisions: [
       {
         name: "Division 01 — Asset Management",
@@ -223,7 +204,7 @@ export const departments: Department[] = [
     coordinator: "Diogo Ruivo",
     members: [
       "Guilherme Azevedo",
-      "Rogério Barros Maia Lopes Soares",
+      "Rogério Soares",
       "Afonso Jerónimo",
       "Matilde Duarte",
       "Vasco Cruz",
@@ -233,11 +214,54 @@ export const departments: Department[] = [
     ],
     summary: "Produces real quantitative finance projects, starting from a shared bootcamp.",
     description:
-      "Focused on producing real quantitative finance projects. Members start with a levelling bootcamp — a repository of 33 Jupyter notebooks on the NFC GitHub — covering Fundamentals; Market Microstructure; Portfolio Construction (Markowitz, Black-Litterman, Risk Parity, HRP); Quantitative Strategies (momentum, pairs trading, carry trade); Statistical Modelling (Kalman Filter, HMM, cointegration); Machine Learning in Finance; Risk Management (Kelly Criterion, VaR, stress testing); and Execution & Systems (backtesting, paper trading). After the bootcamp, members move on to individual real projects (e.g. portfolio optimization, pairs trading, a momentum strategy), with minimum deliverables of documented code on the NFC GitHub, a report covering thesis, methodology and results, and a final presentation to the department (15–20 minutes).",
+      "The Quantitative Trading department produces real quantitative finance projects. Members start with a shared bootcamp, a set of Jupyter notebooks on the NFC GitHub covering portfolio construction, quantitative strategies, statistical modelling, machine learning and risk management. They then move on to individual projects such as portfolio optimization or pairs trading, each with documented code, a written report and a final presentation to the department.",
     notes: [
       "Source material describes the bootcamp as \"7 modules\" but lists 8 module names (Fundamentals through Execution & Systems). Confirm the correct module count before publishing.",
     ],
     badgeImage: "/brand/dept-quant.png",
+  },
+];
+
+// Department coordinators, listed together on the Board page alongside the
+// elected officers. Role labels include the department name so PeopleGrid's
+// lead-role featuring (which matches on the exact role string "Coordinator")
+// doesn't single one out — they're peers here, not a department's own lead.
+export const departmentCoordinators: Person[] = departments.map((dept) => ({
+  role: `${dept.name.replace(/ Department$/, "")} Coordinator`,
+  name: dept.coordinator,
+}));
+
+export const governanceUnits: GovernanceUnit[] = [
+  {
+    slug: "board",
+    name: "Board",
+    badgeImage: "/brand/dept-direcao.png",
+    summary:
+      "The club's elected executive leadership for the 2026/2027 mandate.",
+    people: board,
+    subgroups: [
+      {
+        title: "Department Coordinators",
+        people: departmentCoordinators,
+      },
+    ],
+  },
+  {
+    slug: "general-council",
+    name: "General Council",
+    badgeImage: "/brand/dept-conselho-geral.png",
+    summary:
+      "The General Assembly Board and the Fiscal Council together.",
+    subgroups: [
+      {
+        title: "General Assembly Board",
+        people: generalAssemblyBoard,
+      },
+      {
+        title: "Fiscal Council",
+        people: fiscalCouncil,
+      },
+    ],
   },
 ];
 
