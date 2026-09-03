@@ -2,19 +2,40 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- **Node.js 20.9+ or 22+** (Next.js 16 no longer supports Node 18). Check with `node -v`.
+- **npm** (ships with Node). This repo tracks a `package-lock.json`, so npm is the expected package manager.
+
+### Install dependencies
+
+To install Next.js, React, Tailwind, and other dependencies, run:
+
+```bash
+npm install
+```
+
+For a clean, reproducible install that matches the lockfile exactly (recommended on a fresh clone):
+
+```bash
+npm ci
+```
+
+### Run the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+### Other scripts
+
+```bash
+npm run build   # production build
+npm run start   # serve the production build (run npm run build first)
+npm run lint    # run ESLint
+```
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
