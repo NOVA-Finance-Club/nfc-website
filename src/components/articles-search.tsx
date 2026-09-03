@@ -4,7 +4,8 @@ import { useMemo, useState } from "react";
 import { Search } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
-import { departments, publicationSeries } from "@/lib/site-data";
+import { departments } from "@/lib/site-data";
+import { useT } from "@/lib/language";
 import { cn } from "@/lib/utils";
 
 // No issues have been published yet, so this always returns empty — the
@@ -19,6 +20,7 @@ const articles: Article[] = [];
 export function ArticlesSearch() {
   const [query, setQuery] = useState("");
   const [deptFilter, setDeptFilter] = useState<string | null>(null);
+  const t = useT();
 
   const results = useMemo(() => {
     return articles.filter((a) => {
@@ -30,10 +32,6 @@ export function ArticlesSearch() {
     });
   }, [query, deptFilter]);
 
-  const publishingDepartments = departments.filter((d) =>
-    publicationSeries.some((s) => s.producedBy === d.slug)
-  );
-
   return (
     <>
       <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
@@ -43,17 +41,17 @@ export function ArticlesSearch() {
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search articles..."
+            placeholder={t("articles.searchPlaceholder", "Search articles...")}
             className="w-full rounded-md border bg-background py-2 pr-3 pl-9 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
           />
         </div>
         <div className="flex flex-wrap gap-1.5">
           <button type="button" onClick={() => setDeptFilter(null)} className="cursor-pointer">
             <Badge variant={deptFilter === null ? "default" : "outline"}>
-              All
+              {t("articles.all", "All")}
             </Badge>
           </button>
-          {publishingDepartments.map((d) => (
+          {departments.map((d) => (
             <button
               key={d.slug}
               type="button"
@@ -61,7 +59,7 @@ export function ArticlesSearch() {
               className="cursor-pointer"
             >
               <Badge variant={deptFilter === d.slug ? "default" : "outline"}>
-                {d.name.replace(" Department", "")}
+                {t(`dept.${d.slug}.short`, d.name.replace(" Department", ""))}
               </Badge>
             </button>
           ))}
@@ -77,8 +75,11 @@ export function ArticlesSearch() {
         {results.length > 0
           ? results.map((a) => <p key={a.title}>{a.title}</p>)
           : query || deptFilter
-            ? "No articles match your search."
-            : "No issues published yet. The first entries will appear here once they're published."}
+            ? t("articles.noMatch", "No articles match your search.")
+            : t(
+                "articles.noneYet",
+                "No issues published yet. The first entries will appear here once they're published."
+              )}
       </div>
     </>
   );

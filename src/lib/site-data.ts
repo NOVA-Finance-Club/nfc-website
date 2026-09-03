@@ -19,9 +19,28 @@ export const siteConfig = {
 
 export const missionStatement = `Founded in ${siteConfig.foundedYear}, the ${siteConfig.name} is a student-led organization at the ${siteConfig.institutionFullName}. Our mission is to foster financial literacy, ignite interest in financial markets, and equip students with practical skills.`;
 
+// The club's founding story, written by the user for the About page, split
+// into the beats the page's layout uses (hero statement, the gap, NFC's
+// response, the community it wants to be). English here is a translation;
+// the Portuguese original lives in translations-pt.ts under the matching
+// "about.*" keys.
+export const aboutStory = {
+  heroHeadline: "There's a significant gap in how engineering students are trained.",
+  heroSubtext: "Nova Finance Club was born from that observation.",
+  gapBody:
+    "Most curricula in the field don't include management or economics courses, subjects that turn out to be essential later in a career. This gap matters because of where many engineers end up: as careers progress, they often take on roles in management, finance or leadership, where this knowledge becomes essential.",
+  responseStatement:
+    "NFC exists to close exactly that gap: a space built by and for students, to complement technical training with the financial and management skills the university doesn't provide on its own.",
+  communityLead:
+    "More than an academic club, it's meant to be a community for sharing knowledge, where members helping each other is what drives everything we do. We believe that bringing together people with different backgrounds and interests benefits everyone:",
+  communityExperienced: "Those with more experience help those just starting out.",
+  communityNewcomers: "Newcomers bring fresh perspectives and energy to the group.",
+};
+
 export const navItems = [
   { label: "About", href: "/about" },
   { label: "Departments", href: "/departments" },
+  { label: "Alumni", href: "/alumni" },
   { label: "Articles", href: "/articles" },
   { label: "Fund", href: "/fund" },
   { label: "Join", href: "/join" },
@@ -309,6 +328,123 @@ export const publicationSeries: PublicationSeries[] = [
     cadence: "Weekly",
     producedBy: "investment",
     channel: "LinkedIn",
+  },
+];
+
+// Past elected leadership, one entry per mandate, before the current
+// 2026/2027 mandate. Grouped the same way governanceUnits is (Board,
+// General Council as one body split into its two subgroups, then
+// Coordinators) so this page reads as the historical version of
+// /departments. Nothing here is invented — add a term only once its
+// tomada de posse details (and source file, dropped into Data/) are in hand.
+export type AlumniGroup = {
+  title: string;
+  people?: Person[];
+  subgroups?: { title: string; people: Person[] }[];
+};
+
+export type AlumniTerm = {
+  label: string;
+  inauguratedDisplay?: string;
+  location?: string;
+  groups: AlumniGroup[];
+};
+
+// Newest first.
+export const alumniTerms: AlumniTerm[] = [
+  {
+    // From Data/NFC_Alumni_2025-06-17.csv. Student numbers from that source
+    // are deliberately not carried over here; they stay in the CSV, not on
+    // the public site.
+    label: "2025/2026",
+    inauguratedDisplay: "June 17, 2025",
+    location: `Building 7, Auditorium 1A, ${siteConfig.institutionFullName}`,
+    groups: [
+      {
+        title: "Board",
+        people: [
+          { role: "President", name: "Samuel Pires Gonçalves" },
+          { role: "Vice President", name: "Duarte Esteves" },
+          { role: "Secretary", name: "Tiago Santos" },
+        ],
+      },
+      {
+        title: "General Council",
+        subgroups: [
+          {
+            title: "General Assembly Board",
+            people: [
+              { role: "President", name: "João Pinto" },
+              { role: "Vice President", name: "António Ferreira" },
+              { role: "Secretary", name: "Carlota Rito" },
+            ],
+          },
+          {
+            title: "Fiscal Council",
+            people: [
+              { role: "President", name: "Tiago Neves" },
+              { role: "Vice President", name: "Rodrigo Freitas" },
+            ],
+          },
+        ],
+      },
+      {
+        title: "Coordinators",
+        people: [
+          { role: "Events & Marketing", name: "Hugo Pereira" },
+          { role: "Investments", name: "João Gabriel Fonseca" },
+          { role: "Innovative Trading", name: "Joana Ferreira" },
+          { role: "Personal Finance", name: "António Pires" },
+        ],
+      },
+    ],
+  },
+  {
+    // From Data/NFC_Alumni_2025-11-04.csv. Student numbers from that source
+    // are deliberately not carried over here; they stay in the CSV, not on
+    // the public site.
+    label: "2024/2025",
+    inauguratedDisplay: "November 4, 2025",
+    location: `Building 7, Auditorium 1A, ${siteConfig.institutionFullName}`,
+    groups: [
+      {
+        title: "Board",
+        people: [
+          { role: "President", name: "Tiago Neves" },
+          { role: "Vice President", name: "Constança Branco" },
+          { role: "Secretary", name: "Beatriz Raimundo" },
+        ],
+      },
+      {
+        title: "General Council",
+        subgroups: [
+          {
+            title: "General Assembly Board",
+            people: [
+              { role: "President", name: "Rita Milhazes" },
+              { role: "Vice President", name: "Joana Silvestre" },
+              { role: "Secretary", name: "Miguel Teles Pepino" },
+            ],
+          },
+          {
+            title: "Fiscal Council",
+            people: [
+              { role: "President", name: "Guilherme Antunes" },
+              { role: "Vice President", name: "Mafalda Martins" },
+            ],
+          },
+        ],
+      },
+      {
+        title: "Coordinators",
+        people: [
+          { role: "Quantitative Trading", name: "Diogo Seves" },
+          { role: "Finance", name: "Samuel Pires Gonçalves" },
+          { role: "Image", name: "Tiago Santos" },
+          { role: "Investments", name: "Rodrigo Freitas" },
+        ],
+      },
+    ],
   },
 ];
 

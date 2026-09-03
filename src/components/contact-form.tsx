@@ -5,6 +5,7 @@ import { Send } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/lib/site-data";
+import { useT } from "@/lib/language";
 
 const fieldClasses =
   "mt-2 w-full rounded-md border border-brand-cream/25 bg-brand-cream/95 px-4 py-3 text-base text-brand-navy outline-none placeholder:text-brand-navy/50 focus-visible:ring-2 focus-visible:ring-brand-cream/60";
@@ -14,6 +15,7 @@ export function ContactForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const t = useT();
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -27,7 +29,7 @@ export function ContactForm() {
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="text-left">
           <label htmlFor="contact-name" className={labelClasses}>
-            Your name
+            {t("contact.yourName", "Your name")}
           </label>
           <input
             id="contact-name"
@@ -35,13 +37,13 @@ export function ContactForm() {
             required
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="Jane Doe"
+            placeholder={t("contact.namePlaceholder", "Jane Doe")}
             className={fieldClasses}
           />
         </div>
         <div className="text-left">
           <label htmlFor="contact-email" className={labelClasses}>
-            Your email
+            {t("contact.yourEmail", "Your email")}
           </label>
           <input
             id="contact-email"
@@ -56,7 +58,7 @@ export function ContactForm() {
       </div>
       <div className="text-left">
         <label htmlFor="contact-message" className={labelClasses}>
-          Message
+          {t("contact.message", "Message")}
         </label>
         <textarea
           id="contact-message"
@@ -64,7 +66,7 @@ export function ContactForm() {
           rows={3}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          placeholder="How can we help?"
+          placeholder={t("contact.messagePlaceholder", "How can we help?")}
           className={`${fieldClasses} resize-none`}
         />
       </div>
@@ -74,11 +76,13 @@ export function ContactForm() {
           size="lg"
           className="bg-brand-cream text-brand-navy hover:bg-brand-cream/90"
         >
-          Send Message
+          {t("contact.send", "Send Message")}
           <Send className="size-4" />
         </Button>
         <p className="text-xs text-brand-cream/70">
-          Opens your email app, addressed to {siteConfig.email}.
+          {t("contact.opensEmailApp", "Opens your email app, addressed to {email}.", {
+            email: siteConfig.email,
+          })}
         </p>
       </div>
     </form>

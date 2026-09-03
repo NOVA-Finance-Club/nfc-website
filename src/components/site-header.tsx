@@ -7,6 +7,8 @@ import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
 
 import { departments, governanceUnits, navItems, siteConfig } from "@/lib/site-data";
+import { useT } from "@/lib/language";
+import { LanguageToggle } from "@/components/language-toggle";
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
@@ -30,6 +32,13 @@ const departmentUnits = [...governanceUnits, ...departments];
 export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const t = useT();
+
+  const navLabel = (label: string) => t(`nav.${label.toLowerCase()}`, label);
+  const unitName = (unit: (typeof departmentUnits)[number]) =>
+    "coordinator" in unit
+      ? t(`dept.${unit.slug}.name`, unit.name)
+      : t(`gov.${unit.slug}.name`, unit.name);
 
   return (
     <header className="sticky top-0 z-40 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
@@ -55,7 +64,7 @@ export function SiteHeader() {
               pathname === "/about" && "text-foreground font-medium"
             )}
           >
-            About
+            {navLabel("About")}
           </Link>
 
           <NavigationMenu>
@@ -68,7 +77,7 @@ export function SiteHeader() {
                       "text-foreground font-medium"
                   )}
                 >
-                  Departments
+                  {navLabel("Departments")}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="w-64">
                   {departmentUnits.map((unit) => (
@@ -82,7 +91,7 @@ export function SiteHeader() {
                         width={24}
                         height={24}
                       />
-                      {unit.name}
+                      {unitName(unit)}
                     </NavigationMenuLink>
                   ))}
                 </NavigationMenuContent>
@@ -106,90 +115,93 @@ export function SiteHeader() {
                   pathname === item.href && "text-foreground font-medium"
                 )}
               >
-                {item.label}
+                {navLabel(item.label)}
               </Link>
             ))}
         </nav>
 
-        <div className="hidden md:block">
+        <div className="hidden items-center gap-3 md:flex">
+          <LanguageToggle />
           <Button
             size="lg"
             nativeButton={false}
             render={<Link href="/join" />}
             className="font-heading text-base"
           >
-            Join Us: Spring 2027
+            {t("nav.joinButton", "Join Us: Spring 2027")}
           </Button>
         </div>
 
-        <Sheet open={open} onOpenChange={setOpen}>
-          <SheetTrigger
-            render={
-              <Button
-                variant="ghost"
-                size="icon"
-                aria-label="Open menu"
-                className="md:hidden"
-              />
-            }
-          >
-            <Menu className="size-5" />
-          </SheetTrigger>
-          <SheetContent side="right" className="w-64">
-            <SheetHeader>
-              <SheetTitle>{siteConfig.name}</SheetTitle>
-            </SheetHeader>
-            <nav className="flex flex-col gap-1 px-4">
-              <Link
-                href="/about"
-                onClick={() => setOpen(false)}
-                className={cn(
-                  "rounded-md px-2 py-2 text-sm text-muted-foreground hover:bg-accent hover:text-foreground",
-                  pathname === "/about" && "bg-accent text-foreground font-medium"
-                )}
-              >
-                About
-              </Link>
-
-              <p className="mt-2 px-2 text-xs font-medium tracking-wide text-muted-foreground uppercase">
-                Departments
-              </p>
-              {departmentUnits.map((unit) => (
+        <div className="flex items-center gap-2 md:hidden">
+          <LanguageToggle />
+          <Sheet open={open} onOpenChange={setOpen}>
+            <SheetTrigger
+              render={
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  aria-label={t("nav.openMenu", "Open menu")}
+                />
+              }
+            >
+              <Menu className="size-5" />
+            </SheetTrigger>
+            <SheetContent side="right" className="w-64">
+              <SheetHeader>
+                <SheetTitle>{siteConfig.name}</SheetTitle>
+              </SheetHeader>
+              <nav className="flex flex-col gap-1 px-4">
                 <Link
-                  key={unit.slug}
-                  href={`/departments/${unit.slug}`}
+                  href="/about"
                   onClick={() => setOpen(false)}
                   className={cn(
-                    "rounded-md px-2 py-2 pl-4 text-sm text-muted-foreground hover:bg-accent hover:text-foreground",
-                    pathname === `/departments/${unit.slug}` &&
-                      "bg-accent text-foreground font-medium"
+                    "rounded-md px-2 py-2 text-sm text-muted-foreground hover:bg-accent hover:text-foreground",
+                    pathname === "/about" && "bg-accent text-foreground font-medium"
                   )}
                 >
-                  {unit.name}
+                  {navLabel("About")}
                 </Link>
-              ))}
 
-              <div className="mt-2 border-t pt-2">
-                {navItems
-                  .filter((item) => item.label !== "About" && item.label !== "Departments")
-                  .map((item) => (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      onClick={() => setOpen(false)}
-                      className={cn(
-                        "block rounded-md px-2 py-2 text-sm text-muted-foreground hover:bg-accent hover:text-foreground",
-                        pathname === item.href &&
-                          "bg-accent text-foreground font-medium"
-                      )}
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
-              </div>
-            </nav>
-          </SheetContent>
-        </Sheet>
+                <p className="mt-2 px-2 text-xs font-medium tracking-wide text-muted-foreground uppercase">
+                  {navLabel("Departments")}
+                </p>
+                {departmentUnits.map((unit) => (
+                  <Link
+                    key={unit.slug}
+                    href={`/departments/${unit.slug}`}
+                    onClick={() => setOpen(false)}
+                    className={cn(
+                      "rounded-md px-2 py-2 pl-4 text-sm text-muted-foreground hover:bg-accent hover:text-foreground",
+                      pathname === `/departments/${unit.slug}` &&
+                        "bg-accent text-foreground font-medium"
+                    )}
+                  >
+                    {unitName(unit)}
+                  </Link>
+                ))}
+
+                <div className="mt-2 border-t pt-2">
+                  {navItems
+                    .filter((item) => item.label !== "About" && item.label !== "Departments")
+                    .map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        onClick={() => setOpen(false)}
+                        className={cn(
+                          "block rounded-md px-2 py-2 text-sm text-muted-foreground hover:bg-accent hover:text-foreground",
+                          pathname === item.href &&
+                            "bg-accent text-foreground font-medium"
+                        )}
+                      >
+                        {navLabel(item.label)}
+                      </Link>
+                    ))}
+                </div>
+              </nav>
+            </SheetContent>
+          </Sheet>
+        </div>
       </div>
     </header>
   );

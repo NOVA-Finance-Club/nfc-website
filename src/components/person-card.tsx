@@ -1,5 +1,8 @@
+"use client";
+
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { memberDegrees, type Person } from "@/lib/site-data";
+import { useT } from "@/lib/language";
 import { cn } from "@/lib/utils";
 
 // lucide-react dropped brand icons, so the LinkedIn glyph is inlined here.
@@ -28,7 +31,17 @@ function initials(name: string) {
 }
 
 // The role that leads a group gets a visibly bigger, highlighted card.
+// Matching happens on these exact English strings — see PeopleGrid below —
+// so translate the role for display only, never before this check runs.
 export const LEAD_ROLES = ["Coordinator", "President"];
+
+function roleKey(role: string) {
+  return `role.${role.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`;
+}
+
+function nameKey(name: string) {
+  return name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+}
 
 export function PersonCard({
   person,
@@ -42,8 +55,16 @@ export function PersonCard({
    * be the focus. */
   large?: boolean;
 }) {
+  const t = useT();
   const degree = memberDegrees[person.name];
   const avatarSize = featured ? "size-44" : large ? "size-40" : "size-32";
+  // The plain "Coordinator" role (a department's own team page) is gendered
+  // per that specific coordinator's name, since the string alone doesn't
+  // carry which department it's on. Every other role translates generically.
+  const displayRole =
+    person.role === "Coordinator"
+      ? t(`role.coordinator.by-name.${nameKey(person.name)}`, person.role)
+      : t(roleKey(person.role), person.role);
 
   return (
     <div
@@ -67,7 +88,7 @@ export function PersonCard({
         <p className={cn("font-medium", featured && "text-lg")}>
           {person.name}
         </p>
-        <p className="text-sm text-muted-foreground">{person.role}</p>
+        <p className="text-sm text-muted-foreground">{displayRole}</p>
       </div>
 
       {degree && (

@@ -1,11 +1,15 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 
 import { siteConfig } from "@/lib/site-data";
+import { useT } from "@/lib/language";
 import { Reveal } from "@/components/motion-primitives";
 
 export function SiteFooter() {
   const year = new Date().getFullYear();
+  const t = useT();
 
   return (
     <footer className="border-t">
@@ -64,7 +68,7 @@ export function SiteFooter() {
         </div>
 
         <p className="mt-6 border-t pt-4 text-center text-xs">
-          © {year} {siteConfig.name}. Mandate {siteConfig.mandate}.
+          © {year} {siteConfig.name}. {t("footer.mandate", "Mandate")} {siteConfig.mandate}.
         </p>
       </Reveal>
     </footer>

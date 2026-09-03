@@ -1,6 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Mail } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Mail } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { ContactForm } from "@/components/contact-form";
@@ -13,8 +15,21 @@ import {
   StaggerItem,
 } from "@/components/motion-primitives";
 import { departments, memberDegrees, missionStatement, siteConfig } from "@/lib/site-data";
+import { useT } from "@/lib/language";
+
+function handleFromUrl(url: string) {
+  const segments = new URL(url).pathname.split("/").filter(Boolean);
+  return segments[segments.length - 1];
+}
+
+const socialLinks = [
+  { name: "Instagram", href: siteConfig.instagram, handle: `@${handleFromUrl(siteConfig.instagram)}` },
+  { name: "LinkedIn", href: siteConfig.linkedin, handle: handleFromUrl(siteConfig.linkedin) },
+  { name: "GitHub", href: siteConfig.github, handle: `@${handleFromUrl(siteConfig.github)}` },
+];
 
 export default function Home() {
+  const t = useT();
   const distinctBackgrounds = new Set(
     Object.values(memberDegrees).map((degree) => degree.name)
   ).size;
@@ -45,12 +60,16 @@ export default function Home() {
           </StaggerItem>
           <StaggerItem>
             <p className="mt-6 max-w-xl font-heading text-2xl text-brand-cream/85">
-              {siteConfig.slogan}
+              {t("home.slogan", siteConfig.slogan)}
             </p>
           </StaggerItem>
           <StaggerItem>
             <p className="mt-4 max-w-xl text-lg text-brand-cream/85">
-              We are a student-run finance club from {siteConfig.institutionFullName}.
+              {t(
+                "home.heroSubtitle",
+                "We are a student-run finance club from {institutionFullName}.",
+                { institutionFullName: t("institution.full", siteConfig.institutionFullName) }
+              )}
             </p>
           </StaggerItem>
 
@@ -62,7 +81,7 @@ export default function Home() {
                 render={<Link href="/#contact" />}
                 className="bg-brand-cream text-brand-navy hover:bg-brand-cream/90"
               >
-                Contact
+                {t("home.contactButton", "Contact")}
                 <Mail className="size-4" />
               </Button>
             </HoverLift>
@@ -75,7 +94,11 @@ export default function Home() {
         <section className="mt-10 py-10 text-center">
           <Reveal>
             <p className="mx-auto max-w-3xl font-heading text-xl leading-relaxed sm:text-2xl">
-              {missionStatement}
+              {t("site.missionStatement", missionStatement, {
+                foundedYear: siteConfig.foundedYear,
+                name: siteConfig.name,
+                institutionFullName: t("institution.full", siteConfig.institutionFullName),
+              })}
             </p>
           </Reveal>
         </section>
@@ -84,7 +107,9 @@ export default function Home() {
         <section className="mt-10 border-t py-16 text-center">
           <Reveal>
             <h2 className="font-heading text-3xl font-bold tracking-tight sm:text-4xl">
-              {siteConfig.shortName} in numbers
+              {t("home.numbersHeading", "{shortName} in numbers", {
+                shortName: siteConfig.shortName,
+              })}
             </h2>
           </Reveal>
           <StaggerGroup className="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-4">
@@ -93,14 +118,18 @@ export default function Home() {
                 value={siteConfig.memberCount}
                 className="font-heading text-4xl font-bold tracking-tight"
               />
-              <p className="text-sm text-muted-foreground">members</p>
+              <p className="text-sm text-muted-foreground">
+                {t("home.stat.members", "members")}
+              </p>
             </StaggerItem>
             <StaggerItem>
               <AnimatedStat
                 value={departments.length}
                 className="font-heading text-4xl font-bold tracking-tight"
               />
-              <p className="text-sm text-muted-foreground">departments</p>
+              <p className="text-sm text-muted-foreground">
+                {t("home.stat.departments", "departments")}
+              </p>
             </StaggerItem>
             <StaggerItem>
               <AnimatedStat
@@ -108,7 +137,7 @@ export default function Home() {
                 className="font-heading text-4xl font-bold tracking-tight"
               />
               <p className="text-sm text-muted-foreground">
-                distinct backgrounds
+                {t("home.stat.distinctBackgrounds", "distinct backgrounds")}
               </p>
             </StaggerItem>
             <StaggerItem>
@@ -116,7 +145,9 @@ export default function Home() {
                 value={yearsActive}
                 className="font-heading text-4xl font-bold tracking-tight"
               />
-              <p className="text-sm text-muted-foreground">years active</p>
+              <p className="text-sm text-muted-foreground">
+                {t("home.stat.yearsActive", "years active")}
+              </p>
             </StaggerItem>
           </StaggerGroup>
         </section>
@@ -130,7 +161,7 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-6">
           <Reveal className="text-center">
             <h2 className="font-heading text-3xl font-bold tracking-tight sm:text-4xl">
-              What we do
+              {t("home.whatWeDoHeading", "What we do")}
             </h2>
           </Reveal>
 
@@ -143,10 +174,10 @@ export default function Home() {
                 >
                   <Image src={dept.badgeImage} alt="" width={96} height={96} />
                   <h3 className="mt-4 font-heading text-lg font-bold tracking-tight group-hover:underline">
-                    {dept.name}
+                    {t(`dept.${dept.slug}.name`, dept.name)}
                   </h3>
                   <p className="mt-2 text-sm text-muted-foreground">
-                    {dept.summary}
+                    {t(`dept.${dept.slug}.summary`, dept.summary)}
                   </p>
                 </Link>
               </StaggerItem>
@@ -160,23 +191,27 @@ export default function Home() {
         <section className="py-16 text-center">
           <Reveal>
             <h2 className="font-heading text-3xl font-bold tracking-tight sm:text-4xl">
-              Latest Articles from {siteConfig.shortName}
+              {t("home.articlesHeading", "Latest Articles from {shortName}", {
+                shortName: siteConfig.shortName,
+              })}
             </h2>
             <p className="mx-auto mt-2 max-w-2xl text-muted-foreground">
-              Recurring editorial series and markets reports, published
-              across departments.
+              {t(
+                "home.articlesSubtitle",
+                "Recurring editorial series and markets reports, published across departments."
+              )}
             </p>
           </Reveal>
           <Reveal
             delay={0.1}
             className="mt-6 rounded-md border border-dashed p-8 text-center text-sm text-muted-foreground"
           >
-            No articles published yet.{" "}
+            {t("home.articlesEmpty", "No articles published yet.")}{" "}
             <Link
               href="/articles"
               className="font-medium text-foreground underline underline-offset-4"
             >
-              Browse the archive
+              {t("home.browseArchive", "Browse the archive")}
             </Link>
           </Reveal>
         </section>
@@ -185,21 +220,61 @@ export default function Home() {
         <section className="border-t py-16 text-center">
           <Reveal>
             <h2 className="font-heading text-3xl font-bold tracking-tight sm:text-4xl">
-              {siteConfig.shortName} Fund
+              {t("home.fundHeading", "{shortName} Fund", { shortName: siteConfig.shortName })}
             </h2>
             <p className="mx-auto mt-2 max-w-2xl text-muted-foreground">
-              The Investment Department&apos;s virtual fund. Mandate,
-              methodology and quarterly reporting.
+              {t(
+                "home.fundSubtitle",
+                "The Investment Department's virtual fund. Mandate, methodology and quarterly reporting."
+              )}
             </p>
             <Link
               href="/fund"
               className="mt-4 inline-flex items-center gap-1 text-sm font-medium hover:underline"
             >
-              See the fund <ArrowRight className="size-3.5" />
+              {t("home.seeFund", "See the fund")} <ArrowRight className="size-3.5" />
             </Link>
           </Reveal>
         </section>
       </div>
+
+      {/* Follow us — an editorial index list rather than a row of social
+          icon buttons: each channel is its own full-width, full-bleed row
+          (breaking out of the max-w-7xl column like "What we do" and "Get
+          in touch"), the platform name set large in the heading serif, and
+          the handle + arrow only surface on hover. */}
+      <section className="border-t">
+        <div className="mx-auto max-w-7xl px-6 pt-16 text-center">
+          <Reveal>
+            <h2 className="font-heading text-3xl font-bold tracking-tight sm:text-4xl">
+              {t("home.followUsHeading", "Follow us")}
+            </h2>
+          </Reveal>
+        </div>
+
+        <StaggerGroup className="mt-10 divide-y">
+          {socialLinks.map(({ name, href, handle }) => (
+            <StaggerItem key={name}>
+              <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block outline-none transition-colors hover:bg-brand-cream/40 focus-visible:bg-brand-cream/40"
+              >
+                <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-8 sm:py-10">
+                  <span className="font-heading text-4xl font-bold tracking-tight transition-transform duration-300 ease-out group-hover:translate-x-3 sm:text-6xl">
+                    {name}
+                  </span>
+                  <span className="flex shrink-0 items-center gap-4 text-sm text-muted-foreground">
+                    <span className="hidden sm:inline">{handle}</span>
+                    <ArrowUpRight className="size-6 transition-transform duration-300 ease-out group-hover:translate-x-1 group-hover:-translate-y-1" />
+                  </span>
+                </div>
+              </a>
+            </StaggerItem>
+          ))}
+        </StaggerGroup>
+      </section>
 
       {/* Get in touch — a full-bleed navy banner, after the Contact Us
           section on investmentclub.tecnico.ulisboa.pt: centered heading,
@@ -214,7 +289,7 @@ export default function Home() {
         <div className="mx-auto max-w-2xl px-6 text-center">
           <Reveal>
             <h2 className="font-heading text-3xl font-bold tracking-tight sm:text-4xl">
-              Get in Touch
+              {t("home.getInTouchHeading", "Get in Touch")}
             </h2>
           </Reveal>
 
