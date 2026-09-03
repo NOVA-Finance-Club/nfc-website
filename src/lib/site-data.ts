@@ -132,6 +132,9 @@ export type Department = {
   formerly?: string;
   coordinator: string;
   members: string[];
+  // One-liner, used only on the /departments index cards. The detail page
+  // shows `description` alone — it already folds the summary in, so printing
+  // both there would repeat the same sentence twice.
   summary: string;
   description?: string;
   mandateGoal?: string;
@@ -151,7 +154,7 @@ export const departments: Department[] = [
     summary:
       "Runs the club's events, its recruitment campaign, and its external relationships.",
     description:
-      "The Events & External Relations department plans and runs NFC's events, from internal socials and onboarding ceremonies to external panels and masterclasses with guests from the financial sector. It also leads the semesterly recruitment campaign, manages relationships with partners and sponsors, and coordinates with other national finance clubs.",
+      "Plans and runs NFC's events, from internal socials and onboarding ceremonies to external panels and masterclasses with guests from the financial sector. Also leads the semesterly recruitment campaign, manages relationships with partners and sponsors, and coordinates with other national finance clubs.",
     mandateGoal: "1,000 LinkedIn followers by the end of the 2026/2027 mandate.",
     badgeImage: "/brand/dept-eventos-re.png",
   },
@@ -163,7 +166,7 @@ export const departments: Department[] = [
     summary:
       "NFC's public face to the FCT community and on LinkedIn, through three regular editorial series.",
     description:
-      "The Personal Finance department is NFC's public face to the FCT community and on LinkedIn. It produces educational content that makes economics and personal finance accessible to a non-specialist audience, and covers European Central Bank policy decisions as they happen.",
+      "NFC's public face to the FCT community and on LinkedIn, through three regular editorial series. Produces educational content that makes economics and personal finance accessible to a non-specialist audience, and covers European Central Bank policy decisions as they happen.",
     editorialSeries: [
       {
         name: "Economia numa Imagem",
@@ -202,12 +205,12 @@ export const departments: Department[] = [
     ],
     summary: "Runs the club's virtual investment fund and covers global capital markets.",
     description:
-      "The Investment department manages NFC's virtual fund and covers global capital markets. It is split into two divisions: Asset Management, which runs the fund's coverage teams and reports performance each quarter, and Global Markets, which tracks yields, commodities and FX in a weekly overview.",
+      "Manages NFC's virtual fund and covers global capital markets, across two divisions: Asset Management, which runs the fund's coverage teams and reports performance each quarter, and Global Markets, which tracks yields, commodities and FX in a weekly overview.",
     divisions: [
       {
         name: "Division 01 — Asset Management",
         description:
-          "Runs a virtual fund with an initial allocation set at the start of the mandate, split into coverage teams (e.g. Iberia & Europe, Emerging Markets, Global Macro), each managing its own portion of the fund. Produces the quarterly NFC Shareholders Report on LinkedIn, including an executive summary, performance versus a benchmark (e.g. the S&P 500), the Sharpe ratio, maximum drawdown, the top 3 best- and worst-performing positions, and performance attribution by position.",
+          "Runs a virtual fund with an initial allocation set at the start of the mandate, split into coverage teams (e.g. Iberia & Europe, Emerging Markets, Global Macro), each managing its own portion of the fund, and produces the quarterly NFC Shareholders Report on LinkedIn.",
       },
       {
         name: "Division 02 — Global Markets & Markets Overview",
@@ -234,7 +237,7 @@ export const departments: Department[] = [
     ],
     summary: "Produces real quantitative finance projects, starting from a shared bootcamp.",
     description:
-      "The Quantitative Trading department produces real quantitative finance projects. Members start with a shared bootcamp, a set of Jupyter notebooks on the NFC GitHub covering portfolio construction, quantitative strategies, statistical modelling, machine learning and risk management. They then move on to individual projects such as portfolio optimization or pairs trading, each with documented code, a written report and a final presentation to the department.",
+      "Produces real quantitative finance projects, starting from a shared bootcamp: a set of Jupyter notebooks on the NFC GitHub covering portfolio construction, quantitative strategies, statistical modelling, machine learning and risk management. Members then move on to individual projects such as portfolio optimization or pairs trading, each with documented code, a written report and a final presentation to the department.",
     notes: [
       "Source material describes the bootcamp as \"7 modules\" but lists 8 module names (Fundamentals through Execution & Systems). Confirm the correct module count before publishing.",
     ],

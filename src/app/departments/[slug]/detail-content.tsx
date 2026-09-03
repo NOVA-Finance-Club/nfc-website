@@ -128,15 +128,9 @@ export function DetailContent({ found }: { found: Found }) {
             </h1>
           </div>
 
-          <p className="mt-4 text-muted-foreground">
-            {t(`dept.${dept.slug}.summary`, dept.summary)}
+          <p className="mt-4 leading-relaxed text-muted-foreground">
+            {t(`dept.${dept.slug}.description`, dept.description ?? dept.summary)}
           </p>
-
-          {dept.description && (
-            <p className="mt-4 leading-relaxed text-muted-foreground">
-              {t(`dept.${dept.slug}.description`, dept.description)}
-            </p>
-          )}
 
           <div className="mt-8">
             <Button nativeButton={false} render={<a href="#team" />}>
@@ -148,13 +142,15 @@ export function DetailContent({ found }: { found: Found }) {
       </Reveal>
 
       {dept.divisions && (
-        <Reveal className="mt-14 space-y-6">
+        // Side-by-side from md up; stacked on mobile, but each division keeps
+        // its own bordered card so the split stays visible at any width.
+        <Reveal className="mt-14 grid gap-4 md:grid-cols-2 md:items-stretch">
           {dept.divisions.map((division, i) => (
-            <div key={division.name}>
+            <div key={division.name} className="h-full rounded-lg border p-5">
               <h3 className="text-sm font-semibold tracking-wide text-muted-foreground uppercase">
                 {t(`dept.${dept.slug}.divisions.${i}.name`, division.name)}
               </h3>
-              <p className="mt-2 max-w-2xl leading-relaxed text-muted-foreground">
+              <p className="mt-3 leading-relaxed text-muted-foreground">
                 {t(`dept.${dept.slug}.divisions.${i}.description`, division.description)}
               </p>
             </div>

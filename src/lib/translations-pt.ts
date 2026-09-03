@@ -135,14 +135,14 @@ export const pt: Record<string, string> = {
   "dept.events-external-relations.summary":
     "Organiza os eventos do clube, a sua campanha de recrutamento e as suas relações externas.",
   "dept.events-external-relations.description":
-    "O departamento de Eventos e Relações Externas planeia e organiza os eventos da NFC, desde socials internos e cerimónias de integração a painéis externos e masterclasses com convidados do setor financeiro. Lidera também a campanha de recrutamento semestral, gere as relações com parceiros e patrocinadores, e coordena com outros núcleos de finanças a nível nacional.",
+    "Planeia e organiza os eventos da NFC, desde socials internos e cerimónias de integração a painéis externos e masterclasses com convidados do setor financeiro. Lidera também a campanha de recrutamento semestral, gere as relações com parceiros e patrocinadores, e coordena com outros núcleos de finanças a nível nacional.",
   "dept.events-external-relations.mandateGoal":
     "1000 seguidores no LinkedIn até ao final do mandato 2026/2027.",
 
   "dept.personal-finance.summary":
     "A face pública da NFC junto da comunidade FCT e no LinkedIn, através de três séries editoriais regulares.",
   "dept.personal-finance.description":
-    "O departamento de Finanças Pessoais é a face pública da NFC junto da comunidade FCT e no LinkedIn. Produz conteúdo educativo que torna a economia e as finanças pessoais acessíveis a um público não especializado, e acompanha as decisões de política do Banco Central Europeu à medida que acontecem.",
+    "A face pública da NFC junto da comunidade FCT e no LinkedIn, através de três séries editoriais regulares. Produz conteúdo educativo que torna a economia e as finanças pessoais acessíveis a um público não especializado, e acompanha as decisões de política do Banco Central Europeu à medida que acontecem.",
   "dept.personal-finance.series.0.description":
     "Um gráfico ou estatística que conta uma história económica, com o mínimo de texto.",
   "dept.personal-finance.series.1.description":
@@ -152,10 +152,10 @@ export const pt: Record<string, string> = {
 
   "dept.investment.summary": "Gere o fundo de investimento virtual do clube e acompanha os mercados de capitais globais.",
   "dept.investment.description":
-    "O departamento de Investimentos gere o fundo virtual da NFC e acompanha os mercados de capitais globais. Está dividido em duas divisões: Asset Management, que gere as equipas de cobertura do fundo e reporta o desempenho trimestralmente, e Global Markets, que acompanha yields, commodities e FX num resumo semanal.",
+    "Gere o fundo virtual da NFC e acompanha os mercados de capitais globais, em duas divisões: Asset Management, que gere as equipas de cobertura do fundo e reporta o desempenho trimestralmente, e Global Markets, que acompanha yields, commodities e FX num resumo semanal.",
   "dept.investment.divisions.0.name": "Divisão 01 — Asset Management",
   "dept.investment.divisions.0.description":
-    "Gere um fundo virtual com uma alocação inicial definida no início do mandato, dividido em equipas de cobertura (ex: Iberia & Europe, Emerging Markets, Global Macro), cada uma gerindo a sua própria parte do fundo. Produz o NFC Shareholders Report trimestral no LinkedIn, incluindo um resumo executivo, o desempenho face a um benchmark (ex: o S&P 500), o Sharpe ratio, o drawdown máximo, as 3 melhores e piores posições, e a atribuição de desempenho por posição.",
+    "Gere um fundo virtual com uma alocação inicial definida no início do mandato, dividido em equipas de cobertura (ex: Iberia & Europe, Emerging Markets, Global Macro), cada uma gerindo a sua própria parte do fundo e produz o NFC Shareholders Report trimestral no LinkedIn.",
   "dept.investment.divisions.1.name": "Divisão 02 — Global Markets & Markets Overview",
   "dept.investment.divisions.1.description":
     "Publica um relatório semanal curto sobre o desempenho dos mercados de capitais (yields, commodities, FX) com um resumo dos principais eventos da semana.",
@@ -163,7 +163,7 @@ export const pt: Record<string, string> = {
   "dept.quantitative-trading.summary":
     "Produz projetos reais de finança quantitativa, a começar por um bootcamp partilhado.",
   "dept.quantitative-trading.description":
-    "O departamento de Quantitative Trading produz projetos reais de finança quantitativa. Os membros começam por um bootcamp partilhado, um conjunto de Jupyter notebooks no GitHub da NFC que cobre construção de portefólios, estratégias quantitativas, modelação estatística, machine learning e gestão de risco. Depois avançam para projetos individuais como otimização de portefólios ou pairs trading, cada um com código documentado, um relatório escrito e uma apresentação final ao departamento.",
+    "Produz projetos reais de finança quantitativa, a começar por um bootcamp partilhado: um conjunto de Jupyter notebooks no GitHub da NFC que cobre construção de portefólios, estratégias quantitativas, modelação estatística, machine learning e gestão de risco. Os membros avançam depois para projetos individuais como otimização de portefólios ou pairs trading, cada um com código documentado, um relatório escrito e uma apresentação final ao departamento.",
 
   // NFC Fund
   "fund.runByPrefix": "Gerido pela divisão de Asset Management do",
