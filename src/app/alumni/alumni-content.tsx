@@ -67,16 +67,18 @@ export function AlumniContent() {
         )}
       />
 
-      <div className="mx-auto max-w-7xl px-6 py-16">
-        {/* Semester switcher — newest (the default) first. */}
-        <div className="flex flex-wrap gap-2">
+      {/* Semester switcher — same pill treatment as the department
+          switcher on /departments/[slug]: a full-width strip right under
+          the header, newest (the default) first. */}
+      <div className="border-b bg-background">
+        <div className="mx-auto flex max-w-7xl gap-2 overflow-x-auto px-6 py-4">
           {alumniTerms.map((candidate) => (
             <button
               key={candidate.slug}
               type="button"
               onClick={() => setSelectedSlug(candidate.slug)}
               className={cn(
-                "rounded-full border px-3 py-1.5 text-sm transition-colors",
+                "shrink-0 rounded-full border px-3 py-1.5 text-sm whitespace-nowrap transition-colors",
                 candidate.slug === selectedSlug
                   ? "border-brand-navy bg-brand-navy text-brand-cream"
                   : "border-border text-muted-foreground hover:text-foreground"
@@ -86,8 +88,10 @@ export function AlumniContent() {
             </button>
           ))}
         </div>
+      </div>
 
-        <section className="mt-10">
+      <div className="mx-auto max-w-7xl px-6 py-16">
+        <section>
           <Reveal>
             <h2 className="font-heading text-2xl font-bold tracking-tight sm:text-3xl">
               {termLabel(t, term)}
