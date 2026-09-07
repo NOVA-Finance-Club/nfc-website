@@ -276,6 +276,7 @@ export const pt: Record<string, string> = {
   "alumni.location": "Edifício 7, Auditório 1A, {institutionFullName}",
   "alumni.group.board": "Direção",
   "alumni.group.general-council": "Conselho Geral",
+  "alumni.group.coordinators": "Coordenadores",
 
   // Contact form
   "contact.yourName": "O teu nome",

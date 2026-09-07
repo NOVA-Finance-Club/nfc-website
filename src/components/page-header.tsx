@@ -24,9 +24,9 @@ export function PageHeader({
           {title}
         </h1>
         {subtitle && (
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-brand-cream/80">
+          <div className="mx-auto mt-4 max-w-2xl text-lg text-brand-cream/80">
             {subtitle}
-          </p>
+          </div>
         )}
       </Reveal>
     </section>

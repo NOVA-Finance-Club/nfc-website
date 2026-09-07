@@ -2,10 +2,12 @@
 
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion-primitives";
 import { PageHeader } from "@/components/page-header";
+import { roleKey } from "@/components/person-card";
 import { alumniTerms, siteConfig, type Person } from "@/lib/site-data";
 import { useT } from "@/lib/language";
 
 function PersonList({ people }: { people: Person[] }) {
+  const t = useT();
   return (
     <ul className="mt-4 divide-y border-t">
       {people.map((person) => (
@@ -14,7 +16,9 @@ function PersonList({ people }: { people: Person[] }) {
           className="flex items-baseline justify-between gap-4 py-3"
         >
           <span className="font-medium">{person.name}</span>
-          <span className="text-sm text-muted-foreground">{person.role}</span>
+          <span className="text-sm text-muted-foreground">
+            {t(roleKey(person.role), person.role)}
+          </span>
         </li>
       ))}
     </ul>
@@ -23,6 +27,10 @@ function PersonList({ people }: { people: Person[] }) {
 
 function groupTitleKey(title: string) {
   return `alumni.group.${title.toLowerCase().replace(/\s+/g, "-")}`;
+}
+
+function subgroupTitleKey(title: string) {
+  return `subgroup.${title.toLowerCase().replace(/\s+/g, "-")}`;
 }
 
 export function AlumniContent() {
@@ -79,7 +87,7 @@ export function AlumniContent() {
                           {group.subgroups.map((subgroup) => (
                             <div key={subgroup.title}>
                               <h4 className="text-sm font-semibold tracking-wide text-muted-foreground uppercase">
-                                {subgroup.title}
+                                {t(subgroupTitleKey(subgroup.title), subgroup.title)}
                               </h4>
                               <PersonList people={subgroup.people} />
                             </div>

@@ -53,27 +53,22 @@ export function JoinContent() {
 
   return (
     <div>
-      <PageHeader title={`<${t("join.heading", "Join Us")}>`} />
+      <PageHeader
+        title={`<${t("join.heading", "Join Us")}>`}
+        subtitle={
+          <div className="inline-block rounded-md border border-brand-cream/20 bg-brand-cream/10 px-8 py-5">
+            <p className="font-heading text-lg font-bold tracking-tight text-brand-cream">
+              {t("join.applicationsClosed", "Applications closed")}
+            </p>
+            <p className="mt-1 text-sm text-brand-cream/70">
+              {t("join.nextRecruitment", "Next recruitment: Spring Semester")}
+            </p>
+          </div>
+        }
+      />
 
       <div className="mx-auto max-w-7xl px-6 py-16">
-      <div className="text-center">
-        <Reveal
-          delay={0.1}
-          className="mx-auto mt-8 inline-block rounded-md bg-brand-navy px-8 py-5 text-brand-cream"
-        >
-          <p className="font-heading text-lg font-bold tracking-tight">
-            {t("join.applicationsClosed", "Applications closed")}
-          </p>
-          <p className="mt-1 text-sm text-brand-cream/80">
-            {t("join.nextRecruitment", "Next recruitment: Spring Semester")}
-          </p>
-        </Reveal>
-      </div>
-
-      <Reveal
-        delay={0.15}
-        className="mx-auto mt-10 max-w-2xl space-y-4 text-center text-muted-foreground"
-      >
+      <Reveal className="mx-auto max-w-2xl space-y-4 text-center text-muted-foreground">
         <p>
           {t(
             "join.intro1",

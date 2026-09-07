@@ -35,7 +35,7 @@ function initials(name: string) {
 // so translate the role for display only, never before this check runs.
 export const LEAD_ROLES = ["Coordinator", "President"];
 
-function roleKey(role: string) {
+export function roleKey(role: string) {
   return `role.${role.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`;
 }
 
