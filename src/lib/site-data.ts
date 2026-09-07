@@ -348,12 +348,15 @@ export const publicationSeries: PublicationSeries[] = [
   },
 ];
 
-// Past elected leadership, one entry per mandate, before the current
-// 2026/2027 mandate. Grouped the same way governanceUnits is (Board,
-// General Council as one body split into its two subgroups, then
-// Coordinators) so this page reads as the historical version of
-// /departments. Nothing here is invented — add a term only once its
-// tomada de posse details (and source file, dropped into Data/) are in hand.
+// Past elected leadership, one entry per semester, before the current
+// 2026/2027 mandate. Each mandate (one "tomada de posse", one inauguration
+// date) spans two semesters; the roster only changes between a mandate's
+// two semesters when a substitution is explicitly recorded below. Grouped
+// the same way governanceUnits is (Board, General Council as one body
+// split into its two subgroups, then Coordinators) so this page reads as
+// the historical version of /departments. Nothing here is invented — add
+// a term only once its tomada de posse details (and source file, dropped
+// into Data/) are in hand.
 export type AlumniGroup = {
   title: string;
   people?: Person[];
@@ -361,7 +364,9 @@ export type AlumniGroup = {
 };
 
 export type AlumniTerm = {
-  label: string;
+  slug: string;
+  season: "Autumn" | "Spring";
+  year: number;
   inauguratedDisplay?: string;
   location?: string;
   groups: AlumniGroup[];
@@ -370,10 +375,65 @@ export type AlumniTerm = {
 // Newest first.
 export const alumniTerms: AlumniTerm[] = [
   {
-    // From Data/NFC_Alumni_2025-06-17.csv. Student numbers from that source
-    // are deliberately not carried over here; they stay in the CSV, not on
-    // the public site.
-    label: "2025/2026",
+    // Spring half of the mandate from Data/NFC_Alumni_2025-06-17.csv, with
+    // a mid-mandate substitution supplied directly by a club officer (not
+    // in the CSV): Hugo Pereira -> Sara Abrantes and João Gabriel Fonseca
+    // -> Rodrigo Devesa, both as Coordinators. Everyone else unchanged
+    // from the Autumn 2025 roster below. No inauguratedDisplay/location:
+    // only the Autumn half of a mandate is actually elected/sworn in —
+    // Spring continues the same board, so it gets no "sworn in" date of
+    // its own.
+    slug: "spring-2026",
+    season: "Spring",
+    year: 2026,
+    groups: [
+      {
+        title: "Board",
+        people: [
+          { role: "President", name: "Samuel Pires Gonçalves" },
+          { role: "Vice President", name: "Duarte Esteves" },
+          { role: "Secretary", name: "Tiago Santos" },
+        ],
+      },
+      {
+        title: "General Council",
+        subgroups: [
+          {
+            title: "General Assembly Board",
+            people: [
+              { role: "President", name: "João Pinto" },
+              { role: "Vice President", name: "António Ferreira" },
+              { role: "Secretary", name: "Carlota Rito" },
+            ],
+          },
+          {
+            title: "Fiscal Council",
+            people: [
+              { role: "President", name: "Tiago Neves" },
+              { role: "Vice President", name: "Rodrigo Freitas" },
+            ],
+          },
+        ],
+      },
+      {
+        title: "Coordinators",
+        people: [
+          { role: "Events & Marketing", name: "Sara Abrantes" },
+          { role: "Investments", name: "Rodrigo Devesa" },
+          { role: "Innovative Trading", name: "Joana Ferreira" },
+          { role: "Personal Finance", name: "António Pires" },
+        ],
+      },
+    ],
+  },
+  {
+    // Autumn half of the same mandate — the original roster from
+    // Data/NFC_Alumni_2025-06-17.csv, before the Spring 2026 substitution
+    // above. Student numbers from that source are deliberately not
+    // carried over here; they stay in the CSV, not on the public site.
+    slug: "autumn-2025",
+    season: "Autumn",
+    year: 2025,
     inauguratedDisplay: "June 17, 2025",
     location: `Building 7, Auditorium 1A, ${siteConfig.institutionFullName}`,
     groups: [
@@ -417,10 +477,60 @@ export const alumniTerms: AlumniTerm[] = [
     ],
   },
   {
-    // From Data/NFC_Alumni_2025-11-04.csv. Student numbers from that source
-    // are deliberately not carried over here; they stay in the CSV, not on
-    // the public site.
-    label: "2024/2025",
+    // Spring half of the mandate from Data/NFC_Alumni_2025-11-04.csv — no
+    // recorded substitution, same roster as Autumn 2024 below. No
+    // inauguratedDisplay/location: only Autumn is actually elected/sworn
+    // in, per the same reasoning as Spring 2026 above.
+    slug: "spring-2025",
+    season: "Spring",
+    year: 2025,
+    groups: [
+      {
+        title: "Board",
+        people: [
+          { role: "President", name: "Tiago Neves" },
+          { role: "Vice President", name: "Constança Branco" },
+          { role: "Secretary", name: "Beatriz Raimundo" },
+        ],
+      },
+      {
+        title: "General Council",
+        subgroups: [
+          {
+            title: "General Assembly Board",
+            people: [
+              { role: "President", name: "Rita Milhazes" },
+              { role: "Vice President", name: "Joana Silvestre" },
+              { role: "Secretary", name: "Miguel Teles Pepino" },
+            ],
+          },
+          {
+            title: "Fiscal Council",
+            people: [
+              { role: "President", name: "Guilherme Antunes" },
+              { role: "Vice President", name: "Mafalda Martins" },
+            ],
+          },
+        ],
+      },
+      {
+        title: "Coordinators",
+        people: [
+          { role: "Quantitative Trading", name: "Diogo Seves" },
+          { role: "Finance", name: "Samuel Pires Gonçalves" },
+          { role: "Image", name: "Tiago Santos" },
+          { role: "Investments", name: "Rodrigo Freitas" },
+        ],
+      },
+    ],
+  },
+  {
+    // Autumn half of the same mandate — from Data/NFC_Alumni_2025-11-04.csv.
+    // Student numbers from that source are deliberately not carried over
+    // here; they stay in the CSV, not on the public site.
+    slug: "autumn-2024",
+    season: "Autumn",
+    year: 2024,
     inauguratedDisplay: "November 4, 2025",
     location: `Building 7, Auditorium 1A, ${siteConfig.institutionFullName}`,
     groups: [

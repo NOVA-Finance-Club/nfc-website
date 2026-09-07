@@ -1,10 +1,13 @@
 "use client";
 
+import { useState } from "react";
+
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion-primitives";
 import { PageHeader } from "@/components/page-header";
 import { roleKey } from "@/components/person-card";
 import { alumniTerms, siteConfig, type Person } from "@/lib/site-data";
 import { useT } from "@/lib/language";
+import { cn } from "@/lib/utils";
 
 function PersonList({ people }: { people: Person[] }) {
   const t = useT();
@@ -33,8 +36,25 @@ function subgroupTitleKey(title: string) {
   return `subgroup.${title.toLowerCase().replace(/\s+/g, "-")}`;
 }
 
+function termLabel(t: ReturnType<typeof useT>, term: (typeof alumniTerms)[number]) {
+  return `${t(`alumni.season.${term.season.toLowerCase()}`, term.season)} ${term.year}`;
+}
+
 export function AlumniContent() {
   const t = useT();
+  // alumniTerms is newest first, so the first entry is "the last elected"
+  // — the default tab.
+  const [selectedSlug, setSelectedSlug] = useState(alumniTerms[0].slug);
+  const term = alumniTerms.find((candidate) => candidate.slug === selectedSlug) ?? alumniTerms[0];
+
+  const inaugurated = term.inauguratedDisplay
+    ? t(`alumni.term.${term.slug}.inaugurated`, term.inauguratedDisplay)
+    : null;
+  const location = term.location
+    ? t("alumni.location", term.location, {
+        institutionFullName: t("institution.full", siteConfig.institutionFullName),
+      })
+    : null;
 
   return (
     <div>
@@ -48,59 +68,63 @@ export function AlumniContent() {
       />
 
       <div className="mx-auto max-w-7xl px-6 py-16">
-        <div className="space-y-20">
-          {alumniTerms.map((term) => {
-            const inaugurated = term.inauguratedDisplay
-              ? t(`alumni.term.${term.label}.inaugurated`, term.inauguratedDisplay)
-              : null;
-            const location = term.location
-              ? t("alumni.location", term.location, {
-                  institutionFullName: t("institution.full", siteConfig.institutionFullName),
-                })
-              : null;
-
-            return (
-              <section key={term.label} className="border-t pt-14 first:border-t-0 first:pt-0">
-                <Reveal>
-                  <h2 className="font-heading text-2xl font-bold tracking-tight sm:text-3xl">
-                    {term.label}
-                  </h2>
-                  {inaugurated && (
-                    <p className="mt-1 text-sm text-muted-foreground">
-                      {t("alumni.swornIn", "Sworn in on")} {inaugurated}
-                      {location ? ` ${t("alumni.swornInAt", "at")} ${location}` : ""}.
-                    </p>
-                  )}
-                </Reveal>
-
-                <StaggerGroup className="mt-8 space-y-14">
-                  {term.groups.map((group) => (
-                    <StaggerItem key={group.title}>
-                      <h3 className="font-heading text-lg font-bold tracking-tight">
-                        {t(groupTitleKey(group.title), group.title)}
-                      </h3>
-
-                      {group.people && <PersonList people={group.people} />}
-
-                      {group.subgroups && (
-                        <div className="mt-4 grid gap-x-10 gap-y-8 sm:grid-cols-2">
-                          {group.subgroups.map((subgroup) => (
-                            <div key={subgroup.title}>
-                              <h4 className="text-sm font-semibold tracking-wide text-muted-foreground uppercase">
-                                {t(subgroupTitleKey(subgroup.title), subgroup.title)}
-                              </h4>
-                              <PersonList people={subgroup.people} />
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </StaggerItem>
-                  ))}
-                </StaggerGroup>
-              </section>
-            );
-          })}
+        {/* Semester switcher — newest (the default) first. */}
+        <div className="flex flex-wrap gap-2">
+          {alumniTerms.map((candidate) => (
+            <button
+              key={candidate.slug}
+              type="button"
+              onClick={() => setSelectedSlug(candidate.slug)}
+              className={cn(
+                "rounded-full border px-3 py-1.5 text-sm transition-colors",
+                candidate.slug === selectedSlug
+                  ? "border-brand-navy bg-brand-navy text-brand-cream"
+                  : "border-border text-muted-foreground hover:text-foreground"
+              )}
+            >
+              {termLabel(t, candidate)}
+            </button>
+          ))}
         </div>
+
+        <section className="mt-10">
+          <Reveal>
+            <h2 className="font-heading text-2xl font-bold tracking-tight sm:text-3xl">
+              {termLabel(t, term)}
+            </h2>
+            {inaugurated && (
+              <p className="mt-1 text-sm text-muted-foreground">
+                {t("alumni.swornIn", "Sworn in on")} {inaugurated}
+                {location ? ` ${t("alumni.swornInAt", "at")} ${location}` : ""}.
+              </p>
+            )}
+          </Reveal>
+
+          <StaggerGroup className="mt-8 space-y-14">
+            {term.groups.map((group) => (
+              <StaggerItem key={group.title}>
+                <h3 className="font-heading text-lg font-bold tracking-tight">
+                  {t(groupTitleKey(group.title), group.title)}
+                </h3>
+
+                {group.people && <PersonList people={group.people} />}
+
+                {group.subgroups && (
+                  <div className="mt-4 grid gap-x-10 gap-y-8 sm:grid-cols-2">
+                    {group.subgroups.map((subgroup) => (
+                      <div key={subgroup.title}>
+                        <h4 className="text-sm font-semibold tracking-wide text-muted-foreground uppercase">
+                          {t(subgroupTitleKey(subgroup.title), subgroup.title)}
+                        </h4>
+                        <PersonList people={subgroup.people} />
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
+        </section>
       </div>
     </div>
   );
