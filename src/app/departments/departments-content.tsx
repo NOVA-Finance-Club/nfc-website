@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { PageHeader } from "@/components/page-header";
 import { departments, governanceUnits, siteConfig } from "@/lib/site-data";
 import { useT } from "@/lib/language";
 
@@ -48,47 +49,47 @@ export function DepartmentsContent() {
   const t = useT();
 
   return (
-    <div className="mx-auto max-w-7xl px-6 py-16">
-      <h1 className="font-heading text-3xl font-bold tracking-tight">
-        {t("departments.index.heading", "Departments")}
-      </h1>
-      <p className="mt-3 text-muted-foreground">
-        {t(
+    <div>
+      <PageHeader
+        title={`<${t("departments.index.heading", "Departments")}>`}
+        subtitle={t(
           "departments.index.subtitle",
           "{shortName}'s governance and its four functional departments.",
           { shortName: siteConfig.shortName }
         )}
-      </p>
+      />
 
-      <div className="mt-8 grid gap-3 sm:grid-cols-2">
-        {governanceUnits.map((unit) => (
-          <UnitCard
-            key={unit.slug}
-            slug={unit.slug}
-            name={unit.name}
-            nameKey={`gov.${unit.slug}.name`}
-            badgeImage={unit.badgeImage}
-            summary={unit.summary}
-            summaryKey={`gov.${unit.slug}.summary`}
-          />
-        ))}
-      </div>
+      <div className="mx-auto max-w-7xl px-6 py-16">
+        <div className="grid gap-3 sm:grid-cols-2">
+          {governanceUnits.map((unit) => (
+            <UnitCard
+              key={unit.slug}
+              slug={unit.slug}
+              name={unit.name}
+              nameKey={`gov.${unit.slug}.name`}
+              badgeImage={unit.badgeImage}
+              summary={unit.summary}
+              summaryKey={`gov.${unit.slug}.summary`}
+            />
+          ))}
+        </div>
 
-      <h2 className="mt-12 text-sm font-semibold tracking-wide text-muted-foreground uppercase">
-        {t("departments.index.deptListHeading", "Departments")}
-      </h2>
-      <div className="mt-4 grid gap-3 sm:grid-cols-2">
-        {departments.map((dept) => (
-          <UnitCard
-            key={dept.slug}
-            slug={dept.slug}
-            name={dept.name}
-            nameKey={`dept.${dept.slug}.name`}
-            badgeImage={dept.badgeImage}
-            summary={dept.summary}
-            summaryKey={`dept.${dept.slug}.summary`}
-          />
-        ))}
+        <h2 className="mt-12 text-sm font-semibold tracking-wide text-muted-foreground uppercase">
+          {t("departments.index.deptListHeading", "Departments")}
+        </h2>
+        <div className="mt-4 grid gap-3 sm:grid-cols-2">
+          {departments.map((dept) => (
+            <UnitCard
+              key={dept.slug}
+              slug={dept.slug}
+              name={dept.name}
+              nameKey={`dept.${dept.slug}.name`}
+              badgeImage={dept.badgeImage}
+              summary={dept.summary}
+              summaryKey={`dept.${dept.slug}.summary`}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

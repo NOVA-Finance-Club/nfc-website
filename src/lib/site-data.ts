@@ -20,25 +20,39 @@ export const siteConfig = {
 export const missionStatement = `Founded in ${siteConfig.foundedYear}, the ${siteConfig.name} is a student-led organization at the ${siteConfig.institutionFullName}. Our mission is to foster financial literacy, ignite interest in financial markets, and equip students with practical skills.`;
 
 // The club's founding story, written by the user for the About page, split
-// into the beats the page's layout uses (hero statement, the gap, NFC's
-// response, the community it wants to be). English here is a translation;
-// the Portuguese original lives in translations-pt.ts under the matching
-// "about.*" keys.
+// into the beats the page's layout uses (hero statement, the gap, mission,
+// background, the community it wants to be). English here is a
+// translation; the Portuguese original lives in translations-pt.ts under
+// the matching "about.*" keys.
+//
+// NOTE ON gapStatCaption: this Portugal claim (engineering as the 2nd most
+// common degree among people in leadership roles, right behind Gestão) is
+// supplied by the user directly — unlike the earlier U.S. Data USA figure
+// it replaced, no independent source has been found or verified for it.
+// Flag before reusing or presenting this number as sourced.
 export const aboutStory = {
-  heroHeadline: "There's a significant gap in how engineering students are trained.",
-  heroSubtext: "Nova Finance Club was born from that observation.",
+  heroHeadline: "There's a real gap in how engineering students are trained.",
+  heroSubtext: "Nova Finance Club started from that observation.",
   gapBody:
-    "Most curricula in the field don't include management or economics courses, subjects that turn out to be essential later in a career. This gap matters because of where many engineers end up: as careers progress, they often take on roles in management, finance or leadership, where this knowledge becomes essential.",
-  responseStatement:
-    "NFC exists to close exactly that gap: a space built by and for students, to complement technical training with the financial and management skills the university doesn't provide on its own.",
+    "Many engineers, as their careers progress, often take on roles in management, finance or leadership, where this knowledge becomes essential.",
+  gapStatNumber: "2nd",
+  gapStatCaption: "most common degree among people in leadership positions in Portugal, right behind Management.",
+  missionHeading: "Mission",
+  aboutMission:
+    "Our mission is simple: foster financial literacy, spark real interest in the markets, and build the practical skills students actually need.",
+  membersHeading: "Members",
+  aboutMembersLead: "Our {memberCount} members come from {distinctBackgrounds} different academic backgrounds, including:",
+  backgroundHeading: "Background",
+  aboutBackground:
+    "Nova Finance Club launched in 2024 at NOVA School of Science and Technology. Since then it has grown into four departments, Events & External Relations, Personal Finance, Investment, and Quantitative Trading, run by an elected Board and General Council.",
   communityLead:
-    "More than an academic club, it's meant to be a community for sharing knowledge, where members helping each other is what drives everything we do. We believe that bringing together people with different backgrounds and interests benefits everyone:",
-  communityExperienced: "Those with more experience help those just starting out.",
-  communityNewcomers: "Newcomers bring fresh perspectives and energy to the group.",
+    "NFC isn't just an academic club. It's a community built on members helping each other out. We believe bringing together people with different backgrounds and interests means everyone comes out ahead.",
+  communityExperienced: "Those with more experience help the ones just starting out.",
+  communityNewcomers: "Newcomers bring fresh energy and a different point of view.",
 };
 
 export const navItems = [
-  { label: "About", href: "/about" },
+  { label: "About Us", href: "/about" },
   { label: "Departments", href: "/departments" },
   { label: "Alumni", href: "/alumni" },
   { label: "Articles", href: "/articles" },
@@ -73,7 +87,7 @@ export const memberDegrees: Record<string, Degree> = {
   "Rita Almeida": { code: "BQ", name: "Biochemistry", level: "BSc" },
   "Guilherme Tenório": { code: "LEGI", name: "Industrial Engineering and Management", level: "BSc" },
   "Bernardo Barata": { code: "MEI", name: "Computer Engineering", level: "MSc" },
-  "Miguel Maria": { code: "LEB", name: "LEB", level: "BSc" },
+  "Miguel Maria": { code: "LEB", name: "Biomedical Engineering", level: "BSc" },
   "José Seixas da Fonseca": { code: "LMAGR", name: "Applied Mathematics for Risk Management", level: "BSc" },
   "Mateo Kirk": { code: "LMAGR", name: "Applied Mathematics for Risk Management", level: "BSc" },
   "José Faria": { code: "LEEC", name: "Electrical and Computer Engineering", level: "BSc" },

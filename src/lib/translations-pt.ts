@@ -11,7 +11,7 @@
 // drawdown, Global Macro, S&P 500).
 export const pt: Record<string, string> = {
   // Header / nav
-  "nav.about": "Sobre",
+  "nav.aboutus": "Sobre Nós",
   "nav.departments": "Departamentos",
   "nav.alumni": "Alumni",
   "nav.articles": "Artigos",
@@ -59,18 +59,28 @@ export const pt: Record<string, string> = {
 
   // About
   "about.hero.headline":
-    "Existe uma lacuna significativa na formação académica dos estudantes de engenharia.",
+    "Existe uma lacuna real na formação dos estudantes de engenharia.",
   "about.hero.subtext": "O Nova Finance Club nasceu dessa constatação.",
   "about.gapBody":
-    "A maioria dos planos curriculares nesta área não contempla cadeiras de gestão ou de economia, disciplinas que se revelam fundamentais numa fase posterior do percurso profissional. Esta ausência é particularmente relevante quando se olha para o destino de muitos engenheiros, que, com o avançar da carreira, acabam por assumir funções em áreas de gestão, finanças ou até em cargos de liderança onde estes conhecimentos são essenciais.",
-  "about.responseStatement":
-    "Foi precisamente para colmatar esta lacuna que surgiu o NFC: um espaço criado por e para estudantes, com o objetivo de complementar a formação técnica com competências financeiras e de gestão que a universidade, por si só, não proporciona.",
+    "Muitos engenheiros, à medida que a carreira avança, assumem funções em gestão, finanças ou liderança, onde este conhecimento se torna essencial.",
+  "about.gapStatNumber": "2º",
+  "about.gapStatCaption":
+    "curso mais comum entre quem ocupa cargos de liderança em Portugal, logo a seguir a Gestão.",
+  "about.missionHeading": "Missão",
+  "about.aboutMission":
+    "A nossa missão é simples: fomentar a literacia financeira, despertar interesse genuíno pelos mercados, e construir as competências práticas de que os estudantes precisam.",
+  "about.membersHeading": "Membros",
+  "about.aboutMembersLead":
+    "Os nossos {memberCount} membros vêm de {distinctBackgrounds} formações académicas diferentes, incluindo:",
+  "about.backgroundHeading": "Contexto",
+  "about.aboutBackground":
+    "O Nova Finance Club nasceu em 2024 na NOVA School of Science and Technology. Desde então cresceu para quatro departamentos, Eventos e Relações Externas, Finanças Pessoais, Investimentos e Quantitative Trading, geridos por uma Direção e um Conselho Geral eleitos.",
   "about.communityLead":
-    "Mais do que um simples clube académico, pretende ser uma comunidade de partilha de conhecimento, onde a entreajuda entre os diversos membros e colegas é o motor de tudo o que fazemos. Acreditamos que, ao juntarmos pessoas com diferentes backgrounds e interesses, todos saem a ganhar:",
+    "O NFC não é só um clube académico. É uma comunidade construída à volta da entreajuda entre membros. Acreditamos que, ao juntarmos pessoas com diferentes backgrounds e interesses, todos saem a ganhar.",
   "about.communityExperienced":
-    "Quem já tem mais conhecimento na área pode ajudar quem está a dar os primeiros passos.",
+    "Quem tem mais experiência ajuda quem está a começar.",
   "about.communityNewcomers":
-    "Quem está a começar traz sempre novas perspetivas e motivação ao grupo.",
+    "Quem chega de novo traz energia e um olhar diferente.",
   "about.seeDepartments": "Ver os nossos departamentos",
   "about.joinButton": "Inscreve-te na {shortName}",
 
@@ -81,6 +91,8 @@ export const pt: Record<string, string> = {
 
   // Departments detail page (chrome, not data)
   "departmentsSlug.back": "Departamentos",
+  "departmentsSlug.eyebrowGovernance": "Governança · {count} membros",
+  "departmentsSlug.eyebrowDepartment": "Departamento · {count} membros",
   "departmentsSlug.ourTeam": "A Nossa Equipa",
   "departmentsSlug.ourTeamButton": "A nossa equipa",
 
@@ -246,6 +258,7 @@ export const pt: Record<string, string> = {
 
   // Articles
   "articles.heading": "Artigos",
+  "articles.subtitle": "Séries editoriais regulares e relatórios de mercado, publicados pelos departamentos da NFC.",
   "articles.introStart": "Pesquisa os artigos e relatórios publicados pela NFC, dos departamentos de",
   "articles.introAnd": "e",
   "articles.searchPlaceholder": "Pesquisar artigos...",

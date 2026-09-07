@@ -5,6 +5,7 @@ import type { ReactNode } from "react";
 
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { PageHeader } from "@/components/page-header";
 import { nfcFund, siteConfig } from "@/lib/site-data";
 import { useT } from "@/lib/language";
 
@@ -53,21 +54,24 @@ export function FundContent() {
   const t = useT();
 
   return (
-    <div className="mx-auto max-w-7xl px-6 py-16">
-      <h1 className="font-heading text-3xl font-bold tracking-tight">
-        {nfcFund.name}
-      </h1>
-      <p className="mt-3 text-muted-foreground">
-        {t("fund.runByPrefix", "Run by the")}{" "}
-        <Link
-          href="/departments/investment"
-          className="underline underline-offset-4"
-        >
-          Investment Department
-        </Link>
-        {t("fund.runBySuffix", "'s Asset Management division.")}
-      </p>
+    <div>
+      <PageHeader
+        title={`<${nfcFund.name}>`}
+        subtitle={
+          <>
+            {t("fund.runByPrefix", "Run by the")}{" "}
+            <Link
+              href="/departments/investment"
+              className="underline underline-offset-4 hover:text-brand-cream"
+            >
+              Investment Department
+            </Link>
+            {t("fund.runBySuffix", "'s Asset Management division.")}
+          </>
+        }
+      />
 
+      <div className="mx-auto max-w-7xl px-6 py-16">
       {/* Mandate */}
       <section className="mt-10 space-y-3">
         <h2 className="text-xl font-semibold tracking-tight">
@@ -226,6 +230,7 @@ export function FundContent() {
           { fundName: nfcFund.name, shortName: siteConfig.shortName }
         )}
       </p>
+      </div>
     </div>
   );
 }

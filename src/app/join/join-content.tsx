@@ -3,6 +3,7 @@
 import Image from "next/image";
 
 import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion-primitives";
+import { PageHeader } from "@/components/page-header";
 import { departments, siteConfig } from "@/lib/site-data";
 import { useT } from "@/lib/language";
 
@@ -51,14 +52,11 @@ export function JoinContent() {
   const t = useT();
 
   return (
-    <div className="mx-auto max-w-7xl px-6 py-16">
-      <div className="text-center">
-        <Reveal>
-          <h1 className="font-heading text-4xl font-bold tracking-tight sm:text-5xl">
-            {t("join.heading", "Join Us")}
-          </h1>
-        </Reveal>
+    <div>
+      <PageHeader title={`<${t("join.heading", "Join Us")}>`} />
 
+      <div className="mx-auto max-w-7xl px-6 py-16">
+      <div className="text-center">
         <Reveal
           delay={0.1}
           className="mx-auto mt-8 inline-block rounded-md bg-brand-navy px-8 py-5 text-brand-cream"
@@ -180,6 +178,7 @@ export function JoinContent() {
           {siteConfig.email}
         </a>
       </Reveal>
+      </div>
     </div>
   );
 }

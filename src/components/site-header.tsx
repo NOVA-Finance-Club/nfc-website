@@ -34,7 +34,8 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const t = useT();
 
-  const navLabel = (label: string) => t(`nav.${label.toLowerCase()}`, label);
+  const navLabel = (label: string) =>
+    t(`nav.${label.toLowerCase().replace(/\s+/g, "")}`, label);
   const unitName = (unit: (typeof departmentUnits)[number]) =>
     "coordinator" in unit
       ? t(`dept.${unit.slug}.name`, unit.name)
@@ -64,7 +65,7 @@ export function SiteHeader() {
               pathname === "/about" && "text-foreground font-medium"
             )}
           >
-            {navLabel("About")}
+            {navLabel("About Us")}
           </Link>
 
           <NavigationMenu>
@@ -102,7 +103,7 @@ export function SiteHeader() {
           {navItems
             .filter(
               (item) =>
-                item.label !== "About" &&
+                item.label !== "About Us" &&
                 item.label !== "Departments" &&
                 item.label !== "Join"
             )
@@ -159,7 +160,7 @@ export function SiteHeader() {
                     pathname === "/about" && "bg-accent text-foreground font-medium"
                   )}
                 >
-                  {navLabel("About")}
+                  {navLabel("About Us")}
                 </Link>
 
                 <p className="mt-2 px-2 text-xs font-medium tracking-wide text-muted-foreground uppercase">
@@ -182,7 +183,7 @@ export function SiteHeader() {
 
                 <div className="mt-2 border-t pt-2">
                   {navItems
-                    .filter((item) => item.label !== "About" && item.label !== "Departments")
+                    .filter((item) => item.label !== "About Us" && item.label !== "Departments")
                     .map((item) => (
                       <Link
                         key={item.href}
