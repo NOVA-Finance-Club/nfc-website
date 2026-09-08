@@ -36,6 +36,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# raw source asset library (large originals; used assets are copied into public/)
+/NFC - Assets/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

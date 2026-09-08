@@ -104,7 +104,6 @@ export function DetailContent({ found }: { found: Found }) {
           <div className="mx-auto max-w-7xl px-6">
             <BackLink />
             <Reveal className="mt-6 grid gap-8 sm:grid-cols-2 sm:items-center">
-              <PhotoPlaceholder />
               <div>
                 <div className="flex items-center gap-3">
                   <Image src={unit.badgeImage} alt="" width={40} height={40} />
@@ -133,6 +132,7 @@ export function DetailContent({ found }: { found: Found }) {
                   </Button>
                 </div>
               </div>
+              <PhotoPlaceholder />
             </Reveal>
           </div>
         </section>
@@ -177,7 +177,6 @@ export function DetailContent({ found }: { found: Found }) {
         <div className="mx-auto max-w-7xl px-6">
           <BackLink />
           <Reveal className="mt-6 grid gap-8 sm:grid-cols-2 sm:items-center">
-            <PhotoPlaceholder />
             <div>
               <div className="flex items-center gap-3">
                 <Image src={dept.badgeImage} alt="" width={40} height={40} />
@@ -204,6 +203,7 @@ export function DetailContent({ found }: { found: Found }) {
                 </Button>
               </div>
             </div>
+            <PhotoPlaceholder />
           </Reveal>
         </div>
       </section>

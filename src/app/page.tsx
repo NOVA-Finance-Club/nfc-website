@@ -14,7 +14,7 @@ import {
   StaggerGroup,
   StaggerItem,
 } from "@/components/motion-primitives";
-import { departments, memberDegrees, missionStatement, siteConfig } from "@/lib/site-data";
+import { articles, departments, memberDegrees, missionStatement, siteConfig } from "@/lib/site-data";
 import { useT } from "@/lib/language";
 
 function handleFromUrl(url: string) {
@@ -202,14 +202,32 @@ export default function Home() {
               )}
             </p>
           </Reveal>
-          <Reveal
-            delay={0.1}
-            className="mt-6 rounded-md border border-dashed p-8 text-center text-sm text-muted-foreground"
-          >
-            {t("home.articlesEmpty", "No articles published yet.")}{" "}
+          {articles.length > 0 ? (
+            <Reveal delay={0.1} className="mx-auto mt-6 max-w-2xl divide-y overflow-hidden rounded-md border text-left">
+              {articles.slice(0, 3).map((article) => (
+                <a
+                  key={article.slug}
+                  href={article.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block p-4 text-sm font-medium underline-offset-4 hover:underline"
+                >
+                  {t(`article.${article.slug}.title`, article.title)}
+                </a>
+              ))}
+            </Reveal>
+          ) : (
+            <Reveal
+              delay={0.1}
+              className="mt-6 rounded-md border border-dashed p-8 text-center text-sm text-muted-foreground"
+            >
+              {t("home.articlesEmpty", "No articles published yet.")}
+            </Reveal>
+          )}
+          <Reveal delay={0.15} className="mt-4">
             <Link
               href="/articles"
-              className="font-medium text-foreground underline underline-offset-4"
+              className="text-sm font-medium text-foreground underline underline-offset-4"
             >
               {t("home.browseArchive", "Browse the archive")}
             </Link>

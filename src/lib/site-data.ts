@@ -348,6 +348,60 @@ export const publicationSeries: PublicationSeries[] = [
   },
 ];
 
+// Published pieces, newest first. Microsoft Sway presentations from a
+// club rubrica that a group of members ran (since discontinued) — not
+// official output of any one current department, so they're branded on
+// the site as plain articles rather than tagged to a department. Dates
+// are the real launch dates the user gave (day/month, year inferred as
+// 2026 — the most recent occurrence, unconfirmed). `title` is an English
+// translation of the real published Portuguese title (in translations-pt.ts
+// under `article.<slug>.title`), same convention as every other piece of
+// copy on the site — the destination Sway presentation itself stays in
+// Portuguese regardless of which title language the visitor is reading.
+export type Article = {
+  slug: string;
+  title: string;
+  department: string | null; // department slug, or null if not department-specific
+  date: string; // ISO yyyy-mm-dd
+  url: string;
+  image: string; // the rubrica's own official cover image, from NFC - Assets/RUBRICA NFC
+};
+
+export const articles: Article[] = [
+  {
+    slug: "impacto-bitcoin",
+    title: "The Impact of Bitcoin",
+    department: null,
+    date: "2026-03-12",
+    url: "https://sway.cloud.microsoft/B2uWChxoJDiM3BHR",
+    image: "/articles/rubrica-impacto-bitcoin.png",
+  },
+  {
+    slug: "acordo-ue-india",
+    title: "The EU-India Trade Agreement: What's at Stake",
+    department: null,
+    date: "2026-03-02",
+    url: "https://sway.cloud.microsoft/OeWa7pd42dOPsyam",
+    image: "/articles/rubrica-acordo-ue-india.png",
+  },
+  {
+    slug: "bolha-ia",
+    title: "The AI Bubble: Structural Fragility and Circular Leverage",
+    department: null,
+    date: "2026-02-23",
+    url: "https://sway.cloud.microsoft/POtBWLSQCrgdNkzf",
+    image: "/articles/rubrica-bolha-de-ia.png",
+  },
+  {
+    slug: "bitcoin-o-que-e",
+    title: "Bitcoin: What Is It?",
+    department: null,
+    date: "2026-02-09",
+    url: "https://sway.cloud.microsoft/99Z35iCMdYufOB1r",
+    image: "/articles/rubrica-bitcoin-o-que-e.png",
+  },
+];
+
 // Past elected leadership, one entry per semester, before the current
 // 2026/2027 mandate. Each mandate (one "tomada de posse", one inauguration
 // date) spans two semesters; the roster only changes between a mandate's
@@ -531,7 +585,10 @@ export const alumniTerms: AlumniTerm[] = [
     slug: "autumn-2024",
     season: "Autumn",
     year: 2024,
-    inauguratedDisplay: "November 4, 2025",
+    // The source CSV (Data/NFC_Alumni_2025-11-04.csv) records "2025-11-04"
+    // for every person's Data de Tomada de Posse — confirmed by the user
+    // to be a one-year typo; the real date is November 4, 2024.
+    inauguratedDisplay: "November 4, 2024",
     location: `Building 7, Auditorium 1A, ${siteConfig.institutionFullName}`,
     groups: [
       {

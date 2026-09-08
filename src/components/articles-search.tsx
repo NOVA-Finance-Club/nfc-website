@@ -1,36 +1,43 @@
 "use client";
 
+import Image from "next/image";
 import { useMemo, useState } from "react";
 import { Search } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
-import { departments } from "@/lib/site-data";
-import { useT } from "@/lib/language";
-import { cn } from "@/lib/utils";
-
-// No issues have been published yet, so this always returns empty — the
-// search and filter UI is real and wired up, ready for articles as they land.
-type Article = {
-  title: string;
-  department: string;
-};
-
-const articles: Article[] = [];
+import { articles, departments } from "@/lib/site-data";
+import { useLanguage, useT } from "@/lib/language";
 
 export function ArticlesSearch() {
   const [query, setQuery] = useState("");
   const [deptFilter, setDeptFilter] = useState<string | null>(null);
   const t = useT();
+  const { language } = useLanguage();
+
+  const titleOf = (a: (typeof articles)[number]) =>
+    t(`article.${a.slug}.title`, a.title);
 
   const results = useMemo(() => {
     return articles.filter((a) => {
-      const matchesQuery = a.title
+      const matchesQuery = t(`article.${a.slug}.title`, a.title)
         .toLowerCase()
         .includes(query.trim().toLowerCase());
       const matchesDept = !deptFilter || a.department === deptFilter;
       return matchesQuery && matchesDept;
     });
-  }, [query, deptFilter]);
+  }, [query, deptFilter, t]);
+
+  const deptLabel = (slug: string) => {
+    const dept = departments.find((d) => d.slug === slug);
+    return dept ? t(`dept.${dept.slug}.short`, dept.name.replace(" Department", "")) : slug;
+  };
+
+  const formatDate = (iso: string) =>
+    new Intl.DateTimeFormat(language === "pt" ? "pt-PT" : "en-US", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    }).format(new Date(`${iso}T00:00:00`));
 
   return (
     <>
@@ -66,21 +73,51 @@ export function ArticlesSearch() {
         </div>
       </div>
 
-      <div
-        className={cn(
-          "mt-6 rounded-md border border-dashed p-8 text-center text-sm text-muted-foreground",
-          results.length > 0 && "border-solid text-left"
-        )}
-      >
-        {results.length > 0
-          ? results.map((a) => <p key={a.title}>{a.title}</p>)
-          : query || deptFilter
+      {results.length > 0 ? (
+        <ul className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {results.map((a) => (
+            <li key={a.slug}>
+              <a
+                href={a.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block overflow-hidden rounded-lg border transition-colors hover:border-brand-navy/40"
+              >
+                <div className="relative aspect-[1080/1130] w-full bg-brand-navy">
+                  <Image
+                    src={a.image}
+                    alt=""
+                    fill
+                    className="object-cover"
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  />
+                </div>
+                <div className="p-4">
+                  <p className="text-xs font-semibold tracking-wide text-muted-foreground uppercase">
+                    {a.department
+                      ? deptLabel(a.department)
+                      : t("articles.genericLabel", "Article")}
+                    {" · "}
+                    {formatDate(a.date)}
+                  </p>
+                  <p className="mt-1 text-sm font-medium group-hover:underline">
+                    {titleOf(a)}
+                  </p>
+                </div>
+              </a>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <div className="mt-6 rounded-md border border-dashed p-8 text-center text-sm text-muted-foreground">
+          {query || deptFilter
             ? t("articles.noMatch", "No articles match your search.")
             : t(
                 "articles.noneYet",
                 "No issues published yet. The first entries will appear here once they're published."
               )}
-      </div>
+        </div>
+      )}
     </>
   );
 }
