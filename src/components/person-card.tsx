@@ -93,10 +93,11 @@ export function PersonCard({
         </p>
         <p className="text-base text-white/80">{displayRole}</p>
 
-        {/* Degree and contact icons: revealed on hover, so the card's
-            resting state stays just name/role, like a photo caption. */}
-        <div className="grid transition-[grid-template-rows] duration-200 ease-out [grid-template-rows:0fr] group-hover:[grid-template-rows:1fr]">
-          <div className="overflow-hidden opacity-0 transition-opacity delay-75 duration-150 group-hover:opacity-100">
+        {/* Degree and contact icons: hover-reveal only from sm up, where a
+            mouse is likely available. Below that (touch devices, no hover)
+            this stays open so mail/LinkedIn are always reachable. */}
+        <div className="grid transition-[grid-template-rows] duration-200 ease-out [grid-template-rows:1fr] sm:[grid-template-rows:0fr] sm:group-hover:[grid-template-rows:1fr]">
+          <div className="overflow-hidden opacity-100 transition-opacity delay-75 duration-150 sm:opacity-0 sm:group-hover:opacity-100">
             {degree && (
               <p className="mt-1 text-sm text-white/60">
                 {degree.level} in {degree.name}
