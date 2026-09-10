@@ -1,7 +1,8 @@
 "use client";
 
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { memberDegrees, type Person } from "@/lib/site-data";
+import { Mail } from "lucide-react";
+
+import { memberDegrees, siteConfig, type Person } from "@/lib/site-data";
 import { useT } from "@/lib/language";
 import { cn } from "@/lib/utils";
 
@@ -43,6 +44,12 @@ function nameKey(name: string) {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
 
+// Full-bleed tile, no border/padding frame — the initials fill the space a
+// real photo would occupy, so swapping in real photography later is a
+// straight src swap, not a redesign. Name/role sit on a scrim at the
+// bottom, same as a photo caption would. Sized compactly (see the fixed
+// card widths in PeopleGrid) so the name reads as the focus, not the
+// empty initials field.
 export function PersonCard({
   person,
   featured = false,
@@ -50,14 +57,12 @@ export function PersonCard({
 }: {
   person: Person;
   featured?: boolean;
-  /** Bigger avatar without the featured/highlighted card treatment — for
-   * groups where nobody outranks anybody else, but the photo should still
-   * be the focus. */
+  /** Bigger name/role text without the featured/highlighted treatment —
+   * for groups where nobody outranks anybody else. */
   large?: boolean;
 }) {
   const t = useT();
   const degree = memberDegrees[person.name];
-  const avatarSize = featured ? "size-44" : large ? "size-40" : "size-32";
   // The plain "Coordinator" role (a department's own team page) is gendered
   // per that specific coordinator's name, since the string alone doesn't
   // carry which department it's on. Every other role translates generically.
@@ -65,39 +70,51 @@ export function PersonCard({
     person.role === "Coordinator"
       ? t(`role.coordinator.by-name.${nameKey(person.name)}`, person.role)
       : t(roleKey(person.role), person.role);
+  const mailtoHref = `mailto:${siteConfig.email}?subject=${encodeURIComponent(
+    t("personCard.emailSubject", "Contact for {name}", { name: person.name })
+  )}`;
 
   return (
-    <div
-      className={cn(
-        "flex flex-col items-center gap-3 rounded-lg border p-6 text-center",
-        featured && "border-brand-navy/25 bg-brand-cream/40 p-8"
-      )}
-    >
-      <Avatar className={avatarSize}>
-        <AvatarFallback
+    <div className="group relative aspect-[4/5] w-full overflow-hidden rounded-xl bg-brand-navy shadow-sm">
+      <div className="flex h-full items-center justify-center">
+        <span
           className={cn(
-            "bg-brand-navy/8 font-heading text-brand-navy",
-            featured || large ? "text-4xl" : "text-3xl"
+            "font-heading text-brand-cream/50",
+            featured ? "text-6xl" : large ? "text-5xl" : "text-4xl"
           )}
         >
           {initials(person.name)}
-        </AvatarFallback>
-      </Avatar>
-
-      <div>
-        <p className={cn("font-medium", featured && "text-lg")}>
-          {person.name}
-        </p>
-        <p className="text-sm text-muted-foreground">{displayRole}</p>
+        </span>
       </div>
 
-      {degree && (
-        <p className="text-xs text-muted-foreground">
-          {degree.level} in {degree.name}
+      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/55 to-transparent px-5 pt-14 pb-5">
+        <p className={cn("font-heading font-bold text-white", featured ? "text-2xl" : large ? "text-xl" : "text-lg")}>
+          {person.name}
         </p>
-      )}
+        <p className="text-base text-white/80">{displayRole}</p>
 
-      <LinkedinIcon className="size-4 text-muted-foreground/40" />
+        {/* Degree and contact icons: revealed on hover, so the card's
+            resting state stays just name/role, like a photo caption. */}
+        <div className="grid transition-[grid-template-rows] duration-200 ease-out [grid-template-rows:0fr] group-hover:[grid-template-rows:1fr]">
+          <div className="overflow-hidden opacity-0 transition-opacity delay-75 duration-150 group-hover:opacity-100">
+            {degree && (
+              <p className="mt-1 text-sm text-white/60">
+                {degree.level} in {degree.name}
+              </p>
+            )}
+            <div className="mt-2.5 flex items-center gap-4">
+              <a
+                href={mailtoHref}
+                aria-label={t("personCard.emailAriaLabel", "Email {name}", { name: person.name })}
+                className="text-white/70 transition-colors hover:text-white"
+              >
+                <Mail className="size-5" />
+              </a>
+              <LinkedinIcon className="size-5 text-white/40" />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
@@ -106,6 +123,10 @@ export function PersonCard({
 // card above the rest of the group's people in a regular grid. Pass
 // `hierarchy={false}` for groups where every role carries equal weight (e.g.
 // governance bodies) — everyone gets an equally large card, nobody featured.
+//
+// Cards use a fixed width (not a percentage of the container), so a group
+// of 3 doesn't blow up into oversized cards the way a percentage-based
+// layout would — they stay the same compact size and simply wrap.
 export function PeopleGrid({
   people,
   hierarchy = true,
@@ -115,9 +136,11 @@ export function PeopleGrid({
 }) {
   if (!hierarchy) {
     return (
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="flex flex-wrap justify-center gap-6">
         {people.map((person) => (
-          <PersonCard key={person.name} person={person} large />
+          <div key={person.name} className="w-56 sm:w-64">
+            <PersonCard person={person} large />
+          </div>
         ))}
       </div>
     );
@@ -128,25 +151,18 @@ export function PeopleGrid({
   const rest = leadIndex >= 0 ? people.filter((_, i) => i !== leadIndex) : people;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-10">
       {lead && (
         <div className="flex justify-center">
-          <div className="w-full max-w-xs">
+          <div className="w-72 sm:w-80">
             <PersonCard person={lead} featured />
           </div>
         </div>
       )}
       {rest.length > 0 && (
-        <div className="flex flex-wrap justify-center gap-x-6 gap-y-8">
+        <div className="flex flex-wrap justify-center gap-6">
           {rest.map((person) => (
-            <div
-              key={person.name}
-              className={
-                rest.length < 4
-                  ? "w-full sm:w-[calc(33.333%-1rem)]"
-                  : "w-full sm:w-[calc(25%-1.125rem)]"
-              }
-            >
+            <div key={person.name} className="w-56 sm:w-64">
               <PersonCard person={person} large />
             </div>
           ))}

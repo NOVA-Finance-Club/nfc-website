@@ -96,6 +96,12 @@ export const pt: Record<string, string> = {
   "departmentsSlug.ourTeam": "A Nossa Equipa",
   "departmentsSlug.ourTeamButton": "A nossa equipa",
 
+  // Person card contact action — mailto to the club's shared address with
+  // the person's name in the subject line (no individual member emails
+  // are published on the site).
+  "personCard.emailSubject": "Contacto para {name}",
+  "personCard.emailAriaLabel": "Enviar email para {name}",
+
   // Governance unit names and summaries
   "gov.board.name": "Direção",
   "gov.board.summary": "A liderança executiva eleita da {shortName} para o mandato 2026/2027.",
