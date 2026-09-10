@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Mail } from "lucide-react";
 
 import { memberDegrees, siteConfig, type Person } from "@/lib/site-data";
@@ -62,6 +63,7 @@ export function PersonCard({
   large?: boolean;
 }) {
   const t = useT();
+  const [open, setOpen] = useState(false);
   const degree = memberDegrees[person.name];
   // The plain "Coordinator" role (a department's own team page) is gendered
   // per that specific coordinator's name, since the string alone doesn't
@@ -75,7 +77,10 @@ export function PersonCard({
   )}`;
 
   return (
-    <div className="group relative aspect-[4/5] w-full overflow-hidden rounded-xl bg-brand-navy shadow-sm">
+    <div
+      className="group relative aspect-[4/5] w-full cursor-pointer overflow-hidden rounded-xl bg-brand-navy shadow-sm sm:cursor-default"
+      onClick={() => setOpen((o) => !o)}
+    >
       <div className="flex h-full items-center justify-center">
         <span
           className={cn(
@@ -93,11 +98,21 @@ export function PersonCard({
         </p>
         <p className="text-base text-white/80">{displayRole}</p>
 
-        {/* Degree and contact icons: hover-reveal only from sm up, where a
-            mouse is likely available. Below that (touch devices, no hover)
-            this stays open so mail/LinkedIn are always reachable. */}
-        <div className="grid transition-[grid-template-rows] duration-200 ease-out [grid-template-rows:1fr] sm:[grid-template-rows:0fr] sm:group-hover:[grid-template-rows:1fr]">
-          <div className="overflow-hidden opacity-100 transition-opacity delay-75 duration-150 sm:opacity-0 sm:group-hover:opacity-100">
+        {/* Degree and contact icons: revealed on hover from sm up (mouse
+            available), or by tapping the card below that (no hover on
+            touch, so a tap toggles `open` instead). */}
+        <div
+          className={cn(
+            "grid transition-[grid-template-rows] duration-200 ease-out sm:[grid-template-rows:0fr] sm:group-hover:[grid-template-rows:1fr]",
+            open ? "[grid-template-rows:1fr]" : "[grid-template-rows:0fr]"
+          )}
+        >
+          <div
+            className={cn(
+              "overflow-hidden transition-opacity delay-75 duration-150 sm:opacity-0 sm:group-hover:opacity-100",
+              open ? "opacity-100" : "opacity-0"
+            )}
+          >
             {degree && (
               <p className="mt-1 text-sm text-white/60">
                 {degree.level} in {degree.name}
@@ -107,6 +122,7 @@ export function PersonCard({
               <a
                 href={mailtoHref}
                 aria-label={t("personCard.emailAriaLabel", "Email {name}", { name: person.name })}
+                onClick={(e) => e.stopPropagation()}
                 className="text-white/70 transition-colors hover:text-white"
               >
                 <Mail className="size-5" />
