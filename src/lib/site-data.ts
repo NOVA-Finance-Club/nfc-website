@@ -224,7 +224,7 @@ export const departments: Department[] = [
       {
         name: "Division 01 — Asset Management",
         description:
-          "Runs a virtual fund with an initial allocation set at the start of the mandate, split into coverage teams (e.g. Iberia & Europe, Emerging Markets, Global Macro), each managing its own portion of the fund, and produces the quarterly Shareholders Report on LinkedIn.",
+          "Runs a virtual fund with an initial allocation set at the start of the mandate, split into coverage teams (e.g. Iberia & Europe, Emerging Markets, Global Macro), each managing its own portion of the fund, and produces the Quarterly Report on LinkedIn.",
       },
       {
         name: "Division 02 — Global Markets & Markets Overview",
@@ -335,7 +335,7 @@ export const publicationSeries: PublicationSeries[] = [
     channel: "LinkedIn",
   },
   {
-    name: "Shareholders Report",
+    name: "Quarterly Report",
     cadence: "Quarterly",
     producedBy: "investment",
     channel: "LinkedIn",
@@ -640,8 +640,7 @@ export const nfcFund = {
     "A virtual fund with an initial allocation set at the start of the mandate, split into coverage teams, each managing its own portion of the fund.",
   benchmark: "S&P 500",
   report: {
-    name: "Shareholders Report",
-    cadence: "Quarterly",
+    name: "Quarterly Report",
     channel: "LinkedIn",
   },
 };

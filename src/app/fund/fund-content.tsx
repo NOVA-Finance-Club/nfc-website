@@ -112,19 +112,16 @@ export function FundContent() {
         </div>
       </section>
 
-      {/* Reporting — cadence/channel as one line, with the archive's empty
-          state folded in below instead of its own section. */}
+      {/* Reporting — channel as one line, with the archive's empty state
+          folded in below instead of its own section. Cadence isn't
+          repeated here since the report's name already says "Quarterly". */}
       <section className="mt-10 space-y-3">
         <h2 className="text-xl font-semibold tracking-tight">
           {t("fund.reportingHeading", "Reporting")}
         </h2>
         <p className="text-muted-foreground">
-          {t("fund.reportingSummary", "{reportName} — published {cadence} on {channel}.", {
+          {t("fund.reportingSummary", "{reportName}, published on {channel}.", {
             reportName: nfcFund.report.name,
-            cadence: t(
-              `fund.cadence.${nfcFund.report.cadence.toLowerCase()}`,
-              nfcFund.report.cadence.toLowerCase()
-            ),
             channel: nfcFund.report.channel,
           })}
         </p>

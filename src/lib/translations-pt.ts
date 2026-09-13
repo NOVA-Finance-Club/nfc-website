@@ -173,7 +173,7 @@ export const pt: Record<string, string> = {
     "Gere o fundo virtual da NFC e acompanha os mercados de capitais globais, em duas divisões: Asset Management, que gere as equipas de cobertura do fundo e reporta o desempenho trimestralmente, e Global Markets, que acompanha yields, commodities e FX num resumo semanal.",
   "dept.investment.divisions.0.name": "Divisão 01 — Asset Management",
   "dept.investment.divisions.0.description":
-    "Gere um fundo virtual com uma alocação inicial definida no início do mandato, dividido em equipas de cobertura (ex: Iberia & Europe, Emerging Markets, Global Macro), cada uma gerindo a sua própria parte do fundo e produz o Shareholders Report trimestral no LinkedIn.",
+    "Gere um fundo virtual com uma alocação inicial definida no início do mandato, dividido em equipas de cobertura (ex: Iberia & Europe, Emerging Markets, Global Macro), cada uma gerindo a sua própria parte do fundo e produz o Quarterly Report no LinkedIn.",
   "dept.investment.divisions.1.name": "Divisão 02 — Global Markets & Markets Overview",
   "dept.investment.divisions.1.description":
     "Publica um relatório semanal curto sobre o desempenho dos mercados de capitais (yields, commodities, FX) com um resumo dos principais eventos da semana.",
@@ -198,11 +198,10 @@ export const pt: Record<string, string> = {
   "fund.stat.maxDrawdown": "Max drawdown",
   "fund.stat.vsBenchmark": "vs. benchmark",
   "fund.reportingHeading": "Relatórios",
-  "fund.reportingSummary": "{reportName} — publicado {cadence} no {channel}.",
+  "fund.reportingSummary": "{reportName}, publicado no {channel}.",
   "fund.reportsEmpty": "Nenhum publicado ainda — o primeiro chega após o primeiro trimestre do fundo.",
   "fund.disclaimer":
     "O {fundName} é um portefólio simulado e educativo, gerido por membros da {shortName}. Nada nesta página constitui aconselhamento de investimento.",
-  "fund.cadence.quarterly": "trimestralmente",
 
   // Join
   "join.heading": "Inscreve-te",
