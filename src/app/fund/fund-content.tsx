@@ -10,11 +10,6 @@ import { useT } from "@/lib/language";
 
 const TIME_RANGES = ["1W", "1M", "YTD", "1Y", "MAX"];
 
-const coverageTeamKey = (team: string) =>
-  `fund.coverageTeam.${team.toLowerCase().replace(/[^a-z]+/g, "-").replace(/^-|-$/g, "")}`;
-
-const reportContentKey = (index: number) => `fund.report.content.${index}`;
-
 // Label above value, muted — the not-yet-available version of the stat-tile
 // figure contract (no delta, no sparkline, no fabricated number).
 function StatTile({ label }: { label: string }) {
@@ -72,11 +67,9 @@ export function FundContent() {
         </h2>
         <p className="text-muted-foreground">
           {t("fund.mandateBody", nfcFund.mandate)}{" "}
-          {t(
-            "fund.benchmarkNote",
-            "Benchmarked against the {benchmark} — an example, not yet confirmed.",
-            { benchmark: nfcFund.exampleBenchmark }
-          )}
+          {t("fund.benchmarkNote", "Benchmarked against the {benchmark}.", {
+            benchmark: nfcFund.benchmark,
+          })}
         </p>
       </section>
 
@@ -119,43 +112,8 @@ export function FundContent() {
         </div>
       </section>
 
-      {/* Coverage Teams — a short provisional note replaces the old
-          per-badge "(example)" suffix and paragraph explaining it. */}
-      <section className="mt-10 space-y-3">
-        <h2 className="text-xl font-semibold tracking-tight">
-          {t("fund.coverageTeamsHeading", "Coverage Teams")}
-        </h2>
-        <p className="text-sm text-muted-foreground">
-          {t("fund.coverageTeamsNote", "Illustrative examples — not yet confirmed.")}
-        </p>
-        <div className="flex flex-wrap gap-1.5">
-          {nfcFund.exampleCoverageTeams.map((team) => (
-            <Badge key={team} variant="outline">
-              {t(coverageTeamKey(team), team)}
-            </Badge>
-          ))}
-        </div>
-      </section>
-
-      {/* Allocation */}
-      <section className="mt-10 space-y-3">
-        <h2 className="text-xl font-semibold tracking-tight">
-          {t("fund.allocationHeading", "Allocation")}
-        </h2>
-        <div className="overflow-hidden rounded-2xl border">
-          <CardHeader>{t("fund.byCoverageTeam", "By coverage team")}</CardHeader>
-          <EmptyState>
-            {t(
-              "fund.allocationEmpty",
-              "Allocation by coverage team will appear here once the fund reports its first quarter."
-            )}
-          </EmptyState>
-        </div>
-      </section>
-
-      {/* Reporting — cadence/channel as one line, contents as an inline
-          dot-separated list rather than a bulleted block, with the
-          archive's empty state folded in below instead of its own section. */}
+      {/* Reporting — cadence/channel as one line, with the archive's empty
+          state folded in below instead of its own section. */}
       <section className="mt-10 space-y-3">
         <h2 className="text-xl font-semibold tracking-tight">
           {t("fund.reportingHeading", "Reporting")}
@@ -169,9 +127,6 @@ export function FundContent() {
             ),
             channel: nfcFund.report.channel,
           })}
-        </p>
-        <p className="text-sm text-muted-foreground">
-          {nfcFund.report.contents.map((item, i) => t(reportContentKey(i), item)).join(" · ")}
         </p>
         <div className="rounded-md border border-dashed p-8 text-center text-sm text-muted-foreground">
           {t(

@@ -173,7 +173,7 @@ export const pt: Record<string, string> = {
     "Gere o fundo virtual da NFC e acompanha os mercados de capitais globais, em duas divisões: Asset Management, que gere as equipas de cobertura do fundo e reporta o desempenho trimestralmente, e Global Markets, que acompanha yields, commodities e FX num resumo semanal.",
   "dept.investment.divisions.0.name": "Divisão 01 — Asset Management",
   "dept.investment.divisions.0.description":
-    "Gere um fundo virtual com uma alocação inicial definida no início do mandato, dividido em equipas de cobertura (ex: Iberia & Europe, Emerging Markets, Global Macro), cada uma gerindo a sua própria parte do fundo e produz o NFC Shareholders Report trimestral no LinkedIn.",
+    "Gere um fundo virtual com uma alocação inicial definida no início do mandato, dividido em equipas de cobertura (ex: Iberia & Europe, Emerging Markets, Global Macro), cada uma gerindo a sua própria parte do fundo e produz o Shareholders Report trimestral no LinkedIn.",
   "dept.investment.divisions.1.name": "Divisão 02 — Global Markets & Markets Overview",
   "dept.investment.divisions.1.description":
     "Publica um relatório semanal curto sobre o desempenho dos mercados de capitais (yields, commodities, FX) com um resumo dos principais eventos da semana.",
@@ -188,7 +188,7 @@ export const pt: Record<string, string> = {
   "fund.mandateHeading": "Mandato",
   "fund.mandateBody":
     "Um fundo virtual com uma alocação inicial definida no início do mandato, dividido em equipas de cobertura, cada uma gerindo a sua própria parte do fundo.",
-  "fund.benchmarkNote": "Benchmark: {benchmark} — um exemplo, ainda não confirmado.",
+  "fund.benchmarkNote": "Benchmark: {benchmark}.",
   "fund.performanceHeading": "Desempenho",
   "fund.cumulativePerformanceEmpty":
     "O desempenho acumulado aparecerá aqui assim que o fundo reportar o seu primeiro trimestre.",
@@ -197,22 +197,8 @@ export const pt: Record<string, string> = {
   "fund.stat.sharpeRatio": "Sharpe ratio",
   "fund.stat.maxDrawdown": "Max drawdown",
   "fund.stat.vsBenchmark": "vs. benchmark",
-  "fund.coverageTeamsHeading": "Equipas de Cobertura",
-  "fund.coverageTeamsNote": "Exemplos ilustrativos — ainda não confirmados.",
-  "fund.coverageTeam.iberia-europe": "Ibéria e Europa",
-  "fund.coverageTeam.emerging-markets": "Mercados Emergentes",
-  "fund.allocationHeading": "Alocação",
-  "fund.byCoverageTeam": "Por equipa de cobertura",
-  "fund.allocationEmpty":
-    "A alocação por equipa de cobertura aparecerá aqui assim que o fundo reportar o seu primeiro trimestre.",
   "fund.reportingHeading": "Relatórios",
   "fund.reportingSummary": "{reportName} — publicado {cadence} no {channel}.",
-  "fund.report.content.0": "Resumo executivo",
-  "fund.report.content.1": "Desempenho vs. benchmark",
-  "fund.report.content.2": "Sharpe ratio",
-  "fund.report.content.3": "Drawdown máximo",
-  "fund.report.content.4": "As 3 melhores e piores posições",
-  "fund.report.content.5": "Atribuição de desempenho por posição",
   "fund.reportsEmpty": "Nenhum publicado ainda — o primeiro chega após o primeiro trimestre do fundo.",
   "fund.disclaimer":
     "O {fundName} é um portefólio simulado e educativo, gerido por membros da {shortName}. Nada nesta página constitui aconselhamento de investimento.",

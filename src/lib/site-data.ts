@@ -224,7 +224,7 @@ export const departments: Department[] = [
       {
         name: "Division 01 — Asset Management",
         description:
-          "Runs a virtual fund with an initial allocation set at the start of the mandate, split into coverage teams (e.g. Iberia & Europe, Emerging Markets, Global Macro), each managing its own portion of the fund, and produces the quarterly NFC Shareholders Report on LinkedIn.",
+          "Runs a virtual fund with an initial allocation set at the start of the mandate, split into coverage teams (e.g. Iberia & Europe, Emerging Markets, Global Macro), each managing its own portion of the fund, and produces the quarterly Shareholders Report on LinkedIn.",
       },
       {
         name: "Division 02 — Global Markets & Markets Overview",
@@ -335,7 +335,7 @@ export const publicationSeries: PublicationSeries[] = [
     channel: "LinkedIn",
   },
   {
-    name: "NFC Shareholders Report",
+    name: "Shareholders Report",
     cadence: "Quarterly",
     producedBy: "investment",
     channel: "LinkedIn",
@@ -633,26 +633,15 @@ export const alumniTerms: AlumniTerm[] = [
 ];
 
 // The NFC Fund — the Investment Department's Division 01 (Asset Management).
-// Coverage teams and benchmark below are the brief's own illustrative examples
-// ("ex:"), not confirmed choices — flagged as PENDING on the page itself.
 export const nfcFund = {
   name: "NFC Fund",
   coordinator: "Rodrigo Devesa",
   mandate:
     "A virtual fund with an initial allocation set at the start of the mandate, split into coverage teams, each managing its own portion of the fund.",
-  exampleCoverageTeams: ["Iberia & Europe", "Emerging Markets", "Global Macro"],
-  exampleBenchmark: "S&P 500",
+  benchmark: "S&P 500",
   report: {
-    name: "NFC Shareholders Report",
+    name: "Shareholders Report",
     cadence: "Quarterly",
     channel: "LinkedIn",
-    contents: [
-      "Executive summary",
-      "Performance vs. benchmark",
-      "Sharpe ratio",
-      "Maximum drawdown",
-      "Top 3 best- and worst-performing positions",
-      "Performance attribution by position",
-    ],
   },
 };
