@@ -184,17 +184,12 @@ export const pt: Record<string, string> = {
     "Produz projetos reais de finança quantitativa, a começar por um bootcamp partilhado: um conjunto de Jupyter notebooks no GitHub da NFC que cobre construção de portefólios, estratégias quantitativas, modelação estatística, machine learning e gestão de risco. Os membros avançam depois para projetos individuais como otimização de portefólios ou pairs trading, cada um com código documentado, um relatório escrito e uma apresentação final ao departamento.",
 
   // NFC Fund
-  "fund.runByPrefix": "Gerido pela divisão de Asset Management do",
-  "fund.runBySuffix": ".",
+  "fund.subtitle": "Um portefólio simulado para a prática real de investimento.",
   "fund.mandateHeading": "Mandato",
   "fund.mandateBody":
     "Um fundo virtual com uma alocação inicial definida no início do mandato, dividido em equipas de cobertura, cada uma gerindo a sua própria parte do fundo.",
-  "fund.benchmarkHeading": "Benchmark",
-  "fund.benchmarkBodyStart": "O briefing que define o formato do Shareholders Report usa",
-  "fund.benchmarkBodyTail": "apenas como exemplo de benchmark, não como uma escolha confirmada.",
+  "fund.benchmarkNote": "Benchmark: {benchmark} — um exemplo, ainda não confirmado.",
   "fund.performanceHeading": "Desempenho",
-  "fund.performanceBody":
-    "Retorno acumulado face ao benchmark, mais os indicadores de risco principais de cada Shareholders Report.",
   "fund.cumulativePerformanceEmpty":
     "O desempenho acumulado aparecerá aqui assim que o fundo reportar o seu primeiro trimestre.",
   "fund.headlineFigures": "Indicadores principais",
@@ -202,31 +197,23 @@ export const pt: Record<string, string> = {
   "fund.stat.sharpeRatio": "Sharpe ratio",
   "fund.stat.maxDrawdown": "Max drawdown",
   "fund.stat.vsBenchmark": "vs. benchmark",
-  "fund.methodologyHeading": "Metodologia",
-  "fund.methodologyBody":
-    "O fundo está dividido em equipas de cobertura, cada uma gerindo a sua própria parte da alocação. O briefing apresenta estas como exemplos ilustrativos de equipas de cobertura, não como uma lista confirmada:",
-  "fund.exampleSuffix": "(exemplo)",
+  "fund.coverageTeamsHeading": "Equipas de Cobertura",
+  "fund.coverageTeamsNote": "Exemplos ilustrativos — ainda não confirmados.",
   "fund.coverageTeam.iberia-europe": "Ibéria e Europa",
   "fund.coverageTeam.emerging-markets": "Mercados Emergentes",
   "fund.allocationHeading": "Alocação",
-  "fund.allocationBody": "Como se distribuem as posições do fundo por equipa de cobertura.",
   "fund.byCoverageTeam": "Por equipa de cobertura",
   "fund.allocationEmpty":
     "A alocação por equipa de cobertura aparecerá aqui assim que o fundo reportar o seu primeiro trimestre.",
   "fund.reportingHeading": "Relatórios",
-  "fund.reportingBodyStart": "O",
-  "fund.reportingBodyMid": "é publicado",
-  "fund.reportingBodyEnd": "no",
-  "fund.reportingBodyTail": ", e cobre:",
+  "fund.reportingSummary": "{reportName} — publicado {cadence} no {channel}.",
   "fund.report.content.0": "Resumo executivo",
   "fund.report.content.1": "Desempenho vs. benchmark",
   "fund.report.content.2": "Sharpe ratio",
   "fund.report.content.3": "Drawdown máximo",
   "fund.report.content.4": "As 3 melhores e piores posições",
   "fund.report.content.5": "Atribuição de desempenho por posição",
-  "fund.reportsHeading": "Shareholder Reports",
-  "fund.reportsEmpty":
-    "Ainda não foi publicado nenhum Shareholders Report. O primeiro relatório aparecerá aqui assim que o fundo reportar o seu primeiro trimestre.",
+  "fund.reportsEmpty": "Nenhum publicado ainda — o primeiro chega após o primeiro trimestre do fundo.",
   "fund.disclaimer":
     "O {fundName} é um portefólio simulado e educativo, gerido por membros da {shortName}. Nada nesta página constitui aconselhamento de investimento.",
   "fund.cadence.quarterly": "trimestralmente",

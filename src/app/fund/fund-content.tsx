@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import type { ReactNode } from "react";
 
 import { Badge } from "@/components/ui/badge";
@@ -57,47 +56,26 @@ export function FundContent() {
     <div>
       <PageHeader
         title={`<${nfcFund.name}>`}
-        subtitle={
-          <>
-            {t("fund.runByPrefix", "Run by the")}{" "}
-            <Link
-              href="/departments/investment"
-              className="underline underline-offset-4 hover:text-brand-cream"
-            >
-              Investment Department
-            </Link>
-            {t("fund.runBySuffix", "'s Asset Management division.")}
-          </>
-        }
+        subtitle={t(
+          "fund.subtitle",
+          "A simulated portfolio for real investment practice."
+        )}
       />
 
       <div className="mx-auto max-w-7xl px-6 py-16">
-      {/* Mandate */}
+      {/* Mandate — folds the benchmark in as a second sentence rather than
+          its own section, since it's a detail of the mandate, not a
+          separate topic. */}
       <section className="mt-10 space-y-3">
         <h2 className="text-xl font-semibold tracking-tight">
           {t("fund.mandateHeading", "Mandate")}
         </h2>
         <p className="text-muted-foreground">
-          {t("fund.mandateBody", nfcFund.mandate)}
-        </p>
-      </section>
-
-      {/* Benchmark */}
-      <section className="mt-10 space-y-3">
-        <h2 className="text-xl font-semibold tracking-tight">
-          {t("fund.benchmarkHeading", "Benchmark")}
-        </h2>
-        <p className="text-muted-foreground">
+          {t("fund.mandateBody", nfcFund.mandate)}{" "}
           {t(
-            "fund.benchmarkBodyStart",
-            "The brief that defines the Shareholders Report format uses"
-          )}{" "}
-          <span className="font-medium text-foreground">
-            {nfcFund.exampleBenchmark}
-          </span>{" "}
-          {t(
-            "fund.benchmarkBodyTail",
-            "only as an example of a benchmark, not a confirmed choice."
+            "fund.benchmarkNote",
+            "Benchmarked against the {benchmark} — an example, not yet confirmed.",
+            { benchmark: nfcFund.exampleBenchmark }
           )}
         </p>
       </section>
@@ -110,12 +88,6 @@ export function FundContent() {
         <h2 className="text-xl font-semibold tracking-tight">
           {t("fund.performanceHeading", "Performance")}
         </h2>
-        <p className="text-muted-foreground">
-          {t(
-            "fund.performanceBody",
-            "Cumulative return against the benchmark, plus the headline risk figures from each Shareholders Report."
-          )}
-        </p>
         <div className="grid gap-4 lg:grid-cols-[2fr_1fr]">
           <div className="flex flex-col overflow-hidden rounded-2xl border">
             <div className="flex flex-wrap items-center gap-1.5 border-b p-3">
@@ -147,21 +119,19 @@ export function FundContent() {
         </div>
       </section>
 
-      {/* Methodology */}
+      {/* Coverage Teams — a short provisional note replaces the old
+          per-badge "(example)" suffix and paragraph explaining it. */}
       <section className="mt-10 space-y-3">
         <h2 className="text-xl font-semibold tracking-tight">
-          {t("fund.methodologyHeading", "Methodology")}
+          {t("fund.coverageTeamsHeading", "Coverage Teams")}
         </h2>
-        <p className="text-muted-foreground">
-          {t(
-            "fund.methodologyBody",
-            "The fund is split into coverage teams, each managing its own portion of the allocation. The brief gives these as illustrative examples of coverage teams, not a confirmed list:"
-          )}
+        <p className="text-sm text-muted-foreground">
+          {t("fund.coverageTeamsNote", "Illustrative examples — not yet confirmed.")}
         </p>
         <div className="flex flex-wrap gap-1.5">
           {nfcFund.exampleCoverageTeams.map((team) => (
             <Badge key={team} variant="outline">
-              {t(coverageTeamKey(team), team)} ({t("fund.exampleSuffix", "example")})
+              {t(coverageTeamKey(team), team)}
             </Badge>
           ))}
         </div>
@@ -172,9 +142,6 @@ export function FundContent() {
         <h2 className="text-xl font-semibold tracking-tight">
           {t("fund.allocationHeading", "Allocation")}
         </h2>
-        <p className="text-muted-foreground">
-          {t("fund.allocationBody", "How the fund's positions break down by coverage team.")}
-        </p>
         <div className="overflow-hidden rounded-2xl border">
           <CardHeader>{t("fund.byCoverageTeam", "By coverage team")}</CardHeader>
           <EmptyState>
@@ -186,37 +153,30 @@ export function FundContent() {
         </div>
       </section>
 
-      {/* Reporting */}
+      {/* Reporting — cadence/channel as one line, contents as an inline
+          dot-separated list rather than a bulleted block, with the
+          archive's empty state folded in below instead of its own section. */}
       <section className="mt-10 space-y-3">
         <h2 className="text-xl font-semibold tracking-tight">
           {t("fund.reportingHeading", "Reporting")}
         </h2>
         <p className="text-muted-foreground">
-          {t("fund.reportingBodyStart", "The")}{" "}
-          <span className="font-medium text-foreground">
-            {nfcFund.report.name}
-          </span>{" "}
-          {t("fund.reportingBodyMid", "is published")}{" "}
-          {t(`fund.cadence.${nfcFund.report.cadence.toLowerCase()}`, nfcFund.report.cadence.toLowerCase())}{" "}
-          {t("fund.reportingBodyEnd", "on")} {nfcFund.report.channel}
-          {t("fund.reportingBodyTail", ", and covers:")}
+          {t("fund.reportingSummary", "{reportName} — published {cadence} on {channel}.", {
+            reportName: nfcFund.report.name,
+            cadence: t(
+              `fund.cadence.${nfcFund.report.cadence.toLowerCase()}`,
+              nfcFund.report.cadence.toLowerCase()
+            ),
+            channel: nfcFund.report.channel,
+          })}
         </p>
-        <ul className="list-disc space-y-1 pl-5 text-muted-foreground">
-          {nfcFund.report.contents.map((item, i) => (
-            <li key={item}>{t(reportContentKey(i), item)}</li>
-          ))}
-        </ul>
-      </section>
-
-      {/* Shareholder Reports archive */}
-      <section className="mt-10 space-y-3">
-        <h2 className="text-xl font-semibold tracking-tight">
-          {t("fund.reportsHeading", "Shareholder Reports")}
-        </h2>
+        <p className="text-sm text-muted-foreground">
+          {nfcFund.report.contents.map((item, i) => t(reportContentKey(i), item)).join(" · ")}
+        </p>
         <div className="rounded-md border border-dashed p-8 text-center text-sm text-muted-foreground">
           {t(
             "fund.reportsEmpty",
-            "No Shareholders Report has been published yet. The first report will appear here once the fund reports its first quarter."
+            "None published yet — the first arrives after the fund's first quarter."
           )}
         </div>
       </section>
