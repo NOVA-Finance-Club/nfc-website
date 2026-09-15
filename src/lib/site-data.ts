@@ -446,7 +446,7 @@ export const alumniTerms: AlumniTerm[] = [
         people: [
           { role: "President", name: "Samuel Pires Gonçalves" },
           { role: "Vice President", name: "Duarte Esteves" },
-          { role: "Secretary", name: "Tiago Santos" },
+          { role: "Secretary-General", name: "Tiago Santos" },
         ],
       },
       {
@@ -496,7 +496,7 @@ export const alumniTerms: AlumniTerm[] = [
         people: [
           { role: "President", name: "Samuel Pires Gonçalves" },
           { role: "Vice President", name: "Duarte Esteves" },
-          { role: "Secretary", name: "Tiago Santos" },
+          { role: "Secretary-General", name: "Tiago Santos" },
         ],
       },
       {
@@ -544,7 +544,7 @@ export const alumniTerms: AlumniTerm[] = [
         people: [
           { role: "President", name: "Tiago Neves" },
           { role: "Vice President", name: "Constança Branco" },
-          { role: "Secretary", name: "Beatriz Raimundo" },
+          { role: "Secretary-General", name: "Beatriz Raimundo" },
         ],
       },
       {
@@ -596,7 +596,7 @@ export const alumniTerms: AlumniTerm[] = [
         people: [
           { role: "President", name: "Tiago Neves" },
           { role: "Vice President", name: "Constança Branco" },
-          { role: "Secretary", name: "Beatriz Raimundo" },
+          { role: "Secretary-General", name: "Beatriz Raimundo" },
         ],
       },
       {
