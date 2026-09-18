@@ -5,7 +5,7 @@
 export const siteConfig = {
   name: "Nova Finance Club",
   shortName: "NFC",
-  institution: "FCT-NOVA",
+  institution: "NOVA FCT",
   institutionFullName: "NOVA School of Science and Technology",
   slogan: "Bridging Science & Finance",
   foundedYear: 2024,

@@ -37,7 +37,7 @@ export default function Home() {
 
   return (
     <div>
-      {/* Hero — full-bleed brand-navy band with the FCT-NOVA/Lisbon banner */}
+      {/* Hero — full-bleed brand-navy band with the NOVA FCT/Lisbon banner */}
       <section className="relative isolate overflow-hidden bg-brand-navy text-brand-cream">
         <HeroParallax>
           <Image

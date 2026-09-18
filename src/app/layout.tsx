@@ -20,11 +20,11 @@ const libreBaskerville = Libre_Baskerville({
 
 export const metadata: Metadata = {
   title: {
-    default: "Nova Finance Club (NFC) — FCT-NOVA",
+    default: "Nova Finance Club (NFC) — NOVA FCT",
     template: "%s — Nova Finance Club",
   },
   description:
-    "Nova Finance Club (NFC) is a student-run finance club at FCT-NOVA.",
+    "Nova Finance Club (NFC) is a student-run finance club at NOVA FCT.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
