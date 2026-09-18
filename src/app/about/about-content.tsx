@@ -39,7 +39,7 @@ export function AboutContent() {
           message is the design. */}
       <section className="bg-brand-navy py-16 text-brand-cream sm:py-20">
         <Reveal className="mx-auto max-w-7xl px-6 text-center">
-          <h1 className="mx-auto max-w-3xl font-heading text-5xl leading-[1.1] font-bold tracking-tight sm:text-6xl">
+          <h1 className="mx-auto max-w-3xl font-heading text-5xl leading-[1.1] font-bold tracking-normal sm:text-6xl">
             {t("about.hero.headline", aboutStory.heroHeadline)}
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-lg text-brand-cream/80">

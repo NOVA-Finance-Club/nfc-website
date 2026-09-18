@@ -93,7 +93,7 @@ export function AlumniContent() {
       <div className="mx-auto max-w-7xl px-6 py-16">
         <section>
           <Reveal>
-            <h2 className="font-heading text-2xl font-bold tracking-tight sm:text-3xl">
+            <h2 className="font-heading text-2xl font-bold tracking-normal sm:text-3xl">
               {termLabel(t, term)}
             </h2>
             {inaugurated && (
@@ -107,7 +107,7 @@ export function AlumniContent() {
           <StaggerGroup className="mt-8 space-y-14">
             {term.groups.map((group) => (
               <StaggerItem key={group.title}>
-                <h3 className="font-heading text-lg font-bold tracking-tight">
+                <h3 className="font-heading text-lg font-bold tracking-normal">
                   {t(groupTitleKey(group.title), group.title)}
                 </h3>
 

@@ -62,7 +62,7 @@ export function FundContent() {
           its own section, since it's a detail of the mandate, not a
           separate topic. */}
       <section className="mt-10 space-y-3">
-        <h2 className="text-xl font-semibold tracking-tight">
+        <h2 className="text-xl font-semibold tracking-normal">
           {t("fund.mandateHeading", "Mandate")}
         </h2>
         <p className="text-muted-foreground">
@@ -78,7 +78,7 @@ export function FundContent() {
           right). Both sides are honest empty states: the fund hasn't
           reported a quarter yet. */}
       <section className="mt-10 space-y-3">
-        <h2 className="text-xl font-semibold tracking-tight">
+        <h2 className="text-xl font-semibold tracking-normal">
           {t("fund.performanceHeading", "Performance")}
         </h2>
         <div className="grid gap-4 lg:grid-cols-[2fr_1fr]">
@@ -115,7 +115,7 @@ export function FundContent() {
       {/* Reporting — cadence/channel as one line, with the archive's empty
           state folded in below instead of its own section. */}
       <section className="mt-10 space-y-3">
-        <h2 className="text-xl font-semibold tracking-tight">
+        <h2 className="text-xl font-semibold tracking-normal">
           {t("fund.reportingHeading", "Reporting")}
         </h2>
         <p className="text-muted-foreground">

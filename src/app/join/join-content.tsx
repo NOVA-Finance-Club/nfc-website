@@ -87,7 +87,7 @@ export function JoinContent() {
       {/* Who should apply */}
       <section className="mt-16 border-t pt-16">
         <Reveal className="text-center">
-          <h2 className="font-heading text-3xl font-bold tracking-tight sm:text-4xl">
+          <h2 className="font-heading text-3xl font-bold tracking-normal sm:text-4xl">
             {t("join.whoShouldApplyHeading", "Who should apply?")}
           </h2>
           <p className="mx-auto mt-2 max-w-2xl text-muted-foreground">
@@ -110,7 +110,7 @@ export function JoinContent() {
                     className="shrink-0"
                   />
                   <div>
-                    <h3 className="font-heading text-lg font-bold tracking-tight">
+                    <h3 className="font-heading text-lg font-bold tracking-normal">
                       {t(`dept.${dept.slug}.short`, pitch.label)}
                       {t("join.pitchHeadingSuffix", ", who:")}
                     </h3>
@@ -145,7 +145,7 @@ export function JoinContent() {
       {/* How the process works */}
       <section className="mt-16 border-t pt-16 text-center">
         <Reveal>
-          <h2 className="font-heading text-3xl font-bold tracking-tight sm:text-4xl">
+          <h2 className="font-heading text-3xl font-bold tracking-normal sm:text-4xl">
             {t("join.processHeading", "How the process works")}
           </h2>
         </Reveal>

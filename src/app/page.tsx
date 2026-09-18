@@ -107,7 +107,7 @@ export default function Home() {
         {/* NFC in numbers */}
         <section className="mt-10 border-t py-16 text-center">
           <Reveal>
-            <h2 className="font-heading text-4xl font-bold tracking-tight sm:text-5xl">
+            <h2 className="font-heading text-4xl font-bold tracking-normal sm:text-5xl">
               {t("home.numbersHeading", "{shortName} in numbers", {
                 shortName: siteConfig.shortName,
               })}
@@ -119,7 +119,7 @@ export default function Home() {
                 value={siteConfig.memberCount}
                 className="font-heading text-5xl font-bold tracking-tight sm:text-6xl"
               />
-              <span className="text-sm text-muted-foreground sm:text-base">
+              <span className="text-base text-muted-foreground sm:text-lg">
                 {t("home.stat.members", "members")}
               </span>
             </StaggerItem>
@@ -128,7 +128,7 @@ export default function Home() {
                 value={departments.length}
                 className="font-heading text-5xl font-bold tracking-tight sm:text-6xl"
               />
-              <span className="text-sm text-muted-foreground sm:text-base">
+              <span className="text-base text-muted-foreground sm:text-lg">
                 {t("home.stat.departments", "departments")}
               </span>
             </StaggerItem>
@@ -137,7 +137,7 @@ export default function Home() {
                 value={distinctBackgrounds}
                 className="font-heading text-5xl font-bold tracking-tight sm:text-6xl"
               />
-              <span className="text-sm text-muted-foreground sm:text-base">
+              <span className="text-base text-muted-foreground sm:text-lg">
                 {t("home.stat.distinctBackgrounds", "distinct backgrounds")}
               </span>
             </StaggerItem>
@@ -146,7 +146,7 @@ export default function Home() {
                 value={yearsActive}
                 className="font-heading text-5xl font-bold tracking-tight sm:text-6xl"
               />
-              <span className="text-sm text-muted-foreground sm:text-base">
+              <span className="text-base text-muted-foreground sm:text-lg">
                 {t("home.stat.yearsActive", "years active")}
               </span>
             </StaggerItem>
@@ -161,7 +161,7 @@ export default function Home() {
       <section className="mt-6 border-y bg-brand-cream/40 py-16">
         <div className="mx-auto max-w-7xl px-6">
           <Reveal className="text-center">
-            <h2 className="font-heading text-4xl font-bold tracking-tight sm:text-5xl">
+            <h2 className="font-heading text-4xl font-bold tracking-normal sm:text-5xl">
               {t("home.whatWeDoHeading", "What we do")}
             </h2>
           </Reveal>
@@ -174,7 +174,7 @@ export default function Home() {
                   className="group flex flex-col items-center text-center"
                 >
                   <Image src={dept.badgeImage} alt="" width={96} height={96} />
-                  <h3 className="mt-4 font-heading text-lg font-bold tracking-tight group-hover:underline">
+                  <h3 className="mt-4 font-heading text-lg font-bold tracking-normal group-hover:underline">
                     {t(`dept.${dept.slug}.name`, dept.name)}
                   </h3>
                   <p className="mt-2 text-sm text-muted-foreground">
@@ -191,7 +191,7 @@ export default function Home() {
         {/* Latest Articles */}
         <section className="py-16 text-center">
           <Reveal>
-            <h2 className="font-heading text-4xl font-bold tracking-tight sm:text-5xl">
+            <h2 className="font-heading text-4xl font-bold tracking-normal sm:text-5xl">
               {t("home.articlesHeading", "Latest Articles")}
             </h2>
             <p className="mx-auto mt-2 max-w-2xl text-muted-foreground">
@@ -236,7 +236,7 @@ export default function Home() {
         {/* NFC Fund */}
         <section className="border-t py-16 text-center">
           <Reveal>
-            <h2 className="font-heading text-4xl font-bold tracking-tight sm:text-5xl">
+            <h2 className="font-heading text-4xl font-bold tracking-normal sm:text-5xl">
               {t("home.fundHeading", "{shortName} Fund", { shortName: siteConfig.shortName })}
             </h2>
             <p className="mx-auto mt-2 max-w-2xl text-muted-foreground">
@@ -263,7 +263,7 @@ export default function Home() {
       <section className="border-t">
         <div className="mx-auto max-w-7xl px-6 pt-16 text-center">
           <Reveal>
-            <h2 className="font-heading text-4xl font-bold tracking-tight sm:text-5xl">
+            <h2 className="font-heading text-4xl font-bold tracking-normal sm:text-5xl">
               {t("home.followUsHeading", "Follow us")}
             </h2>
           </Reveal>
@@ -281,7 +281,7 @@ export default function Home() {
                 <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-8 sm:py-10">
                   <span className="flex items-center gap-4 transition-transform duration-300 ease-out group-hover:translate-x-3">
                     <Icon className="size-8 shrink-0 sm:size-10" />
-                    <span className="font-heading text-4xl font-bold tracking-tight sm:text-6xl">
+                    <span className="font-heading text-4xl font-bold tracking-normal sm:text-6xl">
                       {name}
                     </span>
                   </span>
@@ -308,7 +308,7 @@ export default function Home() {
       >
         <div className="mx-auto max-w-2xl px-6 text-center">
           <Reveal>
-            <h2 className="font-heading text-4xl font-bold tracking-tight sm:text-5xl">
+            <h2 className="font-heading text-4xl font-bold tracking-normal sm:text-5xl">
               {t("home.getInTouchHeading", "Get in Touch")}
             </h2>
           </Reveal>

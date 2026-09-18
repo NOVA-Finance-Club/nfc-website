@@ -78,7 +78,7 @@ function UnitSwitcher({ currentSlug }: { currentSlug: string }) {
 
 function TeamHeading({ children }: { children: ReactNode }) {
   return (
-    <h2 className="text-center font-heading text-2xl font-bold tracking-tight">
+    <h2 className="text-center font-heading text-2xl font-bold tracking-normal">
       {children}
     </h2>
   );
@@ -113,7 +113,7 @@ export function DetailContent({ found }: { found: Found }) {
                     })}
                   </p>
                 </div>
-                <h1 className="mt-3 font-heading text-4xl font-bold tracking-tight sm:text-5xl">
+                <h1 className="mt-3 font-heading text-4xl font-bold tracking-normal sm:text-5xl">
                   {`<${t(`gov.${unit.slug}.name`, unit.name)}>`}
                 </h1>
                 <p className="mt-4 text-brand-cream/80">
@@ -186,7 +186,7 @@ export function DetailContent({ found }: { found: Found }) {
                   })}
                 </p>
               </div>
-              <h1 className="mt-3 font-heading text-4xl font-bold tracking-tight sm:text-5xl">
+              <h1 className="mt-3 font-heading text-4xl font-bold tracking-normal sm:text-5xl">
                 {`<${t(`dept.${dept.slug}.name`, dept.name)}>`}
               </h1>
               <p className="mt-4 leading-relaxed text-brand-cream/80">
