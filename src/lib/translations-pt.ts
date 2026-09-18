@@ -43,7 +43,7 @@ export const pt: Record<string, string> = {
   "home.stat.distinctBackgrounds": "formações distintas",
   "home.stat.yearsActive": "anos de atividade",
   "home.whatWeDoHeading": "O que fazemos",
-  "home.articlesHeading": "Últimos Artigos da {shortName}",
+  "home.articlesHeading": "Últimos Artigos",
   "home.articlesSubtitle":
     "Séries editoriais regulares e relatórios de mercado, publicados pelos vários departamentos.",
   "home.articlesEmpty": "Ainda não há artigos publicados.",

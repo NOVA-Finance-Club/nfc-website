@@ -188,13 +188,11 @@ export default function Home() {
       </section>
 
       <div className="mx-auto max-w-7xl px-6">
-        {/* Latest Articles from NFC */}
+        {/* Latest Articles */}
         <section className="py-16 text-center">
           <Reveal>
             <h2 className="font-heading text-4xl font-bold tracking-tight sm:text-5xl">
-              {t("home.articlesHeading", "Latest Articles from {shortName}", {
-                shortName: siteConfig.shortName,
-              })}
+              {t("home.articlesHeading", "Latest Articles")}
             </h2>
             <p className="mx-auto mt-2 max-w-2xl text-muted-foreground">
               {t(
