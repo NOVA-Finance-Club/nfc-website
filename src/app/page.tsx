@@ -107,48 +107,48 @@ export default function Home() {
         {/* NFC in numbers */}
         <section className="mt-10 border-t py-16 text-center">
           <Reveal>
-            <h2 className="font-heading text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2 className="font-heading text-4xl font-bold tracking-tight sm:text-5xl">
               {t("home.numbersHeading", "{shortName} in numbers", {
                 shortName: siteConfig.shortName,
               })}
             </h2>
           </Reveal>
           <StaggerGroup className="mt-8 grid grid-cols-2 gap-6 sm:grid-cols-4">
-            <StaggerItem>
+            <StaggerItem className="flex items-baseline justify-center gap-2">
               <AnimatedStat
                 value={siteConfig.memberCount}
-                className="font-heading text-4xl font-bold tracking-tight"
+                className="font-heading text-5xl font-bold tracking-tight sm:text-6xl"
               />
-              <p className="text-sm text-muted-foreground">
+              <span className="text-sm text-muted-foreground sm:text-base">
                 {t("home.stat.members", "members")}
-              </p>
+              </span>
             </StaggerItem>
-            <StaggerItem>
+            <StaggerItem className="flex items-baseline justify-center gap-2">
               <AnimatedStat
                 value={departments.length}
-                className="font-heading text-4xl font-bold tracking-tight"
+                className="font-heading text-5xl font-bold tracking-tight sm:text-6xl"
               />
-              <p className="text-sm text-muted-foreground">
+              <span className="text-sm text-muted-foreground sm:text-base">
                 {t("home.stat.departments", "departments")}
-              </p>
+              </span>
             </StaggerItem>
-            <StaggerItem>
+            <StaggerItem className="flex items-baseline justify-center gap-2">
               <AnimatedStat
                 value={distinctBackgrounds}
-                className="font-heading text-4xl font-bold tracking-tight"
+                className="font-heading text-5xl font-bold tracking-tight sm:text-6xl"
               />
-              <p className="text-sm text-muted-foreground">
+              <span className="text-sm text-muted-foreground sm:text-base">
                 {t("home.stat.distinctBackgrounds", "distinct backgrounds")}
-              </p>
+              </span>
             </StaggerItem>
-            <StaggerItem>
+            <StaggerItem className="flex items-baseline justify-center gap-2">
               <AnimatedStat
                 value={yearsActive}
-                className="font-heading text-4xl font-bold tracking-tight"
+                className="font-heading text-5xl font-bold tracking-tight sm:text-6xl"
               />
-              <p className="text-sm text-muted-foreground">
+              <span className="text-sm text-muted-foreground sm:text-base">
                 {t("home.stat.yearsActive", "years active")}
-              </p>
+              </span>
             </StaggerItem>
           </StaggerGroup>
         </section>
@@ -161,7 +161,7 @@ export default function Home() {
       <section className="mt-6 border-y bg-brand-cream/40 py-16">
         <div className="mx-auto max-w-7xl px-6">
           <Reveal className="text-center">
-            <h2 className="font-heading text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2 className="font-heading text-4xl font-bold tracking-tight sm:text-5xl">
               {t("home.whatWeDoHeading", "What we do")}
             </h2>
           </Reveal>
@@ -191,7 +191,7 @@ export default function Home() {
         {/* Latest Articles from NFC */}
         <section className="py-16 text-center">
           <Reveal>
-            <h2 className="font-heading text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2 className="font-heading text-4xl font-bold tracking-tight sm:text-5xl">
               {t("home.articlesHeading", "Latest Articles from {shortName}", {
                 shortName: siteConfig.shortName,
               })}
@@ -238,7 +238,7 @@ export default function Home() {
         {/* NFC Fund */}
         <section className="border-t py-16 text-center">
           <Reveal>
-            <h2 className="font-heading text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2 className="font-heading text-4xl font-bold tracking-tight sm:text-5xl">
               {t("home.fundHeading", "{shortName} Fund", { shortName: siteConfig.shortName })}
             </h2>
             <p className="mx-auto mt-2 max-w-2xl text-muted-foreground">
@@ -265,7 +265,7 @@ export default function Home() {
       <section className="border-t">
         <div className="mx-auto max-w-7xl px-6 pt-16 text-center">
           <Reveal>
-            <h2 className="font-heading text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2 className="font-heading text-4xl font-bold tracking-tight sm:text-5xl">
               {t("home.followUsHeading", "Follow us")}
             </h2>
           </Reveal>
@@ -310,7 +310,7 @@ export default function Home() {
       >
         <div className="mx-auto max-w-2xl px-6 text-center">
           <Reveal>
-            <h2 className="font-heading text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2 className="font-heading text-4xl font-bold tracking-tight sm:text-5xl">
               {t("home.getInTouchHeading", "Get in Touch")}
             </h2>
           </Reveal>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Libre_Baskerville } from "next/font/google";
+import { Libre_Baskerville } from "next/font/google";
 import "./globals.css";
 
 import { SiteHeader } from "@/components/site-header";
@@ -7,11 +7,9 @@ import { SiteFooter } from "@/components/site-footer";
 import { MotionRoot } from "@/components/motion-primitives";
 import { LanguageProvider } from "@/lib/language";
 
-const inter = Inter({
-  variable: "--font-sans",
-  subsets: ["latin"],
-});
-
+// The whole site uses Libre Baskerville — no separate body/sans font. See
+// globals.css, where --font-sans is aliased to this same --font-heading
+// variable rather than loading a second typeface.
 const libreBaskerville = Libre_Baskerville({
   variable: "--font-heading",
   subsets: ["latin"],
@@ -31,7 +29,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${libreBaskerville.variable} h-full antialiased`}
+      className={`${libreBaskerville.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <LanguageProvider>
