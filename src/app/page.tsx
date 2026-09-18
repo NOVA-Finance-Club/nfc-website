@@ -16,6 +16,7 @@ import {
 } from "@/components/motion-primitives";
 import { articles, departments, memberDegrees, missionStatement, siteConfig } from "@/lib/site-data";
 import { useT } from "@/lib/language";
+import { GithubIcon, InstagramIcon, LinkedinIcon } from "@/components/social-icons";
 
 function handleFromUrl(url: string) {
   const segments = new URL(url).pathname.split("/").filter(Boolean);
@@ -23,9 +24,9 @@ function handleFromUrl(url: string) {
 }
 
 const socialLinks = [
-  { name: "Instagram", href: siteConfig.instagram, handle: `@${handleFromUrl(siteConfig.instagram)}` },
-  { name: "LinkedIn", href: siteConfig.linkedin, handle: handleFromUrl(siteConfig.linkedin) },
-  { name: "GitHub", href: siteConfig.github, handle: `@${handleFromUrl(siteConfig.github)}` },
+  { name: "Instagram", href: siteConfig.instagram, handle: `@${handleFromUrl(siteConfig.instagram)}`, Icon: InstagramIcon },
+  { name: "LinkedIn", href: siteConfig.linkedin, handle: handleFromUrl(siteConfig.linkedin), Icon: LinkedinIcon },
+  { name: "GitHub", href: siteConfig.github, handle: `@${handleFromUrl(siteConfig.github)}`, Icon: GithubIcon },
 ];
 
 export default function Home() {
@@ -259,8 +260,8 @@ export default function Home() {
       {/* Follow us — an editorial index list rather than a row of social
           icon buttons: each channel is its own full-width, full-bleed row
           (breaking out of the max-w-7xl column like "What we do" and "Get
-          in touch"), the platform name set large in the heading serif, and
-          the handle + arrow only surface on hover. */}
+          in touch"), the platform name set large in the heading serif with
+          its glyph alongside, and the handle + arrow only surface on hover. */}
       <section className="border-t">
         <div className="mx-auto max-w-7xl px-6 pt-16 text-center">
           <Reveal>
@@ -271,7 +272,7 @@ export default function Home() {
         </div>
 
         <StaggerGroup className="mt-10 divide-y">
-          {socialLinks.map(({ name, href, handle }) => (
+          {socialLinks.map(({ name, href, handle, Icon }) => (
             <StaggerItem key={name}>
               <a
                 href={href}
@@ -280,8 +281,11 @@ export default function Home() {
                 className="group block outline-none transition-colors hover:bg-brand-cream/40 focus-visible:bg-brand-cream/40"
               >
                 <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-8 sm:py-10">
-                  <span className="font-heading text-4xl font-bold tracking-tight transition-transform duration-300 ease-out group-hover:translate-x-3 sm:text-6xl">
-                    {name}
+                  <span className="flex items-center gap-4 transition-transform duration-300 ease-out group-hover:translate-x-3">
+                    <Icon className="size-8 shrink-0 sm:size-10" />
+                    <span className="font-heading text-4xl font-bold tracking-tight sm:text-6xl">
+                      {name}
+                    </span>
                   </span>
                   <span className="flex shrink-0 items-center gap-4 text-sm text-muted-foreground">
                     <span className="hidden sm:inline">{handle}</span>
