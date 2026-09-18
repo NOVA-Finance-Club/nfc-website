@@ -123,7 +123,10 @@ export type GovernanceUnit = {
   slug: string;
   name: string;
   badgeImage: string;
+  // One-liner, used only on the /departments index cards. The detail page
+  // shows `description` alone, same convention as Department below.
   summary: string;
+  description?: string;
   people?: Person[];
   subgroups?: { title: string; people: Person[] }[];
 };
@@ -275,6 +278,8 @@ export const governanceUnits: GovernanceUnit[] = [
     badgeImage: "/brand/dept-direcao.png",
     summary:
       "The club's elected executive leadership for the 2026/2027 mandate.",
+    description:
+      "Sets the club's direction and goals for the mandate, builds outside partnerships to grow NFC's reach, and works with each department's coordinator to run day-to-day operations.",
     people: board,
     subgroups: [
       {
@@ -289,6 +294,8 @@ export const governanceUnits: GovernanceUnit[] = [
     badgeImage: "/brand/dept-conselho-geral.png",
     summary:
       "The General Assembly Board and the Fiscal Council together.",
+    description:
+      "NFC's oversight body: the General Assembly Board chairs the club's general assemblies, and the Fiscal Council oversees its finances and accounts.",
     subgroups: [
       {
         title: "General Assembly Board",

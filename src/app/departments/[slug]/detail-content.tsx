@@ -117,7 +117,7 @@ export function DetailContent({ found }: { found: Found }) {
                   {`<${t(`gov.${unit.slug}.name`, unit.name)}>`}
                 </h1>
                 <p className="mt-4 text-brand-cream/80">
-                  {t(`gov.${unit.slug}.summary`, unit.summary, {
+                  {t(`gov.${unit.slug}.description`, unit.description ?? unit.summary, {
                     shortName: siteConfig.shortName,
                   })}
                 </p>

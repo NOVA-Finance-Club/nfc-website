@@ -105,8 +105,12 @@ export const pt: Record<string, string> = {
   // Governance unit names and summaries
   "gov.board.name": "Direção",
   "gov.board.summary": "A liderança executiva eleita da {shortName} para o mandato 2026/2027.",
+  "gov.board.description":
+    "Define a direção e os objetivos do clube para o mandato, constrói parcerias externas para expandir o alcance da NFC, e trabalha com o coordenador de cada departamento na gestão do dia a dia.",
   "gov.general-council.name": "Conselho Geral",
   "gov.general-council.summary": "A Mesa da Assembleia Geral e o Conselho Fiscal juntos.",
+  "gov.general-council.description":
+    "O órgão de fiscalização da NFC: a Mesa da Assembleia Geral preside às assembleias gerais do clube, e o Conselho Fiscal fiscaliza as suas finanças e contas.",
 
   // Governance subgroup titles (General Council's two constituent bodies)
   "subgroup.general-assembly-board": "Mesa da Assembleia Geral",
