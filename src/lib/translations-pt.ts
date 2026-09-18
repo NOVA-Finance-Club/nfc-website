@@ -181,7 +181,7 @@ export const pt: Record<string, string> = {
   "dept.quantitative-trading.summary":
     "Produz projetos reais de finança quantitativa, a começar por um bootcamp partilhado.",
   "dept.quantitative-trading.description":
-    "Produz projetos reais de finança quantitativa, a começar por um bootcamp partilhado: um conjunto de Jupyter notebooks no GitHub da NFC que cobre construção de portefólios, estratégias quantitativas, modelação estatística, machine learning e gestão de risco. Os membros avançam depois para projetos individuais como otimização de portefólios ou pairs trading, cada um com código documentado, um relatório escrito e uma apresentação final ao departamento.",
+    "Produz projetos reais de finança quantitativa, a começar por um bootcamp partilhado de Jupyter notebooks e avançando para projetos individuais, cada um com código, um relatório e uma apresentação final ao departamento.",
 
   // NFC Fund
   "fund.subtitle": "Um portefólio simulado para a prática real de investimento.",

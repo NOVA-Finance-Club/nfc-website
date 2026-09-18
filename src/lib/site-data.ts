@@ -251,7 +251,7 @@ export const departments: Department[] = [
     ],
     summary: "Produces real quantitative finance projects, starting from a shared bootcamp.",
     description:
-      "Produces real quantitative finance projects, starting from a shared bootcamp: a set of Jupyter notebooks on the NFC GitHub covering portfolio construction, quantitative strategies, statistical modelling, machine learning and risk management. Members then move on to individual projects such as portfolio optimization or pairs trading, each with documented code, a written report and a final presentation to the department.",
+      "Produces real quantitative finance projects, starting from a shared bootcamp of Jupyter notebooks and moving into individual projects, each with code, a report and a final presentation to the department.",
     notes: [
       "Source material describes the bootcamp as \"7 modules\" but lists 8 module names (Fundamentals through Execution & Systems). Confirm the correct module count before publishing.",
     ],
