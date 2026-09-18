@@ -57,7 +57,7 @@ export function AboutContent() {
         <div className="mx-auto max-w-7xl px-6">
           <Reveal className="grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
             <div className="lg:col-span-5">
-              <p className="font-heading text-7xl font-bold tracking-tight text-brand-navy sm:text-8xl">
+              <p className="font-heading text-7xl font-bold tracking-normal text-brand-navy sm:text-8xl">
                 {t("about.gapStatNumber", aboutStory.gapStatNumber)}
               </p>
               <p className="mt-2 max-w-xs text-sm text-muted-foreground">
@@ -133,14 +133,14 @@ export function AboutContent() {
           <StaggerGroup className="mx-auto mt-8 grid max-w-3xl gap-6 sm:grid-cols-2">
             <StaggerItem>
               <div className="h-full rounded-lg border bg-background p-6 text-center">
-                <p className="font-heading text-xl leading-snug font-bold tracking-tight">
+                <p className="font-heading text-xl leading-snug font-bold tracking-normal">
                   {t("about.communityExperienced", aboutStory.communityExperienced)}
                 </p>
               </div>
             </StaggerItem>
             <StaggerItem>
               <div className="h-full rounded-lg border bg-background p-6 text-center">
-                <p className="font-heading text-xl leading-snug font-bold tracking-tight">
+                <p className="font-heading text-xl leading-snug font-bold tracking-normal">
                   {t("about.communityNewcomers", aboutStory.communityNewcomers)}
                 </p>
               </div>

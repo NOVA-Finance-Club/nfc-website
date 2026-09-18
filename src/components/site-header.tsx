@@ -52,7 +52,7 @@ export function SiteHeader() {
             height={48}
             priority
           />
-          <span className="font-heading text-base font-bold tracking-tight">
+          <span className="font-heading text-base font-bold tracking-normal">
             {`<${siteConfig.name}>`}
           </span>
         </Link>

@@ -57,7 +57,7 @@ export function JoinContent() {
         title={`<${t("join.heading", "Join Us")}>`}
         subtitle={
           <div className="inline-block rounded-md border border-brand-cream/20 bg-brand-cream/10 px-8 py-5">
-            <p className="font-heading text-lg font-bold tracking-tight text-brand-cream">
+            <p className="font-heading text-lg font-bold tracking-normal text-brand-cream">
               {t("join.applicationsClosed", "Applications closed")}
             </p>
             <p className="mt-1 text-sm text-brand-cream/70">

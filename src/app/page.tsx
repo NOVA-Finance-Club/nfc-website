@@ -117,7 +117,7 @@ export default function Home() {
             <StaggerItem className="flex items-baseline justify-center gap-2">
               <AnimatedStat
                 value={siteConfig.memberCount}
-                className="font-heading text-5xl font-bold tracking-tight sm:text-6xl"
+                className="font-heading text-5xl font-bold tracking-normal sm:text-6xl"
               />
               <span className="text-base text-muted-foreground sm:text-lg">
                 {t("home.stat.members", "members")}
@@ -126,7 +126,7 @@ export default function Home() {
             <StaggerItem className="flex items-baseline justify-center gap-2">
               <AnimatedStat
                 value={departments.length}
-                className="font-heading text-5xl font-bold tracking-tight sm:text-6xl"
+                className="font-heading text-5xl font-bold tracking-normal sm:text-6xl"
               />
               <span className="text-base text-muted-foreground sm:text-lg">
                 {t("home.stat.departments", "departments")}
@@ -135,7 +135,7 @@ export default function Home() {
             <StaggerItem className="flex items-baseline justify-center gap-2">
               <AnimatedStat
                 value={distinctBackgrounds}
-                className="font-heading text-5xl font-bold tracking-tight sm:text-6xl"
+                className="font-heading text-5xl font-bold tracking-normal sm:text-6xl"
               />
               <span className="text-base text-muted-foreground sm:text-lg">
                 {t("home.stat.distinctBackgrounds", "distinct backgrounds")}
@@ -144,7 +144,7 @@ export default function Home() {
             <StaggerItem className="flex items-baseline justify-center gap-2">
               <AnimatedStat
                 value={yearsActive}
-                className="font-heading text-5xl font-bold tracking-tight sm:text-6xl"
+                className="font-heading text-5xl font-bold tracking-normal sm:text-6xl"
               />
               <span className="text-base text-muted-foreground sm:text-lg">
                 {t("home.stat.yearsActive", "years active")}
