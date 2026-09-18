@@ -295,7 +295,7 @@ export const governanceUnits: GovernanceUnit[] = [
     summary:
       "The General Assembly Board and the Fiscal Council together.",
     description:
-      "NFC's oversight body: the General Assembly Board chairs the club's general assemblies, and the Fiscal Council oversees its finances and accounts.",
+      "The General Assembly Board chairs the club's general assemblies, and the Fiscal Council oversees its finances and accounts.",
     subgroups: [
       {
         title: "General Assembly Board",

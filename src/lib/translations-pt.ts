@@ -110,7 +110,7 @@ export const pt: Record<string, string> = {
   "gov.general-council.name": "Conselho Geral",
   "gov.general-council.summary": "A Mesa da Assembleia Geral e o Conselho Fiscal juntos.",
   "gov.general-council.description":
-    "O órgão de fiscalização da NFC: a Mesa da Assembleia Geral preside às assembleias gerais do clube, e o Conselho Fiscal fiscaliza as suas finanças e contas.",
+    "A Mesa da Assembleia Geral preside às assembleias gerais do clube, e o Conselho Fiscal fiscaliza as suas finanças e contas.",
 
   // Governance subgroup titles (General Council's two constituent bodies)
   "subgroup.general-assembly-board": "Mesa da Assembleia Geral",
