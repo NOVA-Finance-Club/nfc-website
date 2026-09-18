@@ -219,7 +219,7 @@ export const departments: Department[] = [
     ],
     summary: "Runs the club's virtual investment fund and covers global capital markets.",
     description:
-      "Manages NFC's virtual fund and covers global capital markets, across two divisions: Asset Management, which runs the fund's coverage teams and reports performance each quarter, and Global Markets, which tracks yields, commodities and FX in a weekly overview.",
+      "Manages NFC's virtual investment fund and keeps the club connected to global capital markets, giving members hands-on experience with real portfolio decisions and market analysis.",
     divisions: [
       {
         name: "Division 01 — Asset Management",

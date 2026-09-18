@@ -170,7 +170,7 @@ export const pt: Record<string, string> = {
 
   "dept.investment.summary": "Gere o fundo de investimento virtual do clube e acompanha os mercados de capitais globais.",
   "dept.investment.description":
-    "Gere o fundo virtual da NFC e acompanha os mercados de capitais globais, em duas divisões: Asset Management, que gere as equipas de cobertura do fundo e reporta o desempenho trimestralmente, e Global Markets, que acompanha yields, commodities e FX num resumo semanal.",
+    "Gere o fundo de investimento virtual da NFC e mantém o clube ligado aos mercados de capitais globais, dando aos membros experiência prática com decisões de portefólio reais e análise de mercado.",
   "dept.investment.divisions.0.name": "Divisão 01 — Asset Management",
   "dept.investment.divisions.0.description":
     "Gere um fundo virtual com uma alocação inicial definida no início do mandato, dividido em equipas de cobertura (ex: Iberia & Europe, Emerging Markets, Global Macro), cada uma gerindo a sua própria parte do fundo e produz o NFC Performance Report trimestral no LinkedIn.",
