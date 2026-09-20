@@ -75,6 +75,19 @@ export const memberPhotos: Record<string, string> = {
   "João Henriques": "/members/joao-henriques/IMG_5924.JPG",
 };
 
+// Cropping a landscape photo into the card's portrait tile only shows a
+// vertical slice of it — a plain center crop reproduces however far
+// off-centered the subject happened to be in the original shot, not
+// necessarily centered in the crop. Optional per-person override (CSS
+// object-position, e.g. "63% center") for anyone whose default 50%/50%
+// crop doesn't land on them; measured against the actual rendered crop,
+// not just eyeballed. Omit for photos that are already centered as-is.
+export const memberPhotoPosition: Record<string, string> = {
+  "Sara Abrantes": "63% center",
+  "Diogo Ruivo": "53% center",
+  "João Henriques": "80% center",
+};
+
 // Academic programme per member, from Data/NFC_Membros_2026-2027.csv.
 // Level (BSc/MSc) is derived from the course's own full name ("Licenciatura"
 // vs "Mestrado") rather than the CSV's separate Nível column, because that

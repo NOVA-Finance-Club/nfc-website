@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { Mail } from "lucide-react";
 
-import { memberDegrees, memberPhotos, siteConfig, type Person } from "@/lib/site-data";
+import { memberDegrees, memberPhotoPosition, memberPhotos, siteConfig, type Person } from "@/lib/site-data";
 import { useT } from "@/lib/language";
 import { cn } from "@/lib/utils";
 import { LinkedinIcon } from "@/components/social-icons";
@@ -59,6 +59,7 @@ export function PersonCard({
   const [open, setOpen] = useState(false);
   const degree = memberDegrees[person.name];
   const photo = memberPhotos[person.name];
+  const photoPosition = memberPhotoPosition[person.name];
   // The plain "Coordinator" role (a department's own team page) is gendered
   // per that specific coordinator's name, since the string alone doesn't
   // carry which department it's on. Every other role translates generically.
@@ -81,6 +82,7 @@ export function PersonCard({
           alt=""
           fill
           className="object-cover"
+          style={photoPosition ? { objectPosition: photoPosition } : undefined}
           sizes="(min-width: 640px) 320px, 224px"
         />
       ) : (
