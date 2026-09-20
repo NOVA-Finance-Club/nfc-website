@@ -81,9 +81,14 @@ export function PersonCard({
           src={photo}
           alt=""
           fill
+          quality={90}
           className="object-cover"
           style={photoPosition ? { objectPosition: photoPosition } : undefined}
-          sizes="(min-width: 640px) 320px, 224px"
+          // Matches PeopleGrid's actual fixed card widths (w-56/sm:w-64,
+          // w-72/sm:w-80 for featured) — an inaccurate sizes here under-
+          // fetches and the browser upscales the result, which looks like
+          // a quality loss that raising `quality` alone can't fix.
+          sizes={featured ? "(min-width: 640px) 320px, 288px" : "(min-width: 640px) 256px, 224px"}
         />
       ) : (
         <div className="flex h-full items-center justify-center">
