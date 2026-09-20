@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Mail } from "lucide-react";
 
-import { memberDegrees, siteConfig, type Person } from "@/lib/site-data";
+import { memberDegrees, memberPhotos, siteConfig, type Person } from "@/lib/site-data";
 import { useT } from "@/lib/language";
 import { cn } from "@/lib/utils";
 import { LinkedinIcon } from "@/components/social-icons";
@@ -51,6 +52,7 @@ export function PersonCard({
   const t = useT();
   const [open, setOpen] = useState(false);
   const degree = memberDegrees[person.name];
+  const photo = memberPhotos[person.name];
   // The plain "Coordinator" role (a department's own team page) is gendered
   // per that specific coordinator's name, since the string alone doesn't
   // carry which department it's on. Every other role translates generically.
@@ -67,16 +69,26 @@ export function PersonCard({
       className="group relative aspect-[4/5] w-full cursor-pointer overflow-hidden rounded-xl bg-brand-navy shadow-sm sm:cursor-default"
       onClick={() => setOpen((o) => !o)}
     >
-      <div className="flex h-full items-center justify-center">
-        <span
-          className={cn(
-            "font-heading text-brand-cream/50",
-            featured ? "text-6xl" : large ? "text-5xl" : "text-4xl"
-          )}
-        >
-          {initials(person.name)}
-        </span>
-      </div>
+      {photo ? (
+        <Image
+          src={photo}
+          alt=""
+          fill
+          className="object-cover"
+          sizes="(min-width: 640px) 320px, 224px"
+        />
+      ) : (
+        <div className="flex h-full items-center justify-center">
+          <span
+            className={cn(
+              "font-heading text-brand-cream/50",
+              featured ? "text-6xl" : large ? "text-5xl" : "text-4xl"
+            )}
+          >
+            {initials(person.name)}
+          </span>
+        </div>
+      )}
 
       <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/55 to-transparent px-5 pt-14 pb-5">
         <p className={cn("font-heading font-bold text-white", featured ? "text-2xl" : large ? "text-xl" : "text-lg")}>

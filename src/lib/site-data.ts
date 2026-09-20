@@ -62,6 +62,15 @@ export const navItems = [
 
 export type Person = { role: string; name: string };
 
+// Member photos, keyed by name — same lookup pattern as memberDegrees below.
+// Empty until real photos exist ("reserved, not faked": PersonCard falls
+// back to an initials tile for anyone missing here). To add a photo: drop
+// the image file into public/members/ and add one line, e.g.
+// "Sara Abrantes": "/members/sara-abrantes.jpg". Works for any person in
+// any semester (current roster or Alumni), since this is keyed by name,
+// not tied to a specific team/mandate list.
+export const memberPhotos: Record<string, string> = {};
+
 // Academic programme per member, from Data/NFC_Membros_2026-2027.csv.
 // Level (BSc/MSc) is derived from the course's own full name ("Licenciatura"
 // vs "Mestrado") rather than the CSV's separate Nível column, because that
@@ -127,6 +136,10 @@ export type GovernanceUnit = {
   // shows `description` alone, same convention as Department below.
   summary: string;
   description?: string;
+  // Hero photo, e.g. "/departments/board.jpg" — drop the file into
+  // public/departments/. Undefined shows the reserved dashed placeholder
+  // instead (see PhotoPlaceholder in detail-content.tsx).
+  photo?: string;
   people?: Person[];
   subgroups?: { title: string; people: Person[] }[];
 };
@@ -159,6 +172,10 @@ export type Department = {
   divisions?: Division[];
   notes?: string[];
   badgeImage: string;
+  // Hero photo, e.g. "/departments/investment.jpg" — drop the file into
+  // public/departments/. Undefined shows the reserved dashed placeholder
+  // instead (see PhotoPlaceholder in detail-content.tsx).
+  photo?: string;
 };
 
 export const departments: Department[] = [
