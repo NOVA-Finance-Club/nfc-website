@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import { ArticlesSearch } from "@/components/articles-search";
 import { PageHeader } from "@/components/page-header";
+import { TypewriterTitle } from "@/components/motion-primitives";
 import { departments } from "@/lib/site-data";
 import { useT } from "@/lib/language";
 
@@ -24,7 +25,7 @@ export function ArticlesContent() {
   return (
     <div>
       <PageHeader
-        title={`<${t("articles.heading", "Articles")}>`}
+        title={<TypewriterTitle text={`<${t("articles.heading", "Articles")}>`} />}
         subtitle={t(
           "articles.subtitle",
           "Recurring editorial series and market reports, published by NFC's departments."

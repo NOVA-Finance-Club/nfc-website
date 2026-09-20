@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 
-import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion-primitives";
+import { Reveal, StaggerGroup, StaggerItem, TypewriterTitle } from "@/components/motion-primitives";
 import { PageHeader } from "@/components/page-header";
 import { departments, siteConfig } from "@/lib/site-data";
 import { useT } from "@/lib/language";
@@ -54,7 +54,7 @@ export function JoinContent() {
   return (
     <div>
       <PageHeader
-        title={`<${t("join.heading", "Join Us")}>`}
+        title={<TypewriterTitle text={`<${t("join.heading", "Join Us")}>`} />}
         subtitle={
           <div className="inline-block rounded-md border border-brand-cream/20 bg-brand-cream/10 px-8 py-5">
             <p className="font-heading text-lg font-bold tracking-normal text-brand-cream">

@@ -5,6 +5,7 @@ import type { ReactNode } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { PageHeader } from "@/components/page-header";
+import { TypewriterTitle } from "@/components/motion-primitives";
 import { nfcFund, siteConfig } from "@/lib/site-data";
 import { useT } from "@/lib/language";
 
@@ -50,7 +51,7 @@ export function FundContent() {
   return (
     <div>
       <PageHeader
-        title={`<${nfcFund.name}>`}
+        title={<TypewriterTitle text={`<${nfcFund.name}>`} />}
         subtitle={t(
           "fund.subtitle",
           "A simulated portfolio for real investment practice."

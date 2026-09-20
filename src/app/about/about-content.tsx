@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Reveal, StaggerGroup, StaggerItem } from "@/components/motion-primitives";
+import { Reveal, StaggerGroup, StaggerItem, TypewriterTitle } from "@/components/motion-primitives";
 import { aboutStory, memberDegrees, siteConfig } from "@/lib/site-data";
 import { useT } from "@/lib/language";
 
@@ -40,7 +40,7 @@ export function AboutContent() {
       <section className="bg-brand-navy py-16 text-brand-cream sm:py-20">
         <Reveal className="mx-auto max-w-7xl px-6 text-center">
           <h1 className="mx-auto max-w-3xl font-heading text-5xl leading-[1.1] font-bold tracking-normal sm:text-6xl">
-            {t("about.hero.headline", aboutStory.heroHeadline)}
+            <TypewriterTitle text={t("about.hero.headline", aboutStory.heroHeadline)} />
           </h1>
           <p className="mx-auto mt-6 max-w-xl text-lg text-brand-cream/80">
             {t("about.hero.subtext", aboutStory.heroSubtext)}
