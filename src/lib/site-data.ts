@@ -76,9 +76,9 @@ export const memberPhotos: Record<string, string> = {
   "Gisela Alves": "/members/gisela-alves/IMG_5929.JPG",
   "Gonçalo Vieira": "/members/goncalo-vieira/IMG_5901.JPG",
   "Isabel Monteiro": "/members/isabel-monteiro/IMG_5904.JPG",
-  "José Seixas da Fonseca": "/members/jose-seixas-da-fonseca/IMG_5909.JPG",
+  "José Seixas da Fonseca": "/members/jose-seixas-da-fonseca/IMG_5908.JPG",
   "Maria Neves": "/members/maria-neves/IMG_5922.JPG",
-  "Marta Jesus": "/members/marta-jesus/IMG_5937.JPG",
+  "Marta Jesus": "/members/marta-jesus/IMG_5935.JPG",
   "Matilde Duarte": "/members/matilde-duarte/IMG_5919.JPG",
   "Rodrigo Devesa": "/members/rodrigo-devesa/IMG_5937.JPG",
   "Samuel Pires Gonçalves": "/members/samuel-pires-goncalves/IMG_6001.JPG",
@@ -97,13 +97,13 @@ export const memberPhotoPosition: Record<string, string> = {
   "Sara Abrantes": "52% center",
   "Diogo Ruivo": "42% center",
   "João Henriques": "47% center",
-  "Gisela Alves": "27% center",
+  "Gisela Alves": "54% center",
   "Gonçalo Vieira": "48% center",
   "José Seixas da Fonseca": "45% center",
   "Maria Neves": "45% center",
-  "Matilde Duarte": "62% center",
+  "Matilde Duarte": "45% center",
   "Samuel Pires Gonçalves": "52% center",
-  "Tiago Albuquerque": "74% center",
+  "Tiago Albuquerque": "53% center",
 };
 
 // Academic programme per member, from Data/NFC_Membros_2026-2027.csv.
