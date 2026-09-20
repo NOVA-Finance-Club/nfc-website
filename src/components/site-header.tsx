@@ -36,9 +36,12 @@ export function SiteHeader() {
 
   const navLabel = (label: string) =>
     t(`nav.${label.toLowerCase().replace(/\s+/g, "")}`, label);
+  // Short form, dropping the "Department" suffix — matches the name shown
+  // on the unit's own page (h1, switcher pills, tab title). Governance
+  // units (Board, General Council) never had the suffix.
   const unitName = (unit: (typeof departmentUnits)[number]) =>
     "coordinator" in unit
-      ? t(`dept.${unit.slug}.name`, unit.name)
+      ? t(`dept.${unit.slug}.short`, unit.name.replace(/ Department$/, ""))
       : t(`gov.${unit.slug}.name`, unit.name);
 
   return (
