@@ -242,7 +242,7 @@ export default function Home() {
             <p className="mx-auto mt-2 max-w-2xl text-muted-foreground">
               {t(
                 "home.fundSubtitle",
-                "The Investment Department's virtual fund. Mandate, methodology and quarterly reporting."
+                "The Investments Department's virtual fund. Mandate, methodology and quarterly reporting."
               )}
             </p>
             <Link

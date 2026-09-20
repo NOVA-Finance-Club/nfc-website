@@ -25,7 +25,7 @@ function subgroupTitleKey(title: string) {
 }
 
 // The full unit.name carries a "Department" suffix for departments (e.g.
-// "Investment Department") — fine as a category label, but redundant once
+// "Investments Department") — fine as a category label, but redundant once
 // it's the thing the switcher pill or page title is already about. Both use
 // the short form instead; governance units (Board, General Council) never
 // had the suffix, so their short form is just their name.

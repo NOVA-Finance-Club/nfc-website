@@ -3,9 +3,9 @@
 // at the call site (JSX or site-data.ts), never duplicated here.
 //
 // Kept in English on purpose, sitewide (not translated below): the club's
-// own name/brand ("Nova Finance Club", "NFC", "NFC Fund", "NFC Shareholders
+// own name/brand ("Nova Finance Club", "NFC", "NFC Fund", "NFC Performance
 // Report"), governance body names (Board, General Council, General Assembly
-// Board, Fiscal Council), department names (e.g. "Investment Department"),
+// Board, Fiscal Council), department names (e.g. "Investments Department"),
 // role titles (President, Vice President, Secretary, Coordinator, Member),
 // people's names, and standard finance jargon (Sharpe ratio, benchmark,
 // drawdown, Global Macro, S&P 500).

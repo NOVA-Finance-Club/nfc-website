@@ -210,7 +210,7 @@ export const departments: Department[] = [
   },
   {
     slug: "investment",
-    name: "Investment Department",
+    name: "Investments Department",
     coordinator: "Rodrigo Devesa",
     members: [
       "Guilherme Tenório",
@@ -639,7 +639,7 @@ export const alumniTerms: AlumniTerm[] = [
   },
 ];
 
-// The NFC Fund — the Investment Department's Division 01 (Asset Management).
+// The NFC Fund — the Investments Department's Division 01 (Asset Management).
 export const nfcFund = {
   name: "NFC Fund",
   coordinator: "Rodrigo Devesa",
