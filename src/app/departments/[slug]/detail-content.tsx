@@ -104,7 +104,7 @@ function PhotoPlaceholder({ photo }: { photo?: string }) {
   if (photo) {
     return (
       <div className="relative aspect-[3/2] w-full overflow-hidden rounded-2xl">
-        <Image src={photo} alt="" fill quality={90} className="object-cover" sizes="(min-width: 640px) 50vw, 100vw" />
+        <Image src={photo} alt="" fill quality={100} className="object-cover" sizes="(min-width: 640px) 50vw, 100vw" />
       </div>
     );
   }

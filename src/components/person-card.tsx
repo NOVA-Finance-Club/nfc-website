@@ -81,14 +81,18 @@ export function PersonCard({
           src={photo}
           alt=""
           fill
-          quality={90}
+          quality={100}
           className="object-cover"
           style={photoPosition ? { objectPosition: photoPosition } : undefined}
-          // Matches PeopleGrid's actual fixed card widths (w-56/sm:w-64,
-          // w-72/sm:w-80 for featured) — an inaccurate sizes here under-
-          // fetches and the browser upscales the result, which looks like
-          // a quality loss that raising `quality` alone can't fix.
-          sizes={featured ? "(min-width: 640px) 320px, 288px" : "(min-width: 640px) 256px, 224px"}
+          // Next's `sizes` only ever describes the CSS box — it has no way
+          // to know object-cover then crops ~47% of that fetched image's
+          // width away (3:2 source into this 4:5 box keeps only
+          // 0.8/1.5 ≈ 53% of the width). Naively sizing to the box width
+          // meant the *visible* slice was being upscaled by ~1.9x after
+          // crop, which reads as blur no quality bump can fix. Inflating
+          // by 1/0.5333 ≈ 1.875x here requests enough source pixels that
+          // the visible crop maps close to 1:1 after cropping.
+          sizes={featured ? "(min-width: 640px) 600px, 540px" : "(min-width: 640px) 480px, 420px"}
         />
       ) : (
         <div className="flex h-full items-center justify-center">
