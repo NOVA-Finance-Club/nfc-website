@@ -24,8 +24,17 @@ function subgroupTitleKey(title: string) {
   return `subgroup.${title.toLowerCase().replace(/\s+/g, "-")}`;
 }
 
-function unitNameKey(unit: (typeof allUnits)[number]) {
-  return "coordinator" in unit ? `dept.${unit.slug}.name` : `gov.${unit.slug}.name`;
+// The full unit.name carries a "Department" suffix for departments (e.g.
+// "Investment Department") — fine as a category label, but redundant once
+// it's the thing the switcher pill or page title is already about. Both use
+// the short form instead; governance units (Board, General Council) never
+// had the suffix, so their short form is just their name.
+function unitShortKey(unit: (typeof allUnits)[number]) {
+  return "coordinator" in unit ? `dept.${unit.slug}.short` : `gov.${unit.slug}.name`;
+}
+
+function unitShortFallback(unit: (typeof allUnits)[number]) {
+  return unit.name.replace(/ Department$/, "");
 }
 
 // Total people shown on a unit's own team section — its direct roster plus
@@ -68,7 +77,7 @@ function UnitSwitcher({ currentSlug }: { currentSlug: string }) {
                 : "border-border text-muted-foreground hover:text-foreground"
             )}
           >
-            {t(unitNameKey(unit), unit.name)}
+            {t(unitShortKey(unit), unitShortFallback(unit))}
           </Link>
         ))}
       </div>
@@ -187,7 +196,7 @@ export function DetailContent({ found }: { found: Found }) {
                 </p>
               </div>
               <h1 className="mt-3 font-heading text-4xl font-bold tracking-normal sm:text-5xl">
-                {`<${t(`dept.${dept.slug}.name`, dept.name)}>`}
+                {`<${t(unitShortKey(dept), unitShortFallback(dept))}>`}
               </h1>
               <p className="mt-4 leading-relaxed text-brand-cream/80">
                 {t(`dept.${dept.slug}.description`, dept.description ?? dept.summary)}

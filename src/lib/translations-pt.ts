@@ -152,6 +152,7 @@ export const pt: Record<string, string> = {
   "dept.investment.name": "Departamento de Investimentos",
   "dept.investment.short": "Investimentos",
   "dept.quantitative-trading.name": "Departamento de Quantitative Trading",
+  "dept.quantitative-trading.short": "Quantitative Trading",
 
   // Department summaries / descriptions
   "dept.events-external-relations.summary":
