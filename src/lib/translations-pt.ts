@@ -118,7 +118,7 @@ export const pt: Record<string, string> = {
   "degree.name.biochemistry": "Bioquímica",
   "degree.name.biomedical-engineering": "Engenharia Biomédica",
   "degree.name.actuarial-mathematics": "Matemática Atuarial",
-  "degree.name.big-data-analytics-and-engineering": "Análise e Engenharia de Dados",
+  "degree.name.big-data-analytics-and-engineering": "Análise e Engenharia de Big Data",
 
   // Governance unit names and summaries
   "gov.board.name": "Direção",
