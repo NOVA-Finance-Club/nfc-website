@@ -64,11 +64,11 @@ export type Person = { role: string; name: string };
 
 // Member photos, keyed by name — same lookup pattern as memberDegrees below.
 // Empty until real photos exist ("reserved, not faked": PersonCard falls
-// back to an initials tile for anyone missing here). To add a photo: drop
-// the image file into public/members/ and add one line, e.g.
-// "Sara Abrantes": "/members/sara-abrantes.jpg". Works for any person in
-// any semester (current roster or Alumni), since this is keyed by name,
-// not tied to a specific team/mandate list.
+// back to an initials tile for anyone missing here). Every current member
+// already has their own empty folder under public/members/<slug>/ (e.g.
+// public/members/sara-abrantes/) — to add a photo, drop the file in there
+// and add one line here pointing at it, e.g.
+// "Sara Abrantes": "/members/sara-abrantes/photo.jpg".
 export const memberPhotos: Record<string, string> = {};
 
 // Academic programme per member, from Data/NFC_Membros_2026-2027.csv.
@@ -136,9 +136,10 @@ export type GovernanceUnit = {
   // shows `description` alone, same convention as Department below.
   summary: string;
   description?: string;
-  // Hero photo, e.g. "/departments/board.jpg" — drop the file into
-  // public/departments/. Undefined shows the reserved dashed placeholder
-  // instead (see PhotoPlaceholder in detail-content.tsx).
+  // Hero photo. This unit already has its own empty folder at
+  // public/departments/<slug>/ — drop the file in there and point this at
+  // it, e.g. "/departments/board/photo.jpg". Undefined shows the reserved
+  // dashed placeholder instead (see PhotoPlaceholder in detail-content.tsx).
   photo?: string;
   people?: Person[];
   subgroups?: { title: string; people: Person[] }[];
@@ -172,9 +173,11 @@ export type Department = {
   divisions?: Division[];
   notes?: string[];
   badgeImage: string;
-  // Hero photo, e.g. "/departments/investment.jpg" — drop the file into
-  // public/departments/. Undefined shows the reserved dashed placeholder
-  // instead (see PhotoPlaceholder in detail-content.tsx).
+  // Hero photo. This department already has its own empty folder at
+  // public/departments/<slug>/ — drop the file in there and point this at
+  // it, e.g. "/departments/investment/photo.jpg". Undefined shows the
+  // reserved dashed placeholder instead (see PhotoPlaceholder in
+  // detail-content.tsx).
   photo?: string;
 };
 
