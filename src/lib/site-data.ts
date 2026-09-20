@@ -83,9 +83,9 @@ export const memberPhotos: Record<string, string> = {
 // crop doesn't land on them; measured against the actual rendered crop,
 // not just eyeballed. Omit for photos that are already centered as-is.
 export const memberPhotoPosition: Record<string, string> = {
-  "Sara Abrantes": "63% center",
-  "Diogo Ruivo": "53% center",
-  "João Henriques": "80% center",
+  "Sara Abrantes": "58% center",
+  "Diogo Ruivo": "46% center",
+  "João Henriques": "52% center",
 };
 
 // Academic programme per member, from Data/NFC_Membros_2026-2027.csv.
