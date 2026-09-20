@@ -184,6 +184,52 @@ export function AnimatedStat({
   );
 }
 
+/**
+ * Types `text` out character by character on mount, then leaves a blinking
+ * "_" cursor after it — a nod to the site's <code>-style branding. Renders
+ * the full text up front (so there's real content without JS) and only
+ * starts the reveal after mount, imperatively rewriting textContent rather
+ * than driving it through render state — same reasoning as AnimatedStat
+ * above: the effect runs after hydration, so there's nothing for React to
+ * mismatch against. Skips straight to the full text under
+ * prefers-reduced-motion; the cursor keeps blinking either way (a blinking
+ * caret isn't the kind of motion that setting opts out of), via a plain CSS
+ * keyframe rather than a spring/transform — see the `.animate-blink` rule
+ * in globals.css.
+ */
+export function TypewriterTitle({
+  text,
+  speed = 55,
+}: {
+  text: string;
+  /** Milliseconds per character. */
+  speed?: number;
+}) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const reduce = useReducedMotion();
+
+  useEffect(() => {
+    if (!ref.current || reduce) return;
+    ref.current.textContent = "";
+    let i = 0;
+    const id = setInterval(() => {
+      i += 1;
+      if (ref.current) ref.current.textContent = text.slice(0, i);
+      if (i >= text.length) clearInterval(id);
+    }, speed);
+    return () => clearInterval(id);
+  }, [text, speed, reduce]);
+
+  return (
+    <>
+      <span ref={ref}>{text}</span>
+      <span className="animate-blink" aria-hidden="true">
+        _
+      </span>
+    </>
+  );
+}
+
 /** Subtle scroll parallax for the hero background image. */
 export function HeroParallax({ children }: { children: React.ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);

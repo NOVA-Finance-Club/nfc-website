@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { PageHeader } from "@/components/page-header";
+import { TypewriterTitle } from "@/components/motion-primitives";
 import { departments, governanceUnits, siteConfig } from "@/lib/site-data";
 import { useT } from "@/lib/language";
 
@@ -51,7 +52,7 @@ export function DepartmentsContent() {
   return (
     <div>
       <PageHeader
-        title={`<${t("departments.index.heading", "Departments")}>`}
+        title={<TypewriterTitle text={`<${t("departments.index.heading", "Departments")}>`} />}
         subtitle={t(
           "departments.index.subtitle",
           "{shortName}'s governance and its four functional departments.",
