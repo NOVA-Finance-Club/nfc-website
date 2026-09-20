@@ -7,7 +7,7 @@ import { ArrowDown, ArrowLeft } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { PeopleGrid } from "@/components/person-card";
-import { Reveal } from "@/components/motion-primitives";
+import { Reveal, TypewriterTitle } from "@/components/motion-primitives";
 import { departments, governanceUnits, siteConfig, type Person } from "@/lib/site-data";
 import { useT } from "@/lib/language";
 import { cn } from "@/lib/utils";
@@ -123,7 +123,10 @@ export function DetailContent({ found }: { found: Found }) {
                   </p>
                 </div>
                 <h1 className="mt-3 font-heading text-4xl font-bold tracking-normal sm:text-5xl">
-                  {`<${t(`gov.${unit.slug}.name`, unit.name)}>`}
+                  <TypewriterTitle
+                    key={unit.slug}
+                    text={`<${t(`gov.${unit.slug}.name`, unit.name)}>`}
+                  />
                 </h1>
                 <p className="mt-4 text-brand-cream/80">
                   {t(`gov.${unit.slug}.description`, unit.description ?? unit.summary, {
@@ -196,7 +199,10 @@ export function DetailContent({ found }: { found: Found }) {
                 </p>
               </div>
               <h1 className="mt-3 font-heading text-4xl font-bold tracking-normal sm:text-5xl">
-                {`<${t(unitShortKey(dept), unitShortFallback(dept))}>`}
+                <TypewriterTitle
+                  key={dept.slug}
+                  text={`<${t(unitShortKey(dept), unitShortFallback(dept))}>`}
+                />
               </h1>
               <p className="mt-4 leading-relaxed text-brand-cream/80">
                 {t(`dept.${dept.slug}.description`, dept.description ?? dept.summary)}
