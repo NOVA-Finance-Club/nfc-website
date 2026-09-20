@@ -90,7 +90,7 @@ export function PersonCard({
         </div>
       )}
 
-      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/55 to-transparent px-5 pt-14 pb-5">
+      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/60 to-transparent px-5 pt-14 pb-5">
         <p className={cn("font-heading font-bold text-white", featured ? "text-2xl" : large ? "text-xl" : "text-lg")}>
           {person.name}
         </p>
