@@ -99,7 +99,7 @@ export const memberPhotoPosition: Record<string, string> = {
   "João Henriques": "47% center",
   "Gisela Alves": "54% center",
   "Gonçalo Vieira": "48% center",
-  "José Seixas da Fonseca": "45% center",
+  "José Seixas da Fonseca": "46% center",
   "Maria Neves": "45% center",
   "Matilde Duarte": "45% center",
   "Samuel Pires Gonçalves": "52% center",
