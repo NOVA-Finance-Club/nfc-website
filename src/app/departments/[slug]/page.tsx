@@ -18,13 +18,21 @@ export function generateStaticParams() {
   return [...governanceUnits, ...departments].map((u) => ({ slug: u.slug }));
 }
 
+// Matches the short form shown in the page's own <h1> and the unit
+// switcher pills (see unitShortFallback in detail-content.tsx) — the tab
+// title shouldn't repeat "Department" when the page itself doesn't.
+function shortName(name: string) {
+  return name.replace(/ Department$/, "");
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const found = findUnit(slug);
   if (!found) return {};
+  const title = shortName(found.unit.name);
   return {
-    title: found.unit.name,
-    description: `${found.unit.name} at ${siteConfig.name}.`,
+    title,
+    description: `${title} at ${siteConfig.name}.`,
   };
 }
 
