@@ -83,7 +83,7 @@ export const memberPhotos: Record<string, string> = {
 export type Degree = { code?: string; name: string; level: "BSc" | "MSc" };
 
 export const memberDegrees: Record<string, Degree> = {
-  "Sara Abrantes": { code: "LMAGR", name: "Applied Mathematics for Risk Management", level: "BSc" },
+  "Sara Abrantes": { name: "Actuarial Mathematics", level: "MSc" },
   "Diogo Ruivo": { code: "LMAGR", name: "Applied Mathematics for Risk Management", level: "BSc" },
   "João Henriques": { code: "LEI", name: "Computer Engineering", level: "BSc" },
   "Samuel Pires Gonçalves": { code: "MEG", name: "Geological Engineering", level: "MSc" },
@@ -94,7 +94,7 @@ export const memberDegrees: Record<string, Degree> = {
   "Gisela Alves": { code: "LM", name: "Mathematics", level: "BSc" },
   "Tiago Albuquerque": { code: "LMAGR", name: "Applied Mathematics for Risk Management", level: "BSc" },
   "Marta Jesus": { code: "MMA", name: "Mathematics and Applications", level: "MSc" },
-  "Isabel Monteiro": { code: "LMAGR", name: "Applied Mathematics for Risk Management", level: "BSc" },
+  "Isabel Monteiro": { name: "Actuarial Mathematics", level: "MSc" },
   "Filipe Parreira": { code: "LEGI", name: "Industrial Engineering and Management", level: "BSc" },
   "Gonçalo Vieira": { code: "LMAGR", name: "Applied Mathematics for Risk Management", level: "BSc" },
   "Rita Almeida": { code: "BQ", name: "Biochemistry", level: "BSc" },

@@ -9,12 +9,13 @@ import { Reveal, StaggerGroup, StaggerItem, TypewriterTitle } from "@/components
 import { aboutStory, memberDegrees, siteConfig } from "@/lib/site-data";
 import { useT } from "@/lib/language";
 
-// All ten distinct degree names in memberDegrees, so this list always
+// All eleven distinct degree names in memberDegrees, so this list always
 // matches the "{distinctBackgrounds}" count the lead sentence quotes.
 // Degree names stay in English in both languages, matching how PersonCard
 // already shows them elsewhere on the site.
 const backgroundPills = [
   "Applied Mathematics for Risk Management",
+  "Actuarial Mathematics",
   "Computer Engineering",
   "Geological Engineering",
   "Industrial Engineering and Management",
