@@ -96,17 +96,20 @@ function TeamHeading({ children }: { children: ReactNode }) {
 // Reserved space for a real team/cohort photo — deliberately left blank
 // rather than filled with the department badge or any other stand-in image
 // until `photo` is set on the unit. Sits left of the name and description,
-// inside the hero.
+// inside the hero. Fixed 3:2 aspect ratio (matching the 6000x4000 photos
+// members actually upload) at every breakpoint — not sm:h-full — so the
+// box is always the same fixed shape/size, never stretched by the sibling
+// text column's height or cropped against the photos' native ratio.
 function PhotoPlaceholder({ photo }: { photo?: string }) {
   if (photo) {
     return (
-      <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl sm:aspect-auto sm:h-full">
+      <div className="relative aspect-[3/2] w-full overflow-hidden rounded-2xl">
         <Image src={photo} alt="" fill className="object-cover" sizes="(min-width: 640px) 50vw, 100vw" />
       </div>
     );
   }
   return (
-    <div className="aspect-[4/5] w-full rounded-2xl border border-dashed border-brand-cream/20 bg-brand-cream/5 sm:aspect-auto sm:h-full" />
+    <div className="aspect-[3/2] w-full rounded-2xl border border-dashed border-brand-cream/20 bg-brand-cream/5" />
   );
 }
 
