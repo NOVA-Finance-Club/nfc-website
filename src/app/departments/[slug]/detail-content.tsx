@@ -65,7 +65,7 @@ function UnitSwitcher({ currentSlug }: { currentSlug: string }) {
   const t = useT();
   return (
     <div className="border-b bg-background">
-      <div className="mx-auto flex max-w-7xl gap-2 overflow-x-auto px-6 py-4">
+      <div className="mx-auto flex max-w-7xl justify-center gap-2 overflow-x-auto px-6 py-4">
         {allUnits.map((unit) => (
           <Link
             key={unit.slug}
