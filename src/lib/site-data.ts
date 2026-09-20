@@ -69,7 +69,11 @@ export type Person = { role: string; name: string };
 // public/members/sara-abrantes/) — to add a photo, drop the file in there
 // and add one line here pointing at it, e.g.
 // "Sara Abrantes": "/members/sara-abrantes/photo.jpg".
-export const memberPhotos: Record<string, string> = {};
+export const memberPhotos: Record<string, string> = {
+  "Sara Abrantes": "/members/sara-abrantes/IMG_5926.JPG",
+  "Diogo Ruivo": "/members/diogo-ruivo/IMG_5947.JPG",
+  "João Henriques": "/members/joao-henriques/IMG_5924.JPG",
+};
 
 // Academic programme per member, from Data/NFC_Membros_2026-2027.csv.
 // Level (BSc/MSc) is derived from the course's own full name ("Licenciatura"
@@ -194,6 +198,7 @@ export const departments: Department[] = [
       "Plans and runs NFC's events, from internal socials and onboarding ceremonies to external panels and masterclasses with guests from the financial sector. Also leads the semesterly recruitment campaign, manages relationships with partners and sponsors, and coordinates with other national finance clubs.",
     mandateGoal: "1,000 LinkedIn followers by the end of the 2026/2027 mandate.",
     badgeImage: "/brand/dept-eventos-re.png",
+    photo: "/departments/events-external-relations/IMG_5954.JPG",
   },
   {
     slug: "personal-finance",
@@ -300,6 +305,7 @@ export const governanceUnits: GovernanceUnit[] = [
       "The club's elected executive leadership for the 2026/2027 mandate.",
     description:
       "Sets the club's direction and goals for the mandate, builds outside partnerships to grow NFC's reach, and works with each department's coordinator to run day-to-day operations.",
+    photo: "/departments/board/IMG_5982.JPG",
     people: board,
     subgroups: [
       {
