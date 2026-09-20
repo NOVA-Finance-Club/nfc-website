@@ -28,6 +28,12 @@ export function roleKey(role: string) {
   return `role.${role.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`;
 }
 
+// Also used by the About page's background-pills list, so both stay in
+// sync with the same key for a given degree name.
+export function degreeNameKey(name: string) {
+  return `degree.name.${name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`;
+}
+
 function nameKey(name: string) {
   return name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
@@ -115,7 +121,7 @@ export function PersonCard({
               <p className="mt-1 text-sm text-white/60">
                 {t("personCard.degreeLine", "{level} in {name}", {
                   level: t(`degree.level.${degree.level.toLowerCase()}`, degree.level),
-                  name: degree.name,
+                  name: t(degreeNameKey(degree.name), degree.name),
                 })}
               </p>
             )}

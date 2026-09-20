@@ -105,6 +105,23 @@ export const pt: Record<string, string> = {
   "degree.level.bsc": "Licenciatura",
   "degree.level.msc": "Mestrado",
 
+  // Degree/course names, matching each person's course code in
+  // memberDegrees (site-data.ts) to FCT NOVA's official Portuguese course
+  // title. "Big Data Analytics and Engineering" (Maria Neves, no course
+  // code on file) is left untranslated — not confident enough in the exact
+  // official PT title to guess it; flagged for the user to supply if they
+  // want it translated too.
+  "degree.name.applied-mathematics-for-risk-management": "Matemática Aplicada à Gestão de Risco",
+  "degree.name.computer-engineering": "Engenharia Informática",
+  "degree.name.geological-engineering": "Engenharia Geológica",
+  "degree.name.industrial-engineering-and-management": "Engenharia e Gestão Industrial",
+  "degree.name.electrical-and-computer-engineering": "Engenharia Eletrotécnica e de Computadores",
+  "degree.name.mathematics-and-applications": "Matemática e Aplicações",
+  "degree.name.mathematics": "Matemática",
+  "degree.name.biochemistry": "Bioquímica",
+  "degree.name.biomedical-engineering": "Engenharia Biomédica",
+  "degree.name.actuarial-mathematics": "Matemática Atuarial",
+
   // Governance unit names and summaries
   "gov.board.name": "Direção",
   "gov.board.summary": "A liderança executiva eleita da {shortName} para o mandato 2026/2027.",

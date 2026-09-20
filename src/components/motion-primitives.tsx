@@ -39,6 +39,14 @@ export function MotionRoot({ children }: { children: React.ReactNode }) {
  * in testing — content already in the initial viewport stayed stuck at
  * `initial` until the page was scrolled). Content the user must scroll to
  * reach doesn't hit this, since reaching it requires a real scroll event.
+ *
+ * `amount: "some"` (any pixel intersecting), not a fraction like 0.3: a
+ * fraction is the *portion of the target's own height* that must be
+ * visible, which silently breaks for any block taller than roughly
+ * 1/fraction × the viewport (reproduced: a 2800px-tall team grid on an
+ * 844px mobile viewport never reached 30%, since even a full viewport of
+ * it visible caps out right at that threshold — the block just stayed
+ * invisible forever). "some" has no such ceiling.
  */
 export function Reveal({
   children,
@@ -55,7 +63,7 @@ export function Reveal({
     ? { animate: { opacity: 1, y: 0 } }
     : {
         whileInView: { opacity: 1, y: 0 },
-        viewport: { once: true, amount: 0.3 },
+        viewport: { once: true, amount: "some" as const },
       };
   return (
     <motion.div
@@ -82,7 +90,9 @@ const staggerItem: Variants = {
 /**
  * Wraps a group of `StaggerItem`s and cascades their entrance. Pass
  * `immediate` for content guaranteed visible on load — see `Reveal` above
- * for why `whileInView` alone isn't reliable for that case.
+ * for why `whileInView` alone isn't reliable for that case, and for why
+ * `amount: "some"` rather than a fraction (a fraction breaks for any group
+ * tall enough that a full viewport of it never reaches that fraction).
  */
 export function StaggerGroup({
   children,
@@ -95,7 +105,7 @@ export function StaggerGroup({
 }) {
   const trigger = immediate
     ? { animate: "show" }
-    : { whileInView: "show", viewport: { once: true, amount: 0.2 } };
+    : { whileInView: "show", viewport: { once: true, amount: "some" as const } };
   return (
     <motion.div
       className={className}

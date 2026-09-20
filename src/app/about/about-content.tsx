@@ -6,13 +6,14 @@ import { ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Reveal, StaggerGroup, StaggerItem, TypewriterTitle } from "@/components/motion-primitives";
+import { degreeNameKey } from "@/components/person-card";
 import { aboutStory, memberDegrees, siteConfig } from "@/lib/site-data";
 import { useT } from "@/lib/language";
 
 // All eleven distinct degree names in memberDegrees, so this list always
 // matches the "{distinctBackgrounds}" count the lead sentence quotes.
-// Degree names stay in English in both languages, matching how PersonCard
-// already shows them elsewhere on the site.
+// English source strings — translated for display via degreeNameKey, same
+// as PersonCard elsewhere on the site.
 const backgroundPills = [
   "Applied Mathematics for Risk Management",
   "Actuarial Mathematics",
@@ -100,7 +101,7 @@ export function AboutContent() {
             <div className="mt-4 flex flex-wrap gap-1.5">
               {backgroundPills.map((degree) => (
                 <Badge key={degree} variant="outline">
-                  {degree}
+                  {t(degreeNameKey(degree), degree)}
                 </Badge>
               ))}
             </div>
