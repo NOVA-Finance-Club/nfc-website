@@ -101,6 +101,9 @@ export const pt: Record<string, string> = {
   // are published on the site).
   "personCard.emailSubject": "Contacto para {name}",
   "personCard.emailAriaLabel": "Enviar email para {name}",
+  "personCard.degreeLine": "{level} em {name}",
+  "degree.level.bsc": "Licenciatura",
+  "degree.level.msc": "Mestrado",
 
   // Governance unit names and summaries
   "gov.board.name": "Direção",

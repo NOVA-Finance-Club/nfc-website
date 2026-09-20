@@ -113,7 +113,10 @@ export function PersonCard({
           >
             {degree && (
               <p className="mt-1 text-sm text-white/60">
-                {degree.level} in {degree.name}
+                {t("personCard.degreeLine", "{level} in {name}", {
+                  level: t(`degree.level.${degree.level.toLowerCase()}`, degree.level),
+                  name: degree.name,
+                })}
               </p>
             )}
             <div className="mt-2.5 flex items-center gap-4">
