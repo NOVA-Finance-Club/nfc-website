@@ -10,7 +10,7 @@ import { degreeNameKey } from "@/components/person-card";
 import { aboutStory, memberDegrees, siteConfig } from "@/lib/site-data";
 import { useT } from "@/lib/language";
 
-// All eleven distinct degree names in memberDegrees, so this list always
+// All ten distinct degree names in memberDegrees, so this list always
 // matches the "{distinctBackgrounds}" count the lead sentence quotes.
 // English source strings — translated for display via degreeNameKey, same
 // as PersonCard elsewhere on the site.
@@ -22,7 +22,6 @@ const backgroundPills = [
   "Industrial Engineering and Management",
   "Electrical and Computer Engineering",
   "Mathematics and Applications",
-  "Mathematics",
   "Biochemistry",
   "Big Data Analytics and Engineering",
   "Biomedical Engineering",

@@ -122,7 +122,7 @@ export const memberDegrees: Record<string, Degree> = {
   "Tiago Santos": { code: "MEI", name: "Computer Engineering", level: "MSc" },
   "Rodrigo Devesa": { code: "LEEC", name: "Electrical and Computer Engineering", level: "BSc" },
   "Joana Ferreira": { code: "MMA", name: "Mathematics and Applications", level: "MSc" },
-  "Gisela Alves": { code: "LM", name: "Mathematics", level: "BSc" },
+  "Gisela Alves": { code: "MMA", name: "Mathematics and Applications", level: "MSc" },
   "Tiago Albuquerque": { code: "LMAGR", name: "Applied Mathematics for Risk Management", level: "BSc" },
   "Marta Jesus": { code: "MMA", name: "Mathematics and Applications", level: "MSc" },
   "Isabel Monteiro": { name: "Actuarial Mathematics", level: "MSc" },
