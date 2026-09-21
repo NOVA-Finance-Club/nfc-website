@@ -101,6 +101,7 @@ export const pt: Record<string, string> = {
   // are published on the site).
   "personCard.emailSubject": "Contacto para {name}",
   "personCard.emailAriaLabel": "Enviar email para {name}",
+  "personCard.linkedinAriaLabel": "{name} no LinkedIn",
   "personCard.degreeLine": "{level} em {name}",
   "degree.level.bsc": "Licenciatura",
   "degree.level.msc": "Mestrado",

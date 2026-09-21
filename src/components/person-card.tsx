@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { Mail } from "lucide-react";
 
-import { memberDegrees, memberPhotoPosition, memberPhotos, siteConfig, type Person } from "@/lib/site-data";
+import { memberDegrees, memberLinkedIn, memberPhotoPosition, memberPhotos, siteConfig, type Person } from "@/lib/site-data";
 import { useT } from "@/lib/language";
 import { cn } from "@/lib/utils";
 import { LinkedinIcon } from "@/components/social-icons";
@@ -60,6 +60,7 @@ export function PersonCard({
   const degree = memberDegrees[person.name];
   const photo = memberPhotos[person.name];
   const photoPosition = memberPhotoPosition[person.name];
+  const linkedin = memberLinkedIn[person.name];
   // The plain "Coordinator" role (a department's own team page) is gendered
   // per that specific coordinator's name, since the string alone doesn't
   // carry which department it's on. Every other role translates generically.
@@ -145,7 +146,20 @@ export function PersonCard({
               >
                 <Mail className="size-5" />
               </a>
-              <LinkedinIcon className="size-5 text-white/40" />
+              {linkedin ? (
+                <a
+                  href={linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={t("personCard.linkedinAriaLabel", "{name} on LinkedIn", { name: person.name })}
+                  onClick={(e) => e.stopPropagation()}
+                  className="text-white/70 transition-colors hover:text-white"
+                >
+                  <LinkedinIcon className="size-5" />
+                </a>
+              ) : (
+                <LinkedinIcon className="size-5 text-white/40" />
+              )}
             </div>
           </div>
         </div>

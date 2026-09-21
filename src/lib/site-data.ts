@@ -86,6 +86,26 @@ export const memberPhotos: Record<string, string> = {
   "Vasco Cruz": "/members/vasco-cruz/IMG_5909.JPG",
 };
 
+// Member LinkedIn profiles, keyed by name — same lookup pattern as
+// memberPhotos above. Canonical profile URLs only (LinkedIn's own
+// tracking query params — miniProfileUrn, lipi — stripped, since those
+// are session-specific to whoever copied the link, not stable).
+export const memberLinkedIn: Record<string, string> = {
+  "Sara Abrantes": "https://www.linkedin.com/in/sara-abrantes-49b69a38a/",
+  "Diogo Ruivo": "https://www.linkedin.com/in/diogoruivo1/",
+  "João Henriques": "https://www.linkedin.com/in/jmhenriques/",
+  "Isabel Monteiro": "https://www.linkedin.com/in/isabelmonteiro05/",
+  "José Seixas da Fonseca": "https://www.linkedin.com/in/jos%C3%A9-seixas-fonseca/",
+  "Maria Neves": "https://www.linkedin.com/in/maria-luis-21a8972a5/",
+  "Matilde Duarte": "https://www.linkedin.com/in/matilde-duarte-b11726438/",
+  "Rodrigo Devesa": "https://www.linkedin.com/in/rodrigo-devesa-050a652bb/",
+  "Samuel Pires Gonçalves": "https://www.linkedin.com/in/samuel-pires-gon%C3%A7alves-324640282/",
+  "Duarte Esteves": "https://www.linkedin.com/in/duartedesteves/",
+  "Filipe Parreira": "https://www.linkedin.com/in/filipeparreira/",
+  "Guilherme Tenório": "https://www.linkedin.com/in/guilherme-setas-ten%C3%B3rio-31034b219/",
+  "Afonso Jerónimo": "https://www.linkedin.com/in/afonso-jer%C3%B3nimo-4b24173b9/",
+};
+
 // Cropping a landscape photo into the card's portrait tile only shows a
 // vertical slice of it — a plain center crop reproduces however far
 // off-centered the subject happened to be in the original shot, not
