@@ -104,6 +104,11 @@ export const memberLinkedIn: Record<string, string> = {
   "Filipe Parreira": "https://www.linkedin.com/in/filipeparreira/",
   "Guilherme Tenório": "https://www.linkedin.com/in/guilherme-setas-ten%C3%B3rio-31034b219/",
   "Afonso Jerónimo": "https://www.linkedin.com/in/afonso-jer%C3%B3nimo-4b24173b9/",
+  "Vasco Cruz": "https://www.linkedin.com/in/vasco-cruz-871b02237/",
+  "Tiago Albuquerque": "https://www.linkedin.com/in/tiago-albuquerque-70742630b/",
+  "Guilherme Azevedo": "https://www.linkedin.com/in/gazevedov/",
+  "Mateo Kirk": "https://www.linkedin.com/in/mateo-mara%C3%B1on-088704297/",
+  "Joana Ferreira": "https://www.linkedin.com/in/joana-mesquita-7547aa356/",
 };
 
 // Cropping a landscape photo into the card's portrait tile only shows a
